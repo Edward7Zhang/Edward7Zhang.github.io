@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>记一次呆若木鸡的面试 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Interview,Inspire">
+    <meta name="description" content="记录一道很简单很简单的入门题…核心就是一个我高中就学过的数学知识…叉积…可惜年久不用…在面试的紧要关头就显得呆若木鸡…很遗憾没有表现出自己的真实水平…  /* *  * 在一个平面中.任意一个直线线段可以由2个点表示,任意一个点可以由X,Y坐标值表示.  *例如线段 J 由 点A(x1, y1), B(x2, y2)表示. 其中坐标值 x,y 都为int.   *求写出一个方法, boolean">
+<meta name="keywords" content="Interview,Inspire">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一次呆若木鸡的面试">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="记录一道很简单很简单的入门题…核心就是一个我高中就学过的数学知识…叉积…可惜年久不用…在面试的紧要关头就显得呆若木鸡…很遗憾没有表现出自己的真实水平…  /* *  * 在一个平面中.任意一个直线线段可以由2个点表示,任意一个点可以由X,Y坐标值表示.  *例如线段 J 由 点A(x1, y1), B(x2, y2)表示. 其中坐标值 x,y 都为int.   *求写出一个方法, boolean">
+<meta property="og:updated_time" content="2018-04-24T14:52:45.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="记一次呆若木鸡的面试">
+<meta name="twitter:description" content="记录一道很简单很简单的入门题…核心就是一个我高中就学过的数学知识…叉积…可惜年久不用…在面试的紧要关头就显得呆若木鸡…很遗憾没有表现出自己的真实水平…  /* *  * 在一个平面中.任意一个直线线段可以由2个点表示,任意一个点可以由X,Y坐标值表示.  *例如线段 J 由 点A(x1, y1), B(x2, y2)表示. 其中坐标值 x,y 都为int.   *求写出一个方法, boolean">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">记一次呆若木鸡的面试</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">记一次呆若木鸡的面试</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-24T14:24:14.000Z" itemprop="datePublished" class="page-time">
+  2018-04-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-记一次呆若木鸡的面试"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">记一次呆若木鸡的面试</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-24 22:24:14" datetime="2018-04-24T14:24:14.000Z"  itemprop="datePublished">2018-04-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>记录一道很简单很简单的入门题…核心就是一个我高中就学过的数学知识…叉积…可惜年久不用…在面试的紧要关头就显得呆若木鸡…很遗憾没有表现出自己的真实水平…</p>
+</blockquote>
+<pre><code>/* *
+
+* 在一个平面中.任意一个直线线段可以由2个点表示,任意一个点可以由X,Y坐标值表示.
+
+*例如线段 J 由 点A(x1, y1), B(x2, y2)表示. 其中坐标值 x,y 都为int.
+
+ *求写出一个方法, boolean checkIntersect(Line J, Line K);
+
+ *检查在平面中给出的2个线段是否相交, return true 代表线段相交, false 为不想交.
+
+ *请自行定义线段Line的数据结构, 并可以假设传入参数Line J 和 Line K 为有效输入.
+
+ */
+</code></pre><hr>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> aiqyInterview;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckIntersect</span> </span>&#123;</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * </div><div class="line">	 * <span class="doctag">@author</span> EdwardZhang</div><div class="line">	 * 判断线段相交：</div><div class="line">	 * 两个线段的交点个数可能有0个 1个或者无数个</div><div class="line">	 * 判断两个线段相交，可以按照如下步骤：</div><div class="line">	 * 判断A点B点是否在线段CD的两侧，即计算叉积时异号</div><div class="line">	 * 判断C点和D点是否在线段AB的两侧，即计算叉积时异号</div><div class="line">	 * 然后在处理特殊情况，即ABCD四个点有至少三个点共线的情况，</div><div class="line">	 * 即出现叉积为零的情况，如果A点与线段CD共线，</div><div class="line">	 * 则要查看A点是否在线段CD上，其它情况依次类推。</div><div class="line">	 */</div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</div><div class="line">		<span class="keyword">int</span> x;</div><div class="line">		<span class="keyword">int</span> y;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> x;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</div><div class="line">			<span class="keyword">this</span>.x = x;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getY</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> y;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setY</span><span class="params">(<span class="keyword">int</span> y)</span> </span>&#123;</div><div class="line">			<span class="keyword">this</span>.y = y;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Line</span> </span>&#123;</div><div class="line">		Point A = <span class="keyword">new</span> Point();</div><div class="line">		Point B = <span class="keyword">new</span> Point();</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> Point <span class="title">getA</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> A;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setA</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">			A.x = i;</div><div class="line">			A.y = j;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> Point <span class="title">getB</span><span class="params">()</span> </span>&#123;</div><div class="line">			<span class="keyword">return</span> B;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setB</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</div><div class="line">			B.x = i;</div><div class="line">			B.y = j;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">float</span> <span class="title">direct</span><span class="params">(Point i, Point j, Point k)</span> </span>&#123; <span class="comment">// 计算叉积</span></div><div class="line">		<span class="keyword">return</span> (k.x - i.x) * (j.y - i.y) - (j.x - i.x) * (k.y - i.y);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">onSegment</span><span class="params">(Point a, Point b, Point c)</span> </span>&#123; <span class="comment">// 共线时，判断点是否落在线段</span></div><div class="line">		<span class="keyword">float</span> minx = Math.min(a.x, b.x);</div><div class="line">		<span class="keyword">float</span> maxx = Math.max(a.x, b.x);</div><div class="line">		<span class="keyword">float</span> miny = Math.min(a.y, b.y);</div><div class="line">		<span class="keyword">float</span> maxy = Math.max(a.y, b.y);</div><div class="line">		<span class="keyword">if</span> (c.x &gt;= minx &amp;&amp; c.x &lt;= maxx &amp;&amp; c.y &gt;= miny &amp;&amp; c.y &lt;= maxy) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkIntersect</span><span class="params">(Line X, Line Y)</span> </span>&#123;</div><div class="line">		<span class="keyword">float</span> d1 = direct(Y.A, Y.B, X.A);</div><div class="line">		<span class="keyword">float</span> d2 = direct(Y.A, Y.B, X.B);</div><div class="line">		<span class="keyword">float</span> d3 = direct(X.A, X.B, Y.A);</div><div class="line">		<span class="keyword">float</span> d4 = direct(X.A, X.B, Y.B);</div><div class="line">		<span class="keyword">if</span> (d1 * d2 &lt; <span class="number">0</span> &amp;&amp; d3 * d4 &lt; <span class="number">0</span>)</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (d1 == <span class="number">0</span> &amp;&amp; onSegment(Y.A, Y.B, X.A))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (d2 == <span class="number">0</span> &amp;&amp; onSegment(Y.A, Y.B, X.B))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (d3 == <span class="number">0</span> &amp;&amp; onSegment(X.A, X.B, Y.A))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (d4 == <span class="number">0</span> &amp;&amp; onSegment(X.A, X.B, Y.B))</div><div class="line">			<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		CheckIntersect checkIntersect = <span class="keyword">new</span> CheckIntersect();</div><div class="line">		Line a = checkIntersect.new Line();</div><div class="line">		Line b = checkIntersect.new Line();</div><div class="line">		a.setA(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">		a.setB(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">		b.setA(<span class="number">2</span>, <span class="number">0</span>);</div><div class="line">		b.setB(<span class="number">0</span>, <span class="number">2</span>);</div><div class="line">		System.out.println(checkIntersect(a,b));<span class="comment">//相交 true</span></div><div class="line">		a.setA(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">		a.setB(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">		b.setA(<span class="number">2</span>, <span class="number">0</span>);</div><div class="line">		b.setB(<span class="number">1</span>, <span class="number">0</span>);</div><div class="line">		System.out.println(checkIntersect(a,b));<span class="comment">//相离 false</span></div><div class="line">		a.setA(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">		a.setB(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">		b.setA(<span class="number">2</span>, <span class="number">0</span>);</div><div class="line">		b.setB(<span class="number">4</span>, <span class="number">2</span>);</div><div class="line">		System.out.println(checkIntersect(a,b));<span class="comment">//平行 false</span></div><div class="line">		a.setA(<span class="number">0</span>, <span class="number">0</span>);</div><div class="line">		a.setB(<span class="number">2</span>, <span class="number">2</span>);</div><div class="line">		b.setA(<span class="number">1</span>, <span class="number">1</span>);</div><div class="line">		b.setB(<span class="number">3</span>, <span class="number">3</span>);</div><div class="line">		System.out.println(checkIntersect(a,b));<span class="comment">//在一条直线上 true</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-24T14:52:45.817Z" itemprop="dateUpdated">2018-04-24 22:52:45</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/04/24/记一次呆若木鸡的面试/" target="_blank" rel="external">https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Inspire/">Inspire</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&title=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&title=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/25/Java与Kotlin下的6种单例模式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Java与Kotlin下的6种单例模式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/19/计算机系应届生求职指北/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">计算机系应届生求职指北</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&title=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&title=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《记一次呆若木鸡的面试》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/24/记一次呆若木鸡的面试/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3awY4aMRAEUP7/pzfXSAlQ1W0TIr05oV2Y8euD7an24xFfP0+u3/87++afn18//XHjwsPDwzs09GeDfnaHfFg5OBnPs+/g4eHh3ea9HnQ+KRcPflKCdlF5Y8HDw8P7At5skdh8Ew8PD+9/5802zUmBkl/h4eHhfQ/vVPx6CpaU+3DWgoeHh9dlAsPt7L/6fKW/h4eHh7eOXF9PuEnwummwtU2vv9wZDw8P7wIvn3DboeeBwiyYKMaJh4eHd5TXTtnDIHV0IGBz8AsPDw/vHi+ZvmeLR1uUpBCzFh0eHh7ePV6+kW2bWO09c1hUPjw8PLxrvDaozR+/KWWyJBRtMDw8PLw1L99Mz4LUNjhoj1W9WR7w8PDwLvNm1Fks27b/h2XFw8PD+1w62r/wHwp8Z+8E7XYfDw8P7yyvjVlPNcY2gKI0eHh4eId4+ba4aNjHdU0ihjxixsPDw7vNy9tReZyaH5DKF6FZbwsPDw/vk7z8YbMGVb54zLbveHh4eLd5yUS/b1Dlwcexw1t4eHh4F3j5VrVNhVeHpcpAuVhC8PDw8Na8fIrfB7JtIWZhBx4eHt5tXrvlzaPVvImV44/B8PDw8Ba82WGmWYQxWwzacb7JWvDw8PDWvNdb5Dai3SwYbZibHynAw8PDu8FrHzmLcZPDCvmWOvkLHh4e3m1ezm4n7mTSnxWliGvx8PDwrvFWL/zxRnzTeBuGuXh4eHiHeD/llfTTZrFsUsT6uXh4eHgXePm1aXe12+79xhoPDw/vNm/WyJ/FFnkUO1sY8PDw8D7JS/LPtnG1CXk3Rxbw8PDwvpOXT/3tgYBkmcnviYeHh/c9vHaarrfCJXt46AoPDw9vwZs1vfKQYlbKpIhvfouHh4d3gde+8M+i1bxMsxh3deHh4eGlvF9hIgMn5cTm3gAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

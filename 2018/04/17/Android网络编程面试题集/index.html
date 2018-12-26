@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Android网络编程面试题集 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android,Interview">
+    <meta name="description" content="一次次的挂于一面让我筋疲力竭…意识到自己存在眼高手低的状态…准备重新上路夯实基础本片文章Fork from android-interview  网络编程TCP与UDP有什么区别？ TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接 TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证">
+<meta name="keywords" content="Android,Interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android网络编程面试题集">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="一次次的挂于一面让我筋疲力竭…意识到自己存在眼高手低的状态…准备重新上路夯实基础本片文章Fork from android-interview  网络编程TCP与UDP有什么区别？ TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接 TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证">
+<meta property="og:image" content="https://github.com/guoxiaoxing/android-open-source-project-analysis/raw/master/art/practice/network/three_way_handshake.jpeg">
+<meta property="og:image" content="https://github.com/guoxiaoxing/android-open-source-project-analysis/raw/master/art/practice/network/http_https.png">
+<meta property="og:image" content="https://github.com/guoxiaoxing/android-open-framwork-analysis/raw/master/art/okhttp/http_cache_structure.png">
+<meta property="og:updated_time" content="2018-04-17T01:39:28.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android网络编程面试题集">
+<meta name="twitter:description" content="一次次的挂于一面让我筋疲力竭…意识到自己存在眼高手低的状态…准备重新上路夯实基础本片文章Fork from android-interview  网络编程TCP与UDP有什么区别？ TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接 TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证">
+<meta name="twitter:image" content="https://github.com/guoxiaoxing/android-open-source-project-analysis/raw/master/art/practice/network/three_way_handshake.jpeg">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android网络编程面试题集</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android网络编程面试题集</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-17T01:07:14.000Z" itemprop="datePublished" class="page-time">
+  2018-04-17
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络编程"><span class="post-toc-number">1.</span> <span class="post-toc-text">网络编程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP与UDP有什么区别？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">TCP与UDP有什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#简单介绍一下TCP三次握手与四次分手过程？"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">简单介绍一下TCP三次握手与四次分手过程？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP如何保证数据传输的可靠性？"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">TCP如何保证数据传输的可靠性？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP与HTTPS有什么区别？"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">HTTP与HTTPS有什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#谈一谈对HTTP缓存的理解？"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">谈一谈对HTTP缓存的理解？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTPS是如何保证安全的，证书如何校验？"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">HTTPS是如何保证安全的，证书如何校验？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#HTTP如何实现长连接？"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">HTTP如何实现长连接？</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Android网络编程面试题集"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android网络编程面试题集</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-17 09:07:14" datetime="2018-04-17T01:07:14.000Z"  itemprop="datePublished">2018-04-17</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>一次次的挂于一面让我筋疲力竭…意识到自己存在眼高手低的状态…准备重新上路夯实基础<br>本片文章Fork from <a href="https://github.com/guoxiaoxing/android-interview" target="_blank" rel="external">android-interview</a></p>
+</blockquote>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><h3 id="TCP与UDP有什么区别？"><a href="#TCP与UDP有什么区别？" class="headerlink" title="TCP与UDP有什么区别？"></a>TCP与UDP有什么区别？</h3><ol>
+<li>TCP面向连接（如打电话要先拨号建立连接）;UDP是无连接的，即发送数据之前不需要建立连接</li>
+<li>TCP提供可靠的服务。也就是说，通过TCP连接传送的数据，无差错，不丢失，不重复，且按序到达;UDP尽最大努力交付，即不保证可靠交付</li>
+<li>TCP面向字节流，实际上是TCP把数据看成一连串无结构的字节流;UDP是面向报文的UDP没有拥塞控制，因此网络出现拥塞不会使源主机的发送速率降低（对实时应用很有用，如IP电话，实时视频会议等）</li>
+<li>每一条TCP连接只能是点到点的;UDP支持一对一，一对多，多对一和多对多的交互通信</li>
+<li>TCP首部开销20字节;UDP的首部开销小，只有8个字节</li>
+<li>TCP的逻辑通信信道是全双工的可靠信道，UDP则是不可靠信道</li>
+</ol>
+<h3 id="简单介绍一下TCP三次握手与四次分手过程？"><a href="#简单介绍一下TCP三次握手与四次分手过程？" class="headerlink" title="简单介绍一下TCP三次握手与四次分手过程？"></a>简单介绍一下TCP三次握手与四次分手过程？</h3><p>TCP用<a href="https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE#建立通路" target="_blank" rel="external">三次握手</a>（three-way handshake）过程创建一个连接，使用四次分手<br>关闭一个连接。</p>
+<p>三次握手与四次分手的流程如下所示：</p>
+<p><img src="https://github.com/guoxiaoxing/android-open-source-project-analysis/raw/master/art/practice/network/three_way_handshake.jpeg" width="500"></p>
+<p>三次握手</p>
+<ul>
+<li>第一次握手：建立连接。客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后，客户端进入SYN_SEND状态，等待服务器的确认；</li>
+<li>第二次握手：服务器收到SYN报文段。服务器收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledgment Number为x+1(Sequence Number+1)；同时，自己自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入SYN_RECV状态；</li>
+<li>第三次握手：客户端收到服务器的SYN+ACK报文段。然后将Acknowledgment Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕以后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手。<br>完成了三次握手，客户端和服务器端就可以开始传送数据。以上就是TCP三次握手的总体介绍。</li>
+</ul>
+<p>四次分手</p>
+<ul>
+<li>第一次分手：主机1（可以使客户端，也可以是服务器端），设置Sequence Number和Acknowledgment Number，向主机2发送一个FIN报文段；此时，主机1进入FIN_WAIT_1状态；这表示主机1没有数据要发送给主机2了；</li>
+<li>第二次分手：主机2收到了主机1发送的FIN报文段，向主机1回一个ACK报文段，Acknowledgment Number为Sequence Number加1；主机1进入FIN_WAIT_2状态；主机2告诉主机1，我“同意”你的关闭请求；</li>
+<li>第三次分手：主机2向主机1发送FIN报文段，请求关闭连接，同时主机2进入LAST_ACK状态；</li>
+<li>第四次分手：主机1收到主机2发送的FIN报文段，向主机2发送ACK报文段，然后主机1进入TIME_WAIT状态；主机2收到主机1的ACK报文段以后，就关闭连接；此时，主机1等待2MSL后依然没有收到回复，则证明Server端已正常关闭，那好，主机1也可以关闭连接了。</li>
+</ul>
+<p>三次握手与四次分手也是个老生常谈的概念，举个简单的例子说明一下。</p>
+<p>三次握手</p>
+<blockquote>
+<p>例如你小时候出去玩，经常玩忘了回家吃饭。你妈妈也经常过来喊你。如果你没有走远，在门口的小土堆上玩泥巴，你妈妈会喊：”小新，回家吃饭了”。你听到后会回应：”知道了，一会就回去”。妈妈听<br>到你的回应后又说：”快点回来，饭要凉了”。这样你妈妈和你就完成了三次握手的过程。😁说到这里你也可以理解三次握手的必要性，少了其中一个环节，另一方就会陷入等待之中。</p>
+</blockquote>
+<p>三次握手的目的是为了防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误.</p>
+<p>四次分手</p>
+<blockquote>
+<p>例如偶像言情剧干净利落的分手，女主对男主说：我们分手吧🙄，男主说：分就分吧😰。女主说：你果然是不爱我了，你只知道让我多喝热水🙄。男主说：事到如今也没什么好说的了，祝你幸福🙃。四次分手完成。说到这里你可以理解<br>了四次分手的必要性，第一次是女方（客户端）提出分手，第二次是男主（服务端）同意女主分手，第三次是女主确定男主不再爱她，也同意男主分手。第四次两人彻底拜拜（断开连接）。</p>
+</blockquote>
+<p>因为TCP是全双工模式，所以四次分手的目的就是为了可靠地关闭连接。</p>
+<h3 id="TCP如何保证数据传输的可靠性？"><a href="#TCP如何保证数据传输的可靠性？" class="headerlink" title="TCP如何保证数据传输的可靠性？"></a>TCP如何保证数据传输的可靠性？</h3><ol>
+<li>确认和重传：接收方收到报文后就会进行确认，发送方一段时间没有收到确认就会重传。</li>
+<li>数据校验。</li>
+<li>数据合理分片与排序，TCP会对数据进行分片，接收方会缓存为按序到达的数据，重新排序后再提交给应用层。</li>
+<li>流程控制：当接收方来不及接收发送的数据时，则会提示发送方降低发送的速度，防止包丢失。</li>
+<li>拥塞控制：当网络发生拥塞时，减少数据的发送。</li>
+</ol>
+<h3 id="HTTP与HTTPS有什么区别？"><a href="#HTTP与HTTPS有什么区别？" class="headerlink" title="HTTP与HTTPS有什么区别？"></a>HTTP与HTTPS有什么区别？</h3><blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE" target="_blank" rel="external">HTTPS</a>是一种通过计算机网络进行安全通信的传输协议。HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份<br>认证，保护交换数据的隐私与完整性。</p>
+</blockquote>
+<p>如下图所示，可以很明显的看出两个的区别：</p>
+<p><img src="https://github.com/guoxiaoxing/android-open-source-project-analysis/raw/master/art/practice/network/http_https.png" width="500"></p>
+<p>注：TLS是SSL的升级替代版，具体发展历史可以参考<a href="https://zh.wikipedia.org/wiki/%E5%82%B3%E8%BC%B8%E5%B1%A4%E5%AE%89%E5%85%A8%E6%80%A7%E5%8D%94%E5%AE%9A" target="_blank" rel="external">传输层安全性协议</a>。</p>
+<p>HTTP与HTTPS在写法上的区别也是前缀的不同，客户端处理的方式也不同，具体说来：</p>
+<ul>
+<li>如果URL的协议是HTTP，则客户端会打开一条到服务端端口80（默认）的连接，并向其发送老的HTTP请求。</li>
+<li>如果URL的协议是HTTPS，则客户端会打开一条到服务端端口443（默认）的连接，然后与服务器握手，以二进制格式与服务器交换一些SSL的安全参数，附上加密的<br>HTTP请求。</li>
+</ul>
+<p>所以你可以看到，HTTPS比HTTP多了一层与SSL的连接，这也就是客户端与服务端SSL握手的过程，整个过程主要完成以下工作：</p>
+<ul>
+<li>交换协议版本号</li>
+<li>选择一个两端都了解的密码</li>
+<li>对两端的身份进行认证</li>
+<li>生成临时的会话密钥，以便加密信道。</li>
+</ul>
+<p>SSL握手是一个相对比较复杂的过程，更多关于SSL握手的过程细节可以参考<a href="https://www.wosign.com/faq/faq2016-0309-04.htm" target="_blank" rel="external">TLS/SSL握手过程</a></p>
+<p>SSL/TSL的常见开源实现是OpenSSL，OpenSSL是一个开放源代码的软件库包，应用程序可以使用这个包来进行安全通信，避免窃听，同时确认另一端连接者的身份。这个包广泛被应用在互联网的网页服务器上。<br>更多源于OpenSSL的技术细节可以参考<a href="https://www.openssl.org/" target="_blank" rel="external">OpenSSL</a>。</p>
+<h3 id="谈一谈对HTTP缓存的理解？"><a href="#谈一谈对HTTP缓存的理解？" class="headerlink" title="谈一谈对HTTP缓存的理解？"></a>谈一谈对HTTP缓存的理解？</h3><p>HTTP的缓存机制也是依赖于请求和响应header里的参数类实现的，最终响应式从缓存中去，还是从服务端重新拉取，HTTP的缓存机制的流程如下所示：</p>
+<p>👉 点击图片查看大图</p>
+<p><img src="https://github.com/guoxiaoxing/android-open-framwork-analysis/raw/master/art/okhttp/http_cache_structure.png" width="600"></p>
+<p>HTTP的缓存可以分为两种：</p>
+<ul>
+<li>强制缓存：需要服务端参与判断是否继续使用缓存，当客户端第一次请求数据是，服务端返回了缓存的过期时间（Expires与Cache-Control），没有过期就可以继续使用缓存，否则则不适用，无需再向服务端询问。</li>
+<li>对比缓存：需要服务端参与判断是否继续使用缓存，当客户端第一次请求数据时，服务端会将缓存标识（Last-Modified/If-Modified-Since与Etag/If-None-Match）与数据一起返回给客户端，客户端将两者都备份到缓存中 ，再次请求数据时，客户端将上次备份的缓存<br>标识发送给服务端，服务端根据缓存标识进行判断，如果返回304，则表示通知客户端可以继续使用缓存。</li>
+</ul>
+<p>强制缓存优先于对比缓存。</p>
+<p>上面提到强制缓存使用的的两个标识：</p>
+<ul>
+<li>Expires：Expires的值为服务端返回的到期时间，即下一次请求时，请求时间小于服务端返回的到期时间，直接使用缓存数据。到期时间是服务端生成的，客户端和服务端的时间可能有误差。</li>
+<li>Cache-Control：Expires有个时间校验的问题，所有HTTP1.1采用Cache-Control替代Expires。</li>
+</ul>
+<p>Cache-Control的取值有以下几种：</p>
+<ul>
+<li>private:             客户端可以缓存。</li>
+<li>public:              客户端和代理服务器都可缓存。</li>
+<li>max-age=xxx:   缓存的内容将在 xxx 秒后失效</li>
+<li>no-cache:          需要使用对比缓存来验证缓存数据。</li>
+<li>no-store:           所有内容都不会缓存，强制缓存，对比缓存都不会触发。</li>
+</ul>
+<p>我们再来看看对比缓存的两个标识：</p>
+<p><strong>Last-Modified/If-Modified-Since</strong></p>
+<p>Last-Modified 表示资源上次修改的时间。</p>
+<p>当客户端发送第一次请求时，服务端返回资源上次修改的时间：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Last-Modified: Tue, <span class="number">12</span> Jan <span class="number">2016</span> <span class="number">09</span>:<span class="number">31</span>:<span class="number">27</span> GMT</div></pre></td></tr></table></figure>
+<p>客户端再次发送，会在header里携带If-Modified-Since。将上次服务端返回的资源时间上传给服务端。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If-Modified-Since: Tue, <span class="number">12</span> Jan <span class="number">2016</span> <span class="number">09</span>:<span class="number">31</span>:<span class="number">27</span> GMT</div></pre></td></tr></table></figure>
+<p>服务端接收到客户端发来的资源修改时间，与自己当前的资源修改时间进行对比，如果自己的资源修改时间大于客户端发来的资源修改时间，则说明资源做过修改，<br>则返回200表示需要重新请求资源，否则返回304表示资源没有被修改，可以继续使用缓存。</p>
+<p>上面是一种时间戳标记资源是否修改的方法，还有一种资源标识码ETag的方式来标记是否修改，如果标识码发生改变，则说明资源已经被修改，ETag优先级高于Last-Modified。</p>
+<p><strong>Etag/If-None-Match</strong></p>
+<p>ETag是资源文件的一种标识码，当客户端发送第一次请求时，服务端会返回当前资源的标识码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ETag: <span class="string">"5694c7ef-24dc"</span></div></pre></td></tr></table></figure>
+<p>客户端再次发送，会在header里携带上次服务端返回的资源标识码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">If-None-Match:<span class="string">"5694c7ef-24dc"</span></div></pre></td></tr></table></figure>
+<p>服务端接收到客户端发来的资源标识码，则会与自己当前的资源吗进行比较，如果不同，则说明资源已经被修改，则返回200，如果相同则说明资源没有被修改，返回<br>304，客户端可以继续使用缓存。</p>
+<h3 id="HTTPS是如何保证安全的，证书如何校验？"><a href="#HTTPS是如何保证安全的，证书如何校验？" class="headerlink" title="HTTPS是如何保证安全的，证书如何校验？"></a>HTTPS是如何保证安全的，证书如何校验？</h3><h3 id="HTTP如何实现长连接？"><a href="#HTTP如何实现长连接？" class="headerlink" title="HTTP如何实现长连接？"></a>HTTP如何实现长连接？</h3>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-17T01:39:28.610Z" itemprop="dateUpdated">2018-04-17 09:39:28</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/04/17/Android网络编程面试题集/" target="_blank" rel="external">https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&title=《Android网络编程面试题集》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&title=《Android网络编程面试题集》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android网络编程面试题集》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/19/计算机系应届生求职指北/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">计算机系应届生求职指北</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/16/HTTP协议/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HTTP协议复习</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&title=《Android网络编程面试题集》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&title=《Android网络编程面试题集》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android网络编程面试题集》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/17/Android网络编程面试题集/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3aQW7CQAwF0N7/0lTqCqlN+LbHtJVeVggCkzeLsbH98RFfj6/r6p3vnz6//3zd/3J+5+ELDw8Pr/XoV9dk4atvVVe5v/PFJuLh4eGt8apHdo5PwL3tjjYaDw8P71d51QethoE8wODh4eH9R16S7PZCQvIpHh4e3l/g5SlsNdVOQst9oeF+3WO1Fjw8PLyYV22A/YXXi/09PDw8vEFXPW/8J4MFvaP8Mbjw8PDwNnh5ClttaFXHDibP8GIVPDw8vKO83sLvJOXDXj+8xsPDw1vgVZtYk3ZUtRDcGzWIwgMeHh7egJe3l+bt/8nwQR6Qfoh7eHh4eEd5vVZ9PgoQxaWgLNIb0sLDw8N7Dy8vB+SjWr1kerJx0T8GPDw8vBYvKcXmR3ZvgKDQqQuCAR4eHt42r9qaqm7BfFSrV4wo/HvAw8PDG/M2irO9AJCXPJpFCjw8PLwWLy/OVsus5TbVoNB8qcDDw8Nb4B2oAQe/UB29Sq5CKMLDw8Nb4OUjUPkAVt7+7w1g5UUNPDw8vLO8eYtrkhzn5YZ8Ey/7e3h4eHgLvDw5ri5WbXrNC7t4eHh427xqItsrYfRCSK9hhoeHh7fHS47m+YFeHbGa34OHh4e3x6s2mfKjfFLmyBtgL+rTeHh4eAu85PDttaN6D1RNmqO0Gw8PD+8or1pEqBYIemNV81/Aw8PDew+vWckYNK7mjbcX6+Lh4eEt8KrFhWrp9tRaK9/Fw8PDa323nKTGQwPV8YJqIy0qE+Ph4eEt8E41t6ptsElinRcp8PDw8PZ4k2Aw2cX5SEGUyuPh4eGt8XpDVHmyOwkVkwwZDw8P73d594/bK/hWk/hkrWZgwMPDw1vjVYNB+SiP749Wx8PDw1vj9caequFhUgjO78HDw8Pb5p1qgCXLJAtX8c1xATw8PLwO7xOpZ+Qpj0no8QAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

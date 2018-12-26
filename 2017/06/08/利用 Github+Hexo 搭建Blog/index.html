@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>利用 Github+Hexo 搭建Blog | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Blog">
+    <meta name="description" content="Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？                                                                                              wikipedia">
+<meta name="keywords" content="Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用 Github+Hexo 搭建Blog">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？                                                                                              wikipedia">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608163541495?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164445080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164523013?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164545752?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164600358?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164613702?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164638284?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608164654612?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165001848?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165135489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165448245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165616215?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165636054?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608165801055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170036206?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170556011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170624168?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170648762?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170715951?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170838968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608170922247?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171029970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171051436?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171109405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171127487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171146737?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171228250?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171258531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170608171319895?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-09-15T04:29:41.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="利用 Github+Hexo 搭建Blog">
+<meta name="twitter:description" content="Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？                                                                                              wikipedia">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170608163541495?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">利用 Github+Hexo 搭建Blog</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">利用 Github+Hexo 搭建Blog</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-08T09:27:13.000Z" itemprop="datePublished" class="page-time">
+  2017-06-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Blog-就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是-Free（自由）-Free（免费），那我们又何必为了记日记而斥巨资呢？"><span class="post-toc-number">1.</span> <span class="post-toc-text">Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#"><span class="post-toc-number">1.1.</span> <span class="post-toc-text"></span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#怎么样"><span class="post-toc-number">2.</span> <span class="post-toc-text">怎么样</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#No-Pay，More-Gain"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">No Pay，More Gain</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-利用 Github+Hexo 搭建Blog"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">利用 Github+Hexo 搭建Blog</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-08 17:27:13" datetime="2017-06-08T09:27:13.000Z"  itemprop="datePublished">2017-06-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<h1 id="Blog-就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是-Free（自由）-Free（免费），那我们又何必为了记日记而斥巨资呢？"><a href="#Blog-就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是-Free（自由）-Free（免费），那我们又何必为了记日记而斥巨资呢？" class="headerlink" title="Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？"></a>Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥巨资呢？</h1></blockquote>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608163541495?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="wikipedia" title="">
+                </div>
+                <div class="image-caption">wikipedia</div>
+            </figure>
+<a id="more"></a>
+<p><center>♠♥♦♣</center></p>
+<p><center>（From.wikipedia）</center></p>
+<font size="4">So 干货 coming!<br>今天EdwardZhang就来带大家看看如何0费用搭建符合自己审美的Blog！<br>Here we go ~</font>
+
+<p><font size="3">利用 Github+Hexo 进行搭建（以下过程基于Windows系统）<br>准备工作：</font><br>&emsp;<font size="2">1.安装Node.js<br>&emsp;&ensp;&ensp;下载地址：<a href="https://nodejs.org/en/" target="_blank" rel="external">传送门</a><br>&emsp;&ensp;&ensp;去 NodeJs 官网下载相应版本，进行安装即可。<br>&emsp;&ensp;&ensp;可以通过node -v的命令来测试NodeJS是否安装成功 </font><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164445080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>&emsp;<font size="2">2.安装Git<br>&emsp;&ensp;&ensp;下载地址：传送门<br>&emsp;&ensp;&ensp;去 Git 官网下载相应版本，进行安装即可。</font><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164523013?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="git1" title="">
+                </div>
+                <div class="image-caption">git1</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164545752?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="git2" title="">
+                </div>
+                <div class="image-caption">git2</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164600358?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="git3" title="">
+                </div>
+                <div class="image-caption">git3</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164613702?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="git4" title="">
+                </div>
+                <div class="image-caption">git4</div>
+            </figure><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164638284?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="git5" title="">
+                </div>
+                <div class="image-caption">git5</div>
+            </figure><br>&emsp;&ensp;&ensp;<font size="2">可以通过git –version的命令来测试git是否安装成功 </font><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608164654612?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="gitcmd" title="">
+                </div>
+                <div class="image-caption">gitcmd</div>
+            </figure><br>&emsp;<font size="2">3.注册Github账号<br>&emsp;&ensp;&ensp;去 Github 官网进行注册即可。<br>&emsp;&ensp;&ensp;注册完之后记得添加 SSH Key。<br>&emsp;&ensp;&ensp;这个 SSH Key是一个认证，让github识别绑<br>&emsp;&ensp;&ensp;这台机器，允许这台机器提交。执行如下命令：<br>&emsp;&ensp;&ensp;<code>cd ~/.ssh</code><br>&emsp;&ensp;&ensp;~这个符号，表示在用户目录下<br>&emsp;&ensp;&ensp;执行代码如果提示：No such file or directory 说明你是第一次使用git。<br>&emsp;&ensp;&ensp;下面就说下怎么配置SSH Key。<br>&emsp;&ensp;&ensp;生产新的SSH Key配置<br>&emsp;&ensp;&ensp;在Git Bash执行代码：（此处有坑！要注意运行Git Bash时右键使用管理员身份运行）<br>&emsp;&ensp;&ensp;<code>ssh-keygen -t rsa -C &quot;your email address&quot;</code><br>&emsp;&ensp;&ensp;记得修改成你自己邮箱地址。<br>&emsp;&ensp;&ensp;成功后会生成两个文件id_rsa 以及id_rsa.pub。<br>&emsp;&ensp;&ensp;这两个文件在刚才用户的.ssh目录下<br>&emsp;&ensp;&ensp;如图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608165001848?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="12345" title="">
+                </div>
+                <div class="image-caption">12345</div>
+            </figure><br>&emsp;&ensp;&ensp;id_rsa<br>&emsp;&ensp;&ensp;id_rsa.pub<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608165135489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="0" title="">
+                </div>
+                <div class="image-caption">0</div>
+            </figure><br>&emsp;&ensp;&ensp;之后在github添加SSH Key,在任意界面右上角<br>&emsp;&ensp;&ensp;点击你的头像，选择Settings-&gt; SSH keys-&gt;New SSH key 这里写图片描述<br>&emsp;&ensp;&ensp;<font size="4">Congratulations！</font><br>&emsp;&ensp;&ensp;添加成功！</font></p>
+<p><font size="3">搭建博客：</font><br>&emsp;<font size="2">1.安装Hexo<br>&emsp;&ensp;&ensp;在本地新建一个Blog文件夹，文件右键，选择Git Bash。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608165448245?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>输入指令安装hexo：<br><code>npm install -g hexo</code><br><img src="http://img.blog.csdn.net/20170608165616215?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>&emsp;&ensp;&ensp;等安装完毕，通过输入hexo的命令来测试Hexo是否安装成功，成功如下图展示：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608165636054?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>接着初始化Hexo：<br><code>hexo init hexo</code><br>&emsp;&ensp;&ensp;初始化成功会显示Start blogging with Hexo!<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608165801055?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="1" title="">
+                </div>
+                <div class="image-caption">1</div>
+            </figure><br>&emsp;&ensp;&ensp;这时在你刚才创建的Blog里面会多出一个hexo文件<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170036206?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>&emsp;&ensp;&ensp;进入到hexo目录，输入指令npm install<br>&emsp;&ensp;&ensp;安装依赖文件以及部署形成文件<br>&emsp;&ensp;&ensp;打开hexo目录<br> <code>cd hexo</code><br>&emsp;&ensp;&ensp;安装依赖文件</font></p>
+<p><code>npm install</code><br>&emsp;&ensp;&ensp;部署形成文件</p>
+<p><code>hexo generate</code>hexo generate<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170556011?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="123" title="">
+                </div>
+                <div class="image-caption">123</div>
+            </figure><br>&emsp;&ensp;&ensp;最后只剩下运行server<br>&emsp;&ensp;&ensp;跑起hexo服务<br>&emsp;&ensp;&ensp;hexo server<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170624168?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>&emsp;&ensp;&ensp;这时提示<br>&emsp;&ensp;&ensp;Hexo is running at <a href="http://loalhost:4000/" target="_blank" rel="external">http://loalhost:4000/</a>.<br>&emsp;&ensp;&ensp;接着我们打开浏览器，输入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a><br>&emsp;&ensp;&ensp;便可看到默认的博客，如图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170648762?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="12" title="">
+                </div>
+                <div class="image-caption">12</div>
+            </figure></p>
+<p>&emsp;&ensp;&ensp;至此，hexo已经安装完毕。<br>&emsp;<font size="2">配置githubPage：<br>&emsp;&ensp;&ensp;登录github，点击“New respository”</font></p>
+<p>&emsp;&ensp;&ensp;新建一个仓库<br>&emsp;&ensp;&ensp;输入仓库名：你的github名称,github.io<br>&emsp;&ensp;&ensp;（这里千万不要心存侥幸随意输域名。。。后果你懂）<br>&emsp;&ensp;&ensp;然后点击Create repository。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170715951?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>&emsp;&ensp;&ensp;注意：这边的创建名字<br>&emsp;&ensp;&ensp;一定要用的github的用户名！<br>&emsp;&ensp;&ensp;一定要用的github的用户名！<br>&emsp;&ensp;&ensp;一定要用的github的用户名！<br>&emsp;<font size="2">启用GitHub Page<br>&emsp;&ensp;&ensp;点击右边的“Setting”菜单进入设置<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170838968?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>&emsp;&ensp;&ensp;拉到最下面<br>&emsp;&ensp;&ensp;点击 Choose a theme<br>&emsp;&ensp;&ensp;随便选择一个样式 之后会用自己的hexo覆盖<br>&emsp;&ensp;&ensp;点击”Publish page”<br>&emsp;&ensp;&ensp;发布github默认生成的一个静态站点<br>&emsp;&ensp;&ensp;试着打开自己在github的静态网址，<br>&emsp;&ensp;&ensp;我的<a href="https://Edward7Zhang.github.io">https://Edward7Zhang.github.io</a> ，<br>&emsp;&ensp;&ensp;你会发现，<br>&emsp;&ensp;&ensp;打开是你自己刚才选择静态站点模版。<br>&emsp;&ensp;&ensp;将本地hexo项目托管到Github<br>&emsp;&ensp;&ensp;打开修改hexo目录下配置文件_config.yml</font></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608170922247?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>&emsp;&ensp;&ensp;编辑最后面的deploy属性，加入代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">type: git</div><div class="line">repository: git@github.com:your-github-name/your-github-name.github.io.git</div><div class="line">branch: master  </div><div class="line">type使用是git。</div></pre></td></tr></table></figure>
+<p>&emsp;&ensp;&ensp;repository属性改成你的刚才创建仓库git地址。<br>&emsp;&ensp;&ensp;分支branch填写master。<br>&emsp;&ensp;&ensp;这边说下本地网站配置文件 _config.yml<br>&emsp;&ensp;&ensp;网站的配置文件，<br>&emsp;&ensp;&ensp;你可以在这里配置一些基本信息。<br>&emsp;&ensp;&ensp;（只要你过了四级应该都懂 /// ///）<br>&emsp;&ensp;&ensp;根据自己的需要修改即可！<br>&emsp;&ensp;&ensp;安装hexo-deployer-git插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171029970?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>&emsp;&ensp;&ensp;部署你本地的主题到github上 </p>
+<p>&emsp;&ensp;&ensp;代码如下，每次修改本地主题，都需要执行以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generator #简写 hexo g</div><div class="line">hexo deploy #简写 hexo d</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171051436?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171109405?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171127487?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>&emsp;&ensp;&ensp;最后看下，部署到github上的效果！ </p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://img.blog.csdn.net/20170608171146737?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171228250?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>&emsp;&ensp;&ensp;Congratulation!!!Finished this project!</p>
+<p>​&emsp;&ensp;&ensp;是不是瞬间感觉自己强的不行</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171258531?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>&emsp;&ensp;&ensp;OK,以上为Windows下使用Hexo+Github搭建个人博客。</p>
+<blockquote>
+<h1 id="怎么样"><a href="#怎么样" class="headerlink" title="怎么样"></a>怎么样</h1><h2 id="No-Pay，More-Gain"><a href="#No-Pay，More-Gain" class="headerlink" title="No Pay，More Gain"></a>No Pay，More Gain</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170608171319895?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvcXFfMzYwMzU5ODI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-15T04:29:41.154Z" itemprop="dateUpdated">2017-09-15 12:29:41</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/06/08/利用 Github+Hexo 搭建Blog/" target="_blank" rel="external">https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blog/">Blog</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&title=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&title=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&source=
+Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/06/08/hello-world/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hello World</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&title=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&title=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&source=
+Blog 就是用来记录自己的生活或是发表自己的见解的一种网络日记。既然一切互联网的初衷是 Free（自由） Free（免费），那我们又何必为了记日记而斥..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《利用 Github+Hexo 搭建Blog》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/08/利用 Github+Hexo 搭建Blog/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3aQW7jMAwF0Nz/0p3tAB0rn6TYZoDnVZDYsp4WEkPy9Yqvr+P19z3fn0p+Td7y/f5rFx4eHt6PTP08ToI8T/08h8IS4OHh4a3xnqZ7Hvq8TOepJMdDfsw8fo+Hh4f3MbzqCMl2nxxXeHh4eP8Xrxoc5wvUeyMeHh7e7/KSjfickpgsQW+xLuda8PDw8BaqSJ/zeaW+h4eHhzeuqicFql7aYvLGwrN4eHh4C7xe60ASwlbD33y08v14eHh4V3nJTdU0waTRqhrQv0mC4OHh4S3zquX8pMDfa5matBdcGw4PDw/vuA/30geTAHrSbjXqjMDDw8Mb86ql98KatfDzVDIeHh7eNq8azk5KVvNGhFFyGQ8PD2+Bl2/9eRErL3RVC2AXEhN4eHh4LV6efp0E373joZeSePOPAQ8PD2/Miwrw8T29ILgaaufvxcPDw9vg9UpZk5JV787e4uLh4eHt8fJAOS933UpSVJu9RvU9PDw8vDGvF2RX0xnzQtrjDPHw8PCWea/4ykv4vUJar/ngTQEMDw8P7xKvunH3guxe+T8vp52PLjw8PLwNXqEnKwis8wMj39x7qWQ8PDy8PV71xb1ERr5M1TB91G6Fh4eHV+QlU8y3/jz1UE3Ont81KoDh4eHhXQqmq+WoXpAdNU4VPzfTuHh4eHgDXh7y9gLlydZfXWI8PDy8bV41CO6la6sj56mTNyE1Hh4e3gKv2vxUbdVKDob5Ff1jwMPDwxuM/FW85g0Bve+bpTg8PDy8Bd5kK08SCr2SVb6seHh4eL/Fyw+DSXNVNU3cOxj+8SweHh7eGm/eMtVrPsjLY82SGx4eHt7H8M7Tzam9JG9hfDw8PLyP4eUheK/Rqop5HAcPDw9vjTdPRiTLlDd79Zb+8WDAw8PDu8rr/eGvJinyMD2nVhPKeHh4eGPeH0K7efZtxfgFAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

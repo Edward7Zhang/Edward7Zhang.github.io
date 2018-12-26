@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>实验室招新题目① | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Lab_Interview">
+    <meta name="description" content="摇篮排序输入摇篮数组以摇篮中的序号为基准进行排序请自定义Bucket的数据结构包括1&amp;#123;&amp;#123;序号&amp;#125;,&amp;#123;学科&amp;#125;&amp;#125; 要求： 写出一个方法  1Bucket[] sortBucket(Bucket[] J,boolean Flag)  返回为排好序后的Bucket数组并在控制台中答应  Flag == true返回正序排序 Flag == fals">
+<meta name="keywords" content="Lab_Interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室招新题目①">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/04/27/实验室招新题目/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="摇篮排序输入摇篮数组以摇篮中的序号为基准进行排序请自定义Bucket的数据结构包括1&amp;#123;&amp;#123;序号&amp;#125;,&amp;#123;学科&amp;#125;&amp;#125; 要求： 写出一个方法  1Bucket[] sortBucket(Bucket[] J,boolean Flag)  返回为排好序后的Bucket数组并在控制台中答应  Flag == true返回正序排序 Flag == fals">
+<meta property="og:updated_time" content="2018-05-07T16:02:13.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实验室招新题目①">
+<meta name="twitter:description" content="摇篮排序输入摇篮数组以摇篮中的序号为基准进行排序请自定义Bucket的数据结构包括1&amp;#123;&amp;#123;序号&amp;#125;,&amp;#123;学科&amp;#125;&amp;#125; 要求： 写出一个方法  1Bucket[] sortBucket(Bucket[] J,boolean Flag)  返回为排好序后的Bucket数组并在控制台中答应  Flag == true返回正序排序 Flag == fals">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">实验室招新题目①</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">实验室招新题目①</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-04-27T10:00:07.000Z" itemprop="datePublished" class="page-time">
+  2018-04-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#摇篮排序"><span class="post-toc-number">1.</span> <span class="post-toc-text">摇篮排序</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入摇篮数组以摇篮中的序号为基准进行排序"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">输入摇篮数组以摇篮中的序号为基准进行排序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#请自定义Bucket的数据结构包括"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">请自定义Bucket的数据结构包括</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#要求："><span class="post-toc-number">1.3.</span> <span class="post-toc-text">要求：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#面向大一同学要求："><span class="post-toc-number">2.</span> <span class="post-toc-text">面向大一同学要求：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在控制台中输入Bucket数组"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">在控制台中输入Bucket数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#example："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">example：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#input"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">input:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#output"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">output:</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#面向大二同学要求："><span class="post-toc-number">3.</span> <span class="post-toc-text">面向大二同学要求：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在其中输入Bucket数组"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">在其中输入Bucket数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#example：-1"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">example：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#input-1"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">input:</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#output-1"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">output:</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-实验室招新题目"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">实验室招新题目①</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-04-27 18:00:07" datetime="2018-04-27T10:00:07.000Z"  itemprop="datePublished">2018-04-27</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="摇篮排序"><a href="#摇篮排序" class="headerlink" title="摇篮排序"></a>摇篮排序</h1><h2 id="输入摇篮数组以摇篮中的序号为基准进行排序"><a href="#输入摇篮数组以摇篮中的序号为基准进行排序" class="headerlink" title="输入摇篮数组以摇篮中的序号为基准进行排序"></a>输入摇篮数组以摇篮中的序号为基准进行排序</h2><h2 id="请自定义Bucket的数据结构包括"><a href="#请自定义Bucket的数据结构包括" class="headerlink" title="请自定义Bucket的数据结构包括"></a>请自定义Bucket的数据结构包括</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&#123;序号&#125;,&#123;学科&#125;&#125;</div></pre></td></tr></table></figure>
+<h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ul>
+<li><p>写出一个方法 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Bucket[] sortBucket(Bucket[] J,boolean Flag)</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回为排好序后的Bucket数组并在控制台中答应</p>
+</li>
+<li>Flag == true返回正序排序</li>
+<li>Flag == false返回倒序排序</li>
+</ul>
+<h1 id="面向大一同学要求："><a href="#面向大一同学要求：" class="headerlink" title="面向大一同学要求："></a>面向大一同学要求：</h1><h2 id="在控制台中输入Bucket数组"><a href="#在控制台中输入Bucket数组" class="headerlink" title="在控制台中输入Bucket数组"></a>在控制台中输入Bucket数组</h2><h2 id="example："><a href="#example：" class="headerlink" title="example："></a>example：</h2><h2 id="input"><a href="#input" class="headerlink" title="input:"></a>input:</h2><ul>
+<li>1 数学</li>
+<li>3 语文</li>
+<li>2 英语</li>
+<li>true<h2 id="output"><a href="#output" class="headerlink" title="output:"></a>output:</h2></li>
+<li>1 数学</li>
+<li>2 英语</li>
+<li>3 语文</li>
+</ul>
+<h1 id="面向大二同学要求："><a href="#面向大二同学要求：" class="headerlink" title="面向大二同学要求："></a>面向大二同学要求：</h1><h2 id="构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮"><a href="#构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮" class="headerlink" title="构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮"></a>构造自己熟悉的前端界面输入输出框以及正序倒序排序按钮</h2><h2 id="在其中输入Bucket数组"><a href="#在其中输入Bucket数组" class="headerlink" title="在其中输入Bucket数组"></a>在其中输入Bucket数组</h2><h2 id="example：-1"><a href="#example：-1" class="headerlink" title="example："></a>example：</h2><h2 id="input-1"><a href="#input-1" class="headerlink" title="input:"></a>input:</h2><ul>
+<li>1 数学</li>
+<li>3 语文</li>
+<li>2 英语<h2 id="output-1"><a href="#output-1" class="headerlink" title="output:"></a>output:</h2></li>
+<li>1 数学</li>
+<li>2 英语</li>
+<li>3 语文</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-05-07T16:02:13.058Z" itemprop="dateUpdated">2018-05-08 00:02:13</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/04/27/实验室招新题目/" target="_blank" rel="external">https://edward7zhang.github.io/2018/04/27/实验室招新题目/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lab-Interview/">Lab_Interview</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&title=《实验室招新题目①》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&title=《实验室招新题目①》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/27/实验室招新题目/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《实验室招新题目①》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/05/Fragment Navigation Drawer/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Fragment Navigation Drawer</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/27/三年三月三天三小时/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">三年三月三天三小时</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&title=《实验室招新题目①》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&title=《实验室招新题目①》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/04/27/实验室招新题目/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《实验室招新题目①》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/04/27/实验室招新题目/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3a0W7CMAwFUP7/p9nrJNbu2o4Zk06fUGnTnCDVxvHjER/Pi+P12+9n7u/Nx3z99vCBh4eHd2jq94DXEe5Hvrqyd28yZzw8PLxt3v2k76d4P1qycFdX5st0eR4PDw/vA3inziQpcnWJ8fDw8P4LL0/K8zR6MgIeHh7ee3iTxDd/xedljvmC4uHh4e3x8l2kz/m8sr+Hh4eHN95VT1641bvy83kzweVz8fDw8BZ41XJqL6ntNVfljQu/LB8eHh7eUV61DJFPutdilaTyhafg4eHhrfGSgfLPk5aCeWpeqKDg4eHhDXjVza1eqaJaJq4Gpx+uxMPDw3s7rxpC8mnlQSW5txkY8PDw8Fq86hSrL+g8tPTaqpLghIeHh7fN6yW+90uQ39ULML9Q8fDw8I7yepPrhZNeyaPasIWHh4f3t7yzYaBcRIgjW9QZgYeHh3eUNy9PTDL6Z/EoFIjx8PDwFnjVTa9JS0F1sy1PuJtlXDw8PLwBLynX5ptSG2WLajEXDw8Pb493/0rNmwYm1/d+k6iJAQ8PD2+Bl1/aa5/KC8Rnn4iHh4e3xyu8Xluv+F7podAvljRd4eHh4S3wkgdX26HKpdXiyNGPgYeHh7fMy5PdXgtUb+Re0xUeHh7eHm8OroaH3ubWqIyLh4eHt7ZD1NuOqrYRTILBqA8CDw8Pb43X24jKRz67WFHAwMPDw3sLrxoYHsWjV+RtjomHh4d3lPcsHtVkt9r/1SscF1oH8PDw8Ma8+at8kgTPt82qRV48PDy8U7wkGCSTTsJADkieEiX6eHh4eGu8atFhMcEtxq4oMODh4eH9KS9vq8qrqRtpOh4eHt6n8fKmgbMtCHnSj4eHh7fN621ZVUNFvm2WzLMQGPDw8PCO8iZ/+KuMvEgxCSR4eHh4a7wvE3Rpzg3LZXsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

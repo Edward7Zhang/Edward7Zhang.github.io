@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>一个图片从读取到显示在屏幕上的整个渲染过程 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="显示流程整个过程可分为三步 得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。 使用某种2D引擎，将位图内存按一定方式，渲染到可用于显示的图形内存（GraphicBuffer）上。 由一个中心显示控制器（Surfaceflinger），将相应的图形内存投放到显示屏（LCD）。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个图片从读取到显示在屏幕上的整个渲染过程">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="显示流程整个过程可分为三步 得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。 使用某种2D引擎，将位图内存按一定方式，渲染到可用于显示的图形内存（GraphicBuffer）上。 由一个中心显示控制器（Surfaceflinger），将相应的图形内存投放到显示屏（LCD）。">
+<meta property="og:image" content="https://img-blog.csdn.net/20160118234727172">
+<meta property="og:image" content="https://img-blog.csdn.net/20160120202619176">
+<meta property="og:image" content="https://img-blog.csdn.net/20160120234712771">
+<meta property="og:updated_time" content="2018-04-06T08:55:30.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个图片从读取到显示在屏幕上的整个渲染过程">
+<meta name="twitter:description" content="显示流程整个过程可分为三步 得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。 使用某种2D引擎，将位图内存按一定方式，渲染到可用于显示的图形内存（GraphicBuffer）上。 由一个中心显示控制器（Surfaceflinger），将相应的图形内存投放到显示屏（LCD）。">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20160118234727172">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一个图片从读取到显示在屏幕上的整个渲染过程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">一个图片从读取到显示在屏幕上的整个渲染过程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-29T01:07:14.000Z" itemprop="datePublished" class="page-time">
+  2018-03-29
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#显示流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">显示流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#整个过程可分为三步"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">整个过程可分为三步</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从图片文件到位图"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">从图片文件到位图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从位图到图形内存"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">从位图到图形内存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#从图形内存到显示屏"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">从图形内存到显示屏</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#更好的方案？"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">更好的方案？</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-一个图片从读取到显示在屏幕上的整个渲染过程"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一个图片从读取到显示在屏幕上的整个渲染过程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-29 09:07:14" datetime="2018-03-29T01:07:14.000Z"  itemprop="datePublished">2018-03-29</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="显示流程"><a href="#显示流程" class="headerlink" title="显示流程"></a>显示流程</h1><h2 id="整个过程可分为三步"><a href="#整个过程可分为三步" class="headerlink" title="整个过程可分为三步"></a>整个过程可分为三步</h2><ol>
+<li>得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。</li>
+<li>使用某种2D引擎，将位图内存按一定方式，渲染到可用于显示的图形内存（GraphicBuffer）上。</li>
+<li>由一个中心显示控制器（Surfaceflinger），将相应的图形内存投放到显示屏（LCD）。<a id="more"></a>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20160118234727172" alt="显示流程" title="">
+                </div>
+                <div class="image-caption">显示流程</div>
+            </figure>
+</li>
+</ol>
+<h3 id="从图片文件到位图"><a href="#从图片文件到位图" class="headerlink" title="从图片文件到位图"></a>从图片文件到位图</h3><ul>
+<li><p><strong>找到合适的图片文件</strong><br>当把风景图片放在drawable目录时，Android系统中会根据设备的分辨率，去相应分辨率的目录选择图片文件。然而，我们把图片放在asset目录下，用 asset manager 去打开时，或者放在sdcard下，就不存在这个一个适配过程，系统会忠实地读取指定路径的文件。</p>
+</li>
+<li><p><strong>将图片文件解码到内存，形成位图（Bitmap）</strong><br>解码器一般使用系统的，Android中是以Skia主导解码的过程。具体往下用硬件解码还是软件解码，就由芯片厂商决定了。不过，绝大部分Android设备的硬解码和硬编码都用于自家的应用（比如拍照），对第三方应用开放的只有软件编解码。</p>
+</li>
+</ul>
+<blockquote>
+<p>图像编解码都是很复杂的算法，google提供的Android版本里对此也是不断进行着优化，导致系统的编解码库性能一般来说是很优秀的。如果没有专业的算法优化人员，就不要指望靠移植第三方库打败系统的解码器了。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20160120202619176" alt="load" title="">
+                </div>
+                <div class="image-caption">load</div>
+            </figure><br> 就更一般的场景而言，图片原始来源于磁盘、网络或图形内存（Android部分系统图片预加载）。如何在导入大量图片时不致出现内存溢出，如何快速导入一个页面的图片以免用户产生等待感，是个复杂的事情。许多开源图片缓存框架（如imageloader）就在这一过程做文章，不多述。</p>
+</blockquote>
+<h3 id="从位图到图形内存"><a href="#从位图到图形内存" class="headerlink" title="从位图到图形内存"></a>从位图到图形内存</h3><p>Android向应用开发者开放的惟一一条显示的路径是View。不管想显示什么，都必须先弄个布局，然后把要显示的内容和布局中的View关联起来。</p>
+<ul>
+<li><p><strong>布局，确定View本身位置</strong><br>在上面的UI显示图中，我们发现，图并没有横向填满手机屏幕，这是由于布局中设置了留白造成的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;</div><div class="line">android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;</div><div class="line">android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;</div></pre></td></tr></table></figure>
+<p>布局就是每个View的measure和layout过程，Android图形系统的framework层解析布局文件，去计算每个View的位置。<br>本文的例子中，是 RelativeLayout —— ImageView 的解析过程。 </p>
+<blockquote>
+<p>布局解析的一般流程参考以下文章：<br><a href="http://blog.csdn.net/qinjuning/article/details/8074262" target="_blank" rel="external">http://blog.csdn.net/qinjuning/article/details/8074262</a></p>
+</blockquote>
+</li>
+<li><p><strong>渲染，把位图画上图形内存</strong><br>不考虑SurfaceView的非主线渲染，只考虑主线渲染的两个分支：软件绘制（skia）与硬件加速绘制（hwui）。<br>软件绘制下，由位图直接画上去。<br>硬件加速绘制，实际上是GPU绘制的情况下，需要先把位图上传到GPU形成纹理，再基于纹理采样，渲染到图形内存上。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20160120234712771" alt="draw" title="">
+                </div>
+                <div class="image-caption">draw</div>
+            </figure>
+<p>看上去，GPU绘图需要先上传为Texture，明显多了一步，但请考虑如下的问题： </p>
+</li>
+</ul>
+<ol>
+<li>大部分情况，把位图画上图形内存，不是简单的memcpy。<br>如本处的风景照，很明显就需要缩小。这种情况下，CPU绘制需要先采样，这是很慢的。 </li>
+<li>绘制不是一次性的工作，它是要刷帧的。<br>使用GPU绘制时，纹理上传固然在第一次时增加了启动时间，但后续并不需要重做，可以继续使用GPU强大的渲染能力。</li>
+</ol>
+<h3 id="从图形内存到显示屏"><a href="#从图形内存到显示屏" class="headerlink" title="从图形内存到显示屏"></a>从图形内存到显示屏</h3><p>这一套流程便是Android的下层显示内容。<br>SurfaceFlinger汇集所有图层的信息，采用离线合成或在线合成的方式，将图形内存的内容送达显示屏LCD。 </p>
+<blockquote>
+<p>参见 <a href="http://blog.csdn.net/jxt1234and2010/article/details/46057267" target="_blank" rel="external">http://blog.csdn.net/jxt1234and2010/article/details/46057267</a></p>
+</blockquote>
+<h2 id="更好的方案？"><a href="#更好的方案？" class="headerlink" title="更好的方案？"></a>更好的方案？</h2><p><strong>1. 既然到图形内存才能显示，为什么不直接解码到图形内存？</strong><br>当然可以，开机动画就是这么搞的，解到图形内存直接显示。<br>不过，由于图形内存是一种进程间共享内存，需要作很多额外的同步、映射等管理工作。对于一般的应用场景，在自己的进程空间申请内存，无疑是更方便管理的，也不会造成系统的额外负担。</p>
+<p><strong>2. 解码图片需要时间，可不可以一开始就用原始位图，跳过这一过程？</strong><br>当然可以，Android的系统图库会为每一张照片创建一张缩略图，这一张缩略图就是无压缩的位图格式，以便用户快速看到预览的照片。<br>但当像素值比较大时，原始位图实在是太大了，相机拍出来一张800w像素的图片接近32M，存储设备和网络传输都吃不消。</p>
+<p><strong>一种更好的方法是使用压缩纹理</strong>，这样既能省去解码图片的时间，又能减少渲染时所需要的读取内存量。但这个存在如下问题：<br>第一个问题是，Android的硬件加速机制是基于软件绘制流程修改而来的，它需要与软件绘制有相同的上层接口，这就意味着，软件绘制也要设法支持这种模式。让软件绘制支持压缩纹理的解压是不大现实的，不过呢，可以考虑副本的模式，即同时提供jpg/png和压缩纹理的资源。<br>第二个问题更加棘手，移动设备的GPU是分散的，所提供的压缩纹理格式也互不相同，虽然有ETC1和ETC2作为标准格式，但其显示效果差强人意。</p>
+<p><strong>3. 就显示一张图片，为什么要合成，直接传给LCD不可以么？</strong><br>当然可以，这就是所谓的Overlay技术，进一步，是在线合成。据说，ios的图库显示照片时正是这么做的。<br>不过，使用这个技术有很多坑。<br>第一个坑是Buffer循环机制，处理不好，就容易出现裂屏。<br>第二个坑是千奇百怪的布局位置，单个图层辅满显示屏好处理，但纯大部分情况是多个图层各占屏幕的一部分，另外还会有重叠的情况。<br>第三个坑则是后处理需求，有时候缩放和旋转会延迟到合成阶段做处理，直接传给LCD时如何做这些处理也是个问题。</p>
+<p>在理解清楚原理后，找到性能瓶颈并发现优化点，并不是件难事，但怎么针对性地实施优化并兼容原有系统这么一个宏大的体系，就不是那么好做了 。不过，解决问题的关键还是原理要正确，要相信，只要原理是正确的，流程上即便千般阻碍，最终也能达到目标的。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-06T08:55:30.164Z" itemprop="dateUpdated">2018-04-06 16:55:30</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" target="_blank" rel="external">https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&title=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&title=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&source=显示流程整个过程可分为三步
+得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。
+使用某种2D引擎，将位图内存按一定方式，渲..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/30/计算机网络基础汇总/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">计算机网络基础汇总</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/22/RecyclerView为什么会替代scrollView/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">RecyclerView为什么会替代scrollView</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&title=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&title=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&source=显示流程整个过程可分为三步
+得到位图（Bitmap）的内存数据，即从相应的图片文件解码，得到数据放并放到内存。
+使用某种2D引擎，将位图内存按一定方式，渲..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一个图片从读取到显示在屏幕上的整个渲染过程》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADM0lEQVR42u3a0W4iMQwFUP7/p9nXrhDDtR2kTDjzVNEykxOkGl/n8Yiv55/r+pXXn5P7vPvt6+vvrsc3LmxsbOybsJPbXb+eb1b+2+u1vf5NbsHGxsY+lf3ukXlxyu9ZBV/fOS+c2NjY2NjJY+btSnVzsbGxsbF77DweSkKiJLqqBlvY2NjYv8ZOHtCLivKm4roo9sKvBVkaNjY29vbsfCq6/89fmW9jY2Njb8x+Fq95McuDp+9d2NjY2CexJ0F83jz0BrR56WquHxsbG/sIdvNff7zo6uGePHjKu4xlrQg2Njb2xux52ZgXm0nzk48KsLGxsX+BPVlQHif1kKsiKmxsbOyT2PmX/rUb1MP3xtIfyic2Njb2zdm9OCkJcaqbmA8YJqt9rLoRNjY29jbsXrxebTPmJXAeYH14OjY2NvbN2VVe/t7JK9UimsdM2NjY2Keyq+1BdYnVoz/VZ+VDAmxsbOyT2N87HNPbguvitKq8YWNjY5/Erhaw3pB1MpSdbOWHaAkbGxv7OHZvVFAthEnZS47sJGFWNAnBxsbGPoI9Cf2rrUjeTszHzOXiio2NjX1bdhWTlI1kcfPwqHq30WeIjY2NvSV7EhvlrUKzisatUT6o+G/Qi42NjX0Eu/oVv9p+JBuUFLBJUFX+DLGxsbFvxZ6HQdVAJ29v8jFw8iFhY2Njn82uNgzV5eZLnGx3IeTCxsbGPoidhzV5GDRpafITNfORBjY2NvZJ7MmNknLSayp6W1MdFWNjY2PfnZ0HSb1SkcRPk5K5LEvDxsbGvi27dxxncrde0F8dPyQRFTY2NvZJ7Coyb0XK54YGjVA1fsLGxsY+j9075jhZYvLcanTVHPRiY2NjH8SuxjeT0Kf63EmhLSdq2NjY2DdhP4tX/q5JlJ+voVpisbGxsc9jrwr6kwKTtBP55vZK6YIBMDY2NvaW7FUFIx8SVAHVw0PRRmNjY2Mfx54XpFWFakG9DcYV2NjY2Nj51vS6ovkgIZqKYGNjY/8kuxr0zyOqXklbXMCwsbGxt2fnw93kptVBQm/knIRZb7cSGxsb+yB2HtBUS0t1E3vblJTV0XwbGxsbe1/2P2TafLi22m1DAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>哪些情况下的对象会被垃圾回收机制处理掉？ | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Interview,Java,GC">
+    <meta name="description" content="Java对象符合以下条件便会被垃圾回收：1.所有实例都没有活动线程访问。2.没有被其他任何实例访问的循环引用实例。3.Java 中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。[                                                                                             点击查看大图">
+<meta name="keywords" content="Interview,Java,GC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="哪些情况下的对象会被垃圾回收机制处理掉？">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="Java对象符合以下条件便会被垃圾回收：1.所有实例都没有活动线程访问。2.没有被其他任何实例访问的循环引用实例。3.Java 中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。[                                                                                             点击查看大图">
+<meta property="og:image" content="https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/9d82d158ccbf6c81cda64e03ba3eb13532fa4043.jpg">
+<meta property="og:updated_time" content="2018-03-04T09:22:04.035Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="哪些情况下的对象会被垃圾回收机制处理掉？">
+<meta name="twitter:description" content="Java对象符合以下条件便会被垃圾回收：1.所有实例都没有活动线程访问。2.没有被其他任何实例访问的循环引用实例。3.Java 中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。[                                                                                             点击查看大图">
+<meta name="twitter:image" content="https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/9d82d158ccbf6c81cda64e03ba3eb13532fa4043.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">哪些情况下的对象会被垃圾回收机制处理掉？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">哪些情况下的对象会被垃圾回收机制处理掉？</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-03T11:07:14.000Z" itemprop="datePublished" class="page-time">
+  2018-03-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Java对象符合以下条件便会被垃圾回收："><span class="post-toc-number">1.</span> <span class="post-toc-text">Java对象符合以下条件便会被垃圾回收：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-所有实例都没有活动线程访问。"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">1.所有实例都没有活动线程访问。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-没有被其他任何实例访问的循环引用实例。"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">2.没有被其他任何实例访问的循环引用实例。</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3-Java-中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">3.Java 中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-哪些情况下的对象会被垃圾回收机制处理掉？"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">哪些情况下的对象会被垃圾回收机制处理掉？</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-03 19:07:14" datetime="2018-03-03T11:07:14.000Z"  itemprop="datePublished">2018-03-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="Java对象符合以下条件便会被垃圾回收："><a href="#Java对象符合以下条件便会被垃圾回收：" class="headerlink" title="Java对象符合以下条件便会被垃圾回收："></a>Java对象符合以下条件便会被<a href="https://www.baidu.com/s?wd=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1dBuH9BuWu9rAnYm1fkrjmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnHRLnHnYnjfv" target="_blank" rel="external">垃圾回收</a>：</h3><h5 id="1-所有实例都没有活动线程访问。"><a href="#1-所有实例都没有活动线程访问。" class="headerlink" title="1.所有实例都没有活动线程访问。"></a>1.所有实例都没有活动线程访问。</h5><h5 id="2-没有被其他任何实例访问的循环引用实例。"><a href="#2-没有被其他任何实例访问的循环引用实例。" class="headerlink" title="2.没有被其他任何实例访问的循环引用实例。"></a>2.没有被其他任何实例访问的循环引用实例。</h5><h5 id="3-Java-中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。"><a href="#3-Java-中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。" class="headerlink" title="3.Java 中有不同的引用类型。判断实例是否符合垃圾收集的条件都依赖于它的引用类型。"></a>3.Java 中有不同的<a href="https://www.baidu.com/s?wd=%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1dBuH9BuWu9rAnYm1fkrjmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnHRLnHnYnjfv" target="_blank" rel="external">引用类型</a>。判断实例是否符合垃圾收集的条件都依赖于它的<a href="https://www.baidu.com/s?wd=%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B&amp;tn=44039180_cpr&amp;fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1dBuH9BuWu9rAnYm1fkrjmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EnHRLnHnYnjfv" target="_blank" rel="external">引用类型</a>。</h5><p>[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/9d82d158ccbf6c81cda64e03ba3eb13532fa4043.jpg" alt="](https://gss0.baidu.com/-vo3dSag_xI4khGko9WTAnF6hhy/zhidao/wh%3D600%2C800/sign=0f0b8ee8ce95d143da23ec2543c0ae3a/9d82d158ccbf6c81cda64e03ba3eb13532fa4043.jpg)" title="点击查看大图">
+                </div>
+                <div class="image-caption">点击查看大图</div>
+            </figure></p>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">在编译过程中作为一种优化技术，Java 编译器能选择给实例赋 <span class="keyword">null</span> 值，从而标记实例为可回收。</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		Animal lion =<span class="keyword">new</span> Animal();</div><div class="line">		System.out.println(<span class="string">"Main is completed."</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"Rest in Peace!"</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-03-04T09:22:04.035Z" itemprop="dateUpdated">2018-03-04 17:22:04</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/" target="_blank" rel="external">https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GC/">GC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&title=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&title=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&source=Java对象符合以下条件便会被垃圾回收：1.所有实例都没有活动线程访问。2.没有被其他任何实例访问的循环引用实例。3.Java 中有不同的引用类型。判断实..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/22/RecyclerView为什么会替代scrollView/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">RecyclerView为什么会替代scrollView</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/01/volatile关键字/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">volatile关键字</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&title=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&title=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&source=Java对象符合以下条件便会被垃圾回收：1.所有实例都没有活动线程访问。2.没有被其他任何实例访问的循环引用实例。3.Java 中有不同的引用类型。判断实..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《哪些情况下的对象会被垃圾回收机制处理掉？》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/03/哪些情况下的对象会被垃圾回收机制处理掉？/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADM0lEQVR42u3aS27DMAwFwN7/0u62QBP7kVQAWxmtgvyssRcE+fTzE6/jz3r36fn7/1///8/8nWRXCxY2Njb2Q9jH6eptKGGfvz6/QedXObdgY2Nj78rulZ98cwlyUlxzCzY2Njb2eZk5LyR5Y5PclKSIYmNjY2NXi9na29H7PjY2NvZ3spML5Ozqd87fP4L1wVkaNjY29u3Zk8HN3V5/JN/GxsbGvjH7KK58oJP8dj6i6i1sbGzsndh5AVh1U/LCMx9pXUQO2NjY2FuwkwsnpMlAZ3JrmtfFxsbG3oh9/uPq5nptSf4P1asXnjw2Njb2Y9l5KUoKRl6cqqHyJLK9SLaxsbGxN2JXqfnhyB4maUjy998WMGxsbOyHs/MBTS+mrQ6k5qOrannDxsbG3oldxSSB6ySUzQdSo5gBGxsb++Hs3qi9OjbKxz15+5E8pLf7x8bGxt6IPQ9lk3FSbwBUjY2rYTA2Njb2ruxkrD85BNmLh6uDpygYwMbGxt6CnReA3hAn51UDhrxFeWHExsbG3o6dr7x0VQ/09OKK6q8KWTE2Njb2Q9i9oLQXFfTalaRQjUomNjY29sPZq5qBeWBcHU5VH8BHeiBsbGzsG7PnRSsvNtX9VEPoF1fExsbG3ohd/up4QJ+sJOjtBRjdO4SNjY19X3beKlRHOdVxUj79qu7zxfexsbGxN2LPQ9begCkJIXqhRbVCYWNjY+/EznmT0VLzObT2U37C2NjY2Fuwk7+YF5VJ9FsNDy5+i42Njf1w9nzQv/Y25cU1b4TKf4eNjY39KPbajU7ChrWNUDPfxsbGxt6C3SskvVtQbS2qh4curoKNjY29KTs/UlOYVxUj4bUtCjY2NvZ3svP4tjqsX3XLJkUUGxsbeyf2UVx5pJqPjfKAobefUcXGxsbGvj27WgzyTfRai3LtDa6YHwzCxsbGfi67ismL0KrRf14I81YKGxsbez92dci+qpBUDwPNiy42NjY2djUSztuMfNMLWiBsbGzsL2ZXW47qIZ4Fx3E+V7exsbGxb8xeFe5W25ijtZLx1kX7hI2Njb0Ru9o2VA/KJId18lLXO6AzyrexsbGx78v+BWynShUrxoMIAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

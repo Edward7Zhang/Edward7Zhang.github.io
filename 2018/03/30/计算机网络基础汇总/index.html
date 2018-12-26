@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>计算机网络基础汇总 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Network">
+    <meta name="description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层 —-   表示层 应用层   会话层 —-   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层 —-    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口">
+<meta name="keywords" content="Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络基础汇总">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层 —-   表示层 应用层   会话层 —-   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层 —-    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口">
+<meta property="og:updated_time" content="2018-04-16T06:43:14.976Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络基础汇总">
+<meta name="twitter:description" content="计算机网络体系分类：计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。    OSI七层模型 TCP/IP四层模型     应用层 —-   表示层 应用层   会话层 —-   传输层 传输层   网络层 网络层   数据链路层 物理接入层   物理层 —-    物理层：物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">计算机网络基础汇总</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">计算机网络基础汇总</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-30T02:43:13.000Z" itemprop="datePublished" class="page-time">
+  2018-03-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#计算机网络体系分类："><span class="post-toc-number">1.</span> <span class="post-toc-text">计算机网络体系分类：</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物理层："><span class="post-toc-number">2.</span> <span class="post-toc-text">物理层：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通信方式："><span class="post-toc-number">2.1.</span> <span class="post-toc-text">通信方式：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#常见引导型传输媒体："><span class="post-toc-number">2.2.</span> <span class="post-toc-text">常见引导型传输媒体：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#双绞线："><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">双绞线：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#同轴电缆："><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">同轴电缆：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#光缆："><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">光缆：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信道复用技术："><span class="post-toc-number">2.3.</span> <span class="post-toc-text">信道复用技术：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#数据链路层："><span class="post-toc-number">3.</span> <span class="post-toc-text">数据链路层：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#通信方式：-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">通信方式：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核心要解决的问题："><span class="post-toc-number">3.2.</span> <span class="post-toc-text">核心要解决的问题：</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#网络层"><span class="post-toc-number">4.</span> <span class="post-toc-text">网络层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IP协议（网际协议）："><span class="post-toc-number">4.1.</span> <span class="post-toc-text">IP协议（网际协议）：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#路由选择协议："><span class="post-toc-number">4.2.</span> <span class="post-toc-text">路由选择协议：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内部网关协议："><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">内部网关协议：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#外部网关协议："><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">外部网关协议：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#传输层"><span class="post-toc-number">5.</span> <span class="post-toc-text">传输层</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#端口号："><span class="post-toc-number">5.1.</span> <span class="post-toc-text">端口号：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常见端口："><span class="post-toc-number">5.1.1.</span> <span class="post-toc-text">常见端口：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#两种协议："><span class="post-toc-number">5.2.</span> <span class="post-toc-text">两种协议：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可靠传输的实现机制："><span class="post-toc-number">5.2.1.</span> <span class="post-toc-text">可靠传输的实现机制：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TCP的连接管理："><span class="post-toc-number">5.2.2.</span> <span class="post-toc-text">TCP的连接管理：</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#连接三次握手："><span class="post-toc-number">5.2.2.1.</span> <span class="post-toc-text">连接三次握手：</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#断开连接四次握手："><span class="post-toc-number">5.2.2.2.</span> <span class="post-toc-text">断开连接四次握手：</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#应用层"><span class="post-toc-number">6.</span> <span class="post-toc-text">应用层</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-计算机网络基础汇总"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">计算机网络基础汇总</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-30 10:43:13" datetime="2018-03-30T02:43:13.000Z"  itemprop="datePublished">2018-03-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="计算机网络体系分类："><a href="#计算机网络体系分类：" class="headerlink" title="计算机网络体系分类："></a>计算机网络体系分类：</h1><p>计算机网络整个体系有两个大的分类：一个是国际组织制定的OSI七层模型，一种是实际使用中的TCP/IP四层模型。</p>
+<table>
+<thead>
+<tr>
+<th>OSI七层模型</th>
+<th>TCP/IP四层模型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用层</td>
+<td>—-</td>
+</tr>
+<tr>
+<td>表示层</td>
+<td>应用层</td>
+</tr>
+<tr>
+<td>会话层</td>
+<td>—-</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>传输层</td>
+</tr>
+<tr>
+<td>网络层</td>
+<td>网络层</td>
+</tr>
+<tr>
+<td>数据链路层</td>
+<td>物理接入层</td>
+</tr>
+<tr>
+<td>物理层</td>
+<td>—-</td>
+</tr>
+</tbody>
+</table>
+<h1 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h1><p>物理层主要是实现主机和网络之间的物理连接，规定一些与传输媒体接口有关的一些特性。</p>
+<h2 id="通信方式："><a href="#通信方式：" class="headerlink" title="通信方式："></a>通信方式：</h2><ul>
+<li><p><strong>单工通信：</strong>只能由A主机向B主机发送消息，通信是单向的。</p>
+</li>
+<li><p><strong>半双工通信：</strong>同一时间只能是由A主机向B主机或者是B主机向A主机发送信息，不能同时发送消息。</p>
+</li>
+<li><p><strong>全双工通信：</strong> A主机和B主机可以实现在同一时间内既接收消息，又发送消息，极大的提升了通信效率。</p>
+</li>
+</ul>
+<h2 id="常见引导型传输媒体："><a href="#常见引导型传输媒体：" class="headerlink" title="常见引导型传输媒体："></a>常见引导型传输媒体：</h2><h3 id="双绞线："><a href="#双绞线：" class="headerlink" title="双绞线："></a>双绞线：</h3><p>分为屏蔽双绞线（STP）和非屏蔽双绞线（UTP），屏蔽双绞线就是在非屏蔽双绞线外边又加了一层屏蔽层</p>
+<p>tips：为什么双绞线要两根线绞起来，两个线绞起来可以有效的减少相互之间的电磁干扰。</p>
+<h3 id="同轴电缆："><a href="#同轴电缆：" class="headerlink" title="同轴电缆："></a>同轴电缆：</h3><p>由内导体铜制芯线，绝缘层，网状编织的外导体屏蔽层，以及塑料保护外层组成。有良好的抗干扰性，被广泛用于较高速率的传输。</p>
+<h3 id="光缆："><a href="#光缆：" class="headerlink" title="光缆："></a>光缆：</h3><p>由非常透明的石英玻璃拉成细丝，主要由纤芯和包层构成双层通讯柱。可以分为单模光纤和多模光纤。</p>
+<h2 id="信道复用技术："><a href="#信道复用技术：" class="headerlink" title="信道复用技术："></a>信道复用技术：</h2><ul>
+<li><p><strong>频分复用：</strong>根据传输的波的频率的不同，将不同频段的波用于不同的通信。</p>
+</li>
+<li><p><strong>时分复用：</strong>将时间分割为时间段，规定在某个时间段内发送什么样的信息，根据时间段来进行信息类别的区分。也称为<strong>同步时分复用</strong></p>
+</li>
+<li><p><strong>统计时分复用：</strong>基于时分复用的一种改进，由于基本的时分复用并没有考虑到每个时间段内是否有信息发出，例如说每个时间段是20，但是发送消息只占用其中的2，那么剩下的18就处于空闲时间。统计时分复用就是基于这种考虑而设计的，他允许用户有数据时就将数据发送到缓存中，然后会依次扫描输入缓存，把缓存中的数据放入到STMD帧中，若没有就跳过，每当一个帧满了就把这个帧发出去。STMD帧不是分配的固定时序，而是根据需要动态的分配时隙，也称之为<strong>异步时分复用</strong></p>
+</li>
+<li><p>光分复用：就是光的频分复用，根据光谱中频率的不同，用不同频率的光来携带不同的信息。</p>
+</li>
+</ul>
+<h1 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h1><p>数据链路层主要是将上层的数据转化为数据帧发送到链路上，以及把接受到的帧中的数据取出并交给网络层。</p>
+<h2 id="通信方式：-1"><a href="#通信方式：-1" class="headerlink" title="通信方式："></a>通信方式：</h2><ul>
+<li><p><strong>点对点通信：</strong>通信方式是点到点的，也就是只能是两个点之间的通信。常见的就是PPP协议</p>
+</li>
+<li><p><strong>广播通信：</strong>广播通讯，也就是可以同时实现一对多的通信。常见的就是CSMA/CD（载波监听多点访问/冲突检测）</p>
+</li>
+</ul>
+<h2 id="核心要解决的问题："><a href="#核心要解决的问题：" class="headerlink" title="核心要解决的问题："></a>核心要解决的问题：</h2><ul>
+<li><p><strong>封装成帧：</strong>在一段数据的前后分别添加首部和尾部，这样就构成了一个帧。接收端在接受到后就可以方便准确的确定帧的首尾，也称为帧定界符。同时定义出了最大传输单元（MTU）–表示一次可以传输的最大长度上限。</p>
+</li>
+<li><p><strong>透明传输：</strong> 由于使用特定的字符来表示帧的开始和结束，所以传输的内容中不能出现和帧定界符相同的字符，但这显然是不可能的，为了解决这个办法，就可以在内容中和帧定界符一样的字符前边加上规定好的转义字符，这种方法称为字符填充或者是字节填充。</p>
+</li>
+<li><p><strong>差错检测：</strong> 比特在传输过程中可能产生差错，差错检测就是用于检测出现的差错，以便及时的重传，最常用的差错检测算法就是<a href="http://baike.sogou.com/v7730112.htm?fromTitle=CRC%E6%A0%A1%E9%AA%8C" target="_blank" rel="external">CRC（循环冗余检验）</a></p>
+</li>
+</ul>
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p>网络层主要是向上只提供简单灵活的，无连接的，尽最大努力交付的数据报服务。</p>
+<h2 id="IP协议（网际协议）："><a href="#IP协议（网际协议）：" class="headerlink" title="IP协议（网际协议）："></a>IP协议（网际协议）：</h2><p>IP协议是TCP/IP体系中最主要的协议之一，一切在IP之下，一切又在IP之上。我们常说的应该是IP协议族，还包含配套的协议：</p>
+<ul>
+<li><p>ARP（地址解析协议）：将网络的IP地址转化为实际的物理地址（MAC地址），并存储在MAC地址表中。</p>
+</li>
+<li><p>ICMP（网际控制报文协议）：用于进行差错情况和异常情况的反馈，分为询问报文和差错报告报文。</p>
+</li>
+<li><p>IGMP（网际组管理协议）：用于控制和管理多播和组播的协议。</p>
+</li>
+</ul>
+<p>网络地址（IP地址）主要分为五类：</p>
+<ul>
+<li><p>A类：前8位为网络位，后24位为主机位，首位为0</p>
+</li>
+<li><p>B类：前16位为网络位，后16位为主机位，前两位为10</p>
+</li>
+<li><p>C类：前24位为网络位，后8位位主机位，前三位为110</p>
+</li>
+<li><p>D类：前四位为1110，用于多播地址</p>
+</li>
+<li><p>E类：前四位为1111，保留为以后使用</p>
+</li>
+</ul>
+<h2 id="路由选择协议："><a href="#路由选择协议：" class="headerlink" title="路由选择协议："></a>路由选择协议：</h2><p>路由选择协议分为<strong>内部网关协议（IGP）</strong>和<strong>外部网关协议（EGP）</strong></p>
+<h3 id="内部网关协议："><a href="#内部网关协议：" class="headerlink" title="内部网关协议："></a>内部网关协议：</h3><p>主要是有RIP协议和OSPF协议</p>
+<ul>
+<li><p><strong>RIP协议（路由信息协议）：</strong>基于距离矢量的协议</p>
+</li>
+<li><p><strong>OSPF（开放最短路径优先协议）：</strong>基于链路状态的协议</p>
+</li>
+</ul>
+<h3 id="外部网关协议："><a href="#外部网关协议：" class="headerlink" title="外部网关协议："></a>外部网关协议：</h3><p>主要是<strong>边界网关协议（BGP）</strong>，将一个大的网络分为多个小的自治域，每个自治域内有一个网关路由负责和其他的自治域的网关进行通讯。</p>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><p>网络层主要是为主机之间提供逻辑通讯，而传输层为应用程序之间提供端到端的逻辑通讯。主要是两种类型的通讯方式，面向连接的TCP协议和面向无连接的UDP。</p>
+<h2 id="端口号："><a href="#端口号：" class="headerlink" title="端口号："></a>端口号：</h2><p>端口号按照使用地方的不同分为两大类：服务端端口号，客户端端口号。<br>按照占用时长又可以分为熟知端口号（0~1023），登记端口号（1024~49151），短暂端口号（49152~65535）</p>
+<h3 id="常见端口："><a href="#常见端口：" class="headerlink" title="常见端口："></a>常见端口：</h3><ul>
+<li><p>FTP（文件传输协议）：20，21——其中20端口用于传输数据，21端口用于命令控制</p>
+</li>
+<li><p>Telnet（远程登录协议）：23 </p>
+</li>
+<li><p>DNS（域名解析服务）：53</p>
+</li>
+<li><p>TFTP（简单文件传输协议）：69</p>
+</li>
+<li><p>HTTP（超文本传输协议）：80</p>
+</li>
+</ul>
+<h2 id="两种协议："><a href="#两种协议：" class="headerlink" title="两种协议："></a>两种协议：</h2><ul>
+<li><p><strong>UDP（用户数据报协议）：</strong> </p>
+<ul>
+<li>UDP是无连接的</li>
+<li>UDP使用尽最大努力交付，但是不保证可靠交付</li>
+<li>UDP是面向报文的</li>
+<li>UDP没有拥塞控制</li>
+<li>UDP支持一对一，一对多，多对一，多对一的交互通讯</li>
+<li>UDP首部的开销小</li>
+</ul>
+</li>
+<li><p><strong>TCP（传输控制协议）：</strong></p>
+<ul>
+<li>TCP是面向连接的</li>
+<li>每一条TCP连接只能由两个端点，每一条TCP连接只能是点对点的$TCP连接：：= { socket_1,socket_2 } ={ (IP_1:port_1),(IP_2:port_2)}$</li>
+<li>TCP提供可靠交付的服务</li>
+<li>TCP提供全双工通信</li>
+<li>面向字节流</li>
+</ul>
+</li>
+</ul>
+<h3 id="可靠传输的实现机制："><a href="#可靠传输的实现机制：" class="headerlink" title="可靠传输的实现机制："></a>可靠传输的实现机制：</h3><ul>
+<li><p><strong>停止等待协议：</strong> 每发完一个分组就停止发送，直到收到上一个分组的确认信息。若超过规定时间没有接收到确认信息，边认为是分组丢失，开始重传。</p>
+</li>
+<li><p><strong>连续ARQ协议：</strong>  发送方采用滑动窗口的形式，处于滑动窗口的分组可以直接发送出去；接收方一般采用累积确认的方式，也就是说接受方不必对接收到的每一个分组都进行确认，而是对按序到达的最后一个分组进行确认，而发送方每接收到一个确认，窗口就向前滑动一定距离。</p>
+</li>
+<li><p><strong>流量控制：</strong>协调发送方和接收方的收发速率，利用滑动窗口来协调，使用探测报文来探测当前应该发送的速率，采用<a href="http://baike.sogou.com/v10500918.htm?fromTitle=Nagle%E7%AE%97%E6%B3%95" target="_blank" rel="external">Nagle算法</a></p>
+</li>
+<li><p><strong>拥塞控制：</strong><br>当网络中某一资源的需求超出了该资源所能提供的可用部分，这时网络的性能就要开始变坏，这种情况就叫做拥塞。而拥塞控制就是为了减少或者避免拥塞对网络性能的影响而做出的一种控制手段。</p>
+<ul>
+<li><p><strong>拥塞控制思路：</strong>发送方维持一个叫做<strong>拥塞窗口</strong>的状态变量，拥塞窗口的大小取决于网络的拥塞程度，并且在动态的变化。发送方让自己的发送窗口等于拥塞窗口，如果在考虑接收方的接收能力，一般发送窗口还要小于拥塞窗口。</p>
+</li>
+<li><p><strong>慢开始：</strong>当主机开始发送数据的时候，由小到大的增大发送窗口，也就是由小到大的增大拥塞窗口。接收方接收到一个报文之后就回传一个确认报文，发送方每接收到一个确认报文，就将拥塞窗口加1，这样每经过一个传输轮次之后，拥塞窗口就增大一倍。</p>
+</li>
+<li><p><strong>拥塞避免：</strong>思路是让拥塞窗口缓慢的增大，即每经过一个往返时间RTT就把发送方的拥塞窗口加1，而不是加倍，这样拥塞窗口就是线性缓慢增加，比慢开始的增长速率缓慢的多。</p>
+</li>
+<li><p><strong>慢开始门限：</strong>为了防止拥塞窗口增长过大引起网络拥塞，还需要设置一个慢开始门限</p>
+<ul>
+<li>拥塞窗口&lt;慢开始门限时，使用慢开始算法</li>
+<li>拥塞窗口&gt;慢开始门限时，使用拥塞避免算法</li>
+<li>拥塞窗口=慢开始门限时，两种算法都可以</li>
+</ul>
+</li>
+<li><p><strong>快重传：</strong>要求收到方每收到一个时序的报文段之后就立即发出重复确认，而不要等到自己发送数据时才进行捎带确认。而发送方只要一连收到三个重复确认就应当立即重传对方尚未接受到的报文，而不必等待为报文设置的重传计时器到期。 </p>
+</li>
+<li><p><strong>快回复：</strong>与快重传配合使用，当发送方连续收到三个重复确认的时候，就执行“乘法减小”算法，将慢开始门限减半。将拥塞窗口设置为慢开始门限减半之后的值，并开始指向拥塞避免算法。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="TCP的连接管理："><a href="#TCP的连接管理：" class="headerlink" title="TCP的连接管理："></a>TCP的连接管理：</h3><h4 id="连接三次握手："><a href="#连接三次握手：" class="headerlink" title="连接三次握手："></a>连接三次握手：</h4><ol>
+<li>客户端请求建立连接：SYN=1，seq=x；</li>
+<li>服务器对客户端的请求进行响应：SYN=1，ACK=1，seq=y，ack=x+1</li>
+<li>客户端对服务器端的响应信息进行回应：ACK=1，seq=x+1，ack=y+1</li>
+</ol>
+<p><strong>注：</strong> SYN为同步信息，在建立连接过程中始终为1</p>
+<h4 id="断开连接四次握手："><a href="#断开连接四次握手：" class="headerlink" title="断开连接四次握手："></a>断开连接四次握手：</h4><ol>
+<li>客户端请求断开连接： FIN=1，seq = u；</li>
+<li>服务端对客户端的请求应答：ACK=1，seq=v，ack=u+1；</li>
+<li>服务端请求断开连接：FIN=1，ACK=1，seq=w，ack=u+1；</li>
+<li>客户端对服务端的请求应答：ACK=1，seq=u+1，ack=w+1；</li>
+</ol>
+<h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><p>应用层有多种协议，常用到的就是HTTP以及HTTPS。</p>
+<p><strong>HTTP协议报文格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>请求报文</th>
+<th>相应报文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>请求行（用于区分是请求报文还是响应报文，在响应报文中为状态行）</td>
+<td>状态行</td>
+</tr>
+<tr>
+<td>首部行（用来说明浏览器，服务器或者是报文主体的一些信息）</td>
+<td>首部行</td>
+</tr>
+<tr>
+<td>空行（用于隔开请求实体和首部行）</td>
+<td>空行</td>
+</tr>
+<tr>
+<td>实体主体（用于一些请求或者是响应的的参数内容等）</td>
+<td>实体主体</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常见状态码</strong></p>
+<blockquote>
+<p>1xx：表示通知信息，例如表示收到或者是正在处理<br>2xx：表示成功，例如表示接受或知道了<br>3xx：表示重定向，例如表示完成请求还需要采取进一步的行动<br>4xx：表示客户端的差错，例如表示请求中有语法错误或不能完成<br>5xx：表示服务器端的差错：例如表示服务器失效无法完成请求</p>
+</blockquote>
+<p>HTTPS协议就是对HTTP协议的加密，更加安全可靠，采用HTTP+SSL（安全套接字层）来保证数据的安全性。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-16T06:43:14.976Z" itemprop="dateUpdated">2018-04-16 14:43:14</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/03/30/计算机网络基础汇总/" target="_blank" rel="external">https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Network/">Network</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&title=《计算机网络基础汇总》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&title=《计算机网络基础汇总》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机网络基础汇总》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/04/08/Android面试题集/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android面试题集</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/29/一个图片从读取到显示在屏幕上的整个渲染过程/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">一个图片从读取到显示在屏幕上的整个渲染过程</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&title=《计算机网络基础汇总》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&title=《计算机网络基础汇总》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《计算机网络基础汇总》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/03/30/计算机网络基础汇总/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aQW4jMQwEwPz/01lgTwE2trtJyQkWNSfD9syodBAJkh8f8fX59/r389dvvl7Pv39076O7nj/hwIWHh4c3Wvrzx+1/Tbbj0f8fbXG0BXh4eHjXePnjZqRHz2nfla8ZDw8P7zfw8ty1DSftpuDh4eH9H7wZPgkb+Xrw8PDw3snLU+S8qHq2+Hu91oKHh4d3oYv0ez6/qb+Hh4eHV3bV8wO6Pbjb0DK78PDw8G7w8hT2VOrcFilmG/GRZ+54eHh4JS85rGdNrJaU3FuHLjw8PLwLvFPtrlPJ99nyLh4eHt4NXv6a5+lyO4iQj2qthrfw8PDwLvDyJHjWGMsLE/sibx218PDw8Ea8WcmgHdXKQ8sG/6K/h4eHh3eUt2+GJf9sj/62kVY/Ag8PD2/NOxsANol4O0DwIqXGw8PDu8BLXrDZgiSNzoNTPpqAh4eHd4O3GYSaLbotH2/GEfDw8PBu8DZLnB39bQK9ufDw8PDu8ZLkNR9+mo0ObMa8XgQGPDw8vGu8JP29N6rVDhxE9+Lh4eFd451qgLWMvAnXbjQeHh7e+3l5wEiWMhsIKEYEZhMKeHh4eCNem+Dmh3I7MnUqtHzzDR4eHt4FXntkFy2oUVE4b4wVm4WHh4d3lDfDbIq8bYsrCRt4eHh47+ElB3FeaDg1VtWm7A83FA8PD+/tvPYQz8sKedFhE2Dw8PDwbvBaRv6aFtkWHer2GB4eHt4h3md5nUqIZ4d7ux48PDy8G7zZ5FI7VpUMJSQL3TTG8PDw8M7y2mCwL0zkIWE2OoCHh4f3Ht6sPJEnu7MYNYtj30xG4OHh4f0Qb5/y7sNDHYrw8PDwfg1vU2ZNihrJ0R8VlPHw8PCu8dqm12bIoA0hs3IwHh4e3j3egYmt9Ws2dw17enh4eHgT3h/swiIWKDXyXwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

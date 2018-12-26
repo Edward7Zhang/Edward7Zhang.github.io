@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>TensorFlow_Cifar_10 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="TensorFlow,Cifar-10">
+    <meta name="description" content="The examples of image recognition with the dataset CIFAR10 via tensorflow.1 CIFAR-10 数据集CIFAR-10数据集是机器学习中的一个通用的用于图像识别的基础数据集，官网链接为：The CIFAR-10 dataset">
+<meta name="keywords" content="TensorFlow,Cifar-10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TensorFlow_Cifar_10">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="The examples of image recognition with the dataset CIFAR10 via tensorflow.1 CIFAR-10 数据集CIFAR-10数据集是机器学习中的一个通用的用于图像识别的基础数据集，官网链接为：The CIFAR-10 dataset">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2db74b7001.png">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2db74a5fa4.png">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2db74a5602.png">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2db74a5b45.png">
+<meta property="og:updated_time" content="2018-04-27T08:14:28.081Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TensorFlow_Cifar_10">
+<meta name="twitter:description" content="The examples of image recognition with the dataset CIFAR10 via tensorflow.1 CIFAR-10 数据集CIFAR-10数据集是机器学习中的一个通用的用于图像识别的基础数据集，官网链接为：The CIFAR-10 dataset">
+<meta name="twitter:image" content="https://i.loli.net/2018/04/27/5ae2db74b7001.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">TensorFlow_Cifar_10</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">TensorFlow_Cifar_10</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-15T14:32:18.000Z" itemprop="datePublished" class="page-time">
+  2017-07-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#The-examples-of-image-recognition-with-the-dataset-CIFAR10-via-tensorflow"><span class="post-toc-number">1.</span> <span class="post-toc-text">The examples of image recognition with the dataset CIFAR10 via tensorflow.</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-CIFAR-10-数据集"><span class="post-toc-number">2.</span> <span class="post-toc-text">1 CIFAR-10 数据集</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-测试代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">2 测试代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-代码修改说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 代码修改说明</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-TensorFlow_Cifar10测试教程"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">TensorFlow_Cifar_10</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-15 22:32:18" datetime="2017-07-15T14:32:18.000Z"  itemprop="datePublished">2017-07-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="The-examples-of-image-recognition-with-the-dataset-CIFAR10-via-tensorflow"><a href="#The-examples-of-image-recognition-with-the-dataset-CIFAR10-via-tensorflow" class="headerlink" title="The examples of image recognition with the dataset CIFAR10 via tensorflow."></a>The examples of image recognition with the dataset CIFAR10 via tensorflow.</h3><h3 id="1-CIFAR-10-数据集"><a href="#1-CIFAR-10-数据集" class="headerlink" title="1 CIFAR-10 数据集"></a><strong>1 CIFAR-10 数据集</strong></h3><p>CIFAR-10数据集是机器学习中的一个通用的用于图像识别的基础数据集，官网链接为：<a href="http://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="external">The CIFAR-10 dataset</a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2db74b7001.png" alt="cifar10" title="">
+                </div>
+                <div class="image-caption">cifar10</div>
+            </figure>
+<a id="more"></a>
+<p>下载使用的版本是：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2db74a5fa4.png" alt="version" title="">
+                </div>
+                <div class="image-caption">version</div>
+            </figure>
+<p>将其解压后（代码中包含自动解压代码），内容为：</p>
+<p> <img src="https://i.loli.net/2018/04/27/5ae2db74a5602.png" alt="cifar10 data"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2db74a5b45.png" alt="cifar10 data2" title="">
+                </div>
+                <div class="image-caption">cifar10 data2</div>
+            </figure>
+<h3 id="2-测试代码"><a href="#2-测试代码" class="headerlink" title="2 测试代码"></a><strong>2 测试代码</strong></h3><p>测试代码公布在GitHub：<a href="https://github.com/Edward7Zhang/tensorflow_cifar10" target="_blank" rel="external">EdwardZhang</a></p>
+<p>主要代码及作用：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文件</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>cifar10_input.py</code></td>
+<td style="text-align:left">读取本地或者在线下载CIFAR-10的二进制文件格式数据集</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>cifar10.py</code></td>
+<td style="text-align:left">建立CIFAR-10的模型</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>cifar10_train.py</code></td>
+<td style="text-align:left">在CPU或GPU上训练CIFAR-10的模型</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>cifar10_multi_gpu_train.py</code></td>
+<td style="text-align:left">在多个GPU上训练CIFAR-10的模型</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>cifar10_eval.py</code></td>
+<td style="text-align:left">评估CIFAR-10模型的预测性能</td>
+</tr>
+</tbody>
+</table>
+<p>$ $</p>
+<p>该部分的代码，介绍了如何使用TensorFlow在CPU和GPU上训练和评估卷积神经网络（convolutional neural network, CNN）。</p>
+<p>###<strong>3 相关网页及教程</strong><br>更加详细地介绍说明，请浏览网页：<a href="http://tensorflow.org/tutorials/deep_cnn/" target="_blank" rel="external">Convolutional Neural Networks</a> </p>
+<p>中文网站极客学院也有该部分的汉译版：<a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/tutorials/deep_cnn.html" target="_blank" rel="external">卷积神经网络</a></p>
+<p>代码源自tensorflow官网：<a href="https://tensorflow.googlesource.com/tensorflow/+/master/tensorflow/models/image/cifar10" target="_blank" rel="external">tensorflow/models/image/cifar10</a></p>
+<h3 id="4-代码修改说明"><a href="#4-代码修改说明" class="headerlink" title="4 代码修改说明"></a><strong>4 代码修改说明</strong></h3><p>GitHub公布代码相对源码，主要进行了以下修正：</p>
+<ul>
+<li><strong><code>cifar10.py</code></strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#indices = tf.reshape(tf.range(FLAGS.batch_size), [FLAGS.batch_size, 1])</span></div><div class="line">indices = tf.reshape(range(FLAGS.batch_size), [FLAGS.batch_size, <span class="number">1</span>])</div><div class="line"></div><div class="line"><span class="comment"># or</span></div><div class="line">indices = tf.reshape(tf.range(<span class="number">0</span>, FLAGS.batch_size, <span class="number">1</span>), [FLAGS.batch_size, <span class="number">1</span>])</div></pre></td></tr></table></figure>
+<p>此处，源码编译时会出现以下错误：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  ...</div><div class="line">  File <span class="string">".../cifar10.py"</span>, line <span class="number">271</span>, <span class="keyword">in</span> loss</div><div class="line">    indices = tf.reshape(tf.range(FLAGS.batch_size), [FLAGS.batch_size, <span class="number">1</span>])</div><div class="line">TypeError: range() takes at least <span class="number">2</span> arguments (<span class="number">1</span> given)</div></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>cifar10_input_test.py</code></strong></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#self.assertEqual("%s:%d" % (filename, i), tf.compat.as_text(key))</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> compat <span class="keyword">as</span> cp</div><div class="line">...</div><div class="line"></div><div class="line">self.assertEqual(<span class="string">"%s:%d"</span> % (filename, i), cp.as_text(key))</div></pre></td></tr></table></figure>
+<p>不然的话，我测试的时候就会出现这的错误：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AttributeError: <span class="string">'module'</span> object has no attribute <span class="string">'compat'</span></div></pre></td></tr></table></figure>
+<ul>
+<li><strong><code>cifar10_train.py</code></strong>和<strong><code>cifar10_multi_gpu_train.py</code></strong></li>
+</ul>
+<p>源代码里的最大迭代次数<code>max_steps</code>为<code>1000000</code>，如使用CPU训练需要好几个小时，推荐大家使用GPU训练，<a href="https://edward7zhang.github.io/2017/06/30/DeepLearning%20%20%20%E6%80%92%E5%8F%91%E6%95%99%E7%A8%8B%EF%BC%81%EF%BC%81%EF%BC%81Ubuntu16.04%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BATensorFlowGPU/">GPU训练环境安装教程</a>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-27T08:14:28.081Z" itemprop="dateUpdated">2018-04-27 16:14:28</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/07/15/TensorFlow_Cifar10测试教程/" target="_blank" rel="external">https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cifar-10/">Cifar-10</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/">TensorFlow</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&title=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&title=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&source=The examples of image recognition with the dataset CIFAR10 via tensorflow.1 C..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/18/【转载】亚马逊高级工程师：平凡是程序员唯一的答案吗？/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【转载】亚马逊高级工程师：平凡是程序员唯一的答案吗？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&title=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&title=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&source=The examples of image recognition with the dataset CIFAR10 via tensorflow.1 C..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《TensorFlow_Cifar_10》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/07/15/TensorFlow_Cifar10测试教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3aQW7cQAwEwP3/p52rg2TlbnLG2EPpZCwESTUGRlSTr1d8fH079r88//3uvu/OOXDg4eHhLR793eWeH/Tfq+W/JNd5fp4flgAPDw/vGi+5wakXRsJIljtZXDw8PLxP4OU3fi6C8zNnrxM8PDy8T+MlkcFsW98sHB4eHt5v8jYlbB435Ofn5xzLWvDw8PBiXt5F+py/r/T38PDw8NZd9ecNN2+YtQ22NgR5e2U8PDy8C7w2Qt0X3M/L1I4gRCU+Hh4e3gVe/kBFeBovzX5gq1gIPDw8vKO8ZHBq9r0fbdmPhfWVNAUPDw9vDWsb9m0ZvY82houCh4eHd5R3Khpow9+8OG4bclGFjoeHh7fgneqzt3HqvbbZcLIMDw8PL+bloWpSBLc7c/4fyK9frzEeHh7eiDdrL80eoh0p2HwG4OHh4d3jnS2U2xxgQyrmIPDw8PCO8lp23tzK4+Dna7Zh7l9hBB4eHt5RXr7152FuHm3ksH0UgoeHh3eKN7vEZtwqZ+fbfTR0hYeHh3eIN9vWZ1HF5vw2thjGE3h4eHgxL48PZo+eb/d51Fu8hPDw8PCO8trB0Lb9n4etm/Gvt7/j4eHhXeNtPu+TRckHBQ5Hunh4eHgXePu4Ice37bTDhT4eHh7eUV5++3wrnxXum+5/FOPi4eHhXePtY9k2wG2P1YsBDw8P7xCvbUTN4tr27m3DDA8PD+83eftm1Sz8PRWRRCU1Hh4e3pr3VR55s6otu2+00/Dw8PBu8NqP/5bdNsM2L6rX5sDDw8Nb5Jz5qFPSnd8PIsxeDP/5YsDDw8O7wJs1mWbt/HYgoA0s8PDw8D6Zl4cL7flt4f52UfDw8PA+gDcbMqhL4VEUUvTQ8PDw8Na8TfMpKaY30Ua7xHh4eHi3ebMP/k2Y2w5m5WX6qr+Hh4eH9/O9/gCGbaZLjhnnxgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

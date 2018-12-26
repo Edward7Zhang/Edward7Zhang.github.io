@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>实验室招新题目② | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Lab_Interview">
+    <meta name="description" content="火车装箱 现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车要求： 其中每节车厢中包含两种元素 车厢号：TrainNum 以及所装载货物数量：GoodsNum； 其中每节车厢以前车厢 -&amp;gt; 后车厢 的形式进行连接； 按照每节车厢的GoodsNum的降序进行连接； 自定义一个TrainCabin数据结构 12345struct TrainCabin&amp;#123;//TODO struct">
+<meta name="keywords" content="Lab_Interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实验室招新题目②">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="火车装箱 现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车要求： 其中每节车厢中包含两种元素 车厢号：TrainNum 以及所装载货物数量：GoodsNum； 其中每节车厢以前车厢 -&amp;gt; 后车厢 的形式进行连接； 按照每节车厢的GoodsNum的降序进行连接； 自定义一个TrainCabin数据结构 12345struct TrainCabin&amp;#123;//TODO struct">
+<meta property="og:updated_time" content="2018-05-08T16:09:44.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实验室招新题目②">
+<meta name="twitter:description" content="火车装箱 现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车要求： 其中每节车厢中包含两种元素 车厢号：TrainNum 以及所装载货物数量：GoodsNum； 其中每节车厢以前车厢 -&amp;gt; 后车厢 的形式进行连接； 按照每节车厢的GoodsNum的降序进行连接； 自定义一个TrainCabin数据结构 12345struct TrainCabin&amp;#123;//TODO struct">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">实验室招新题目②</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">实验室招新题目②</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-08T10:00:07.000Z" itemprop="datePublished" class="page-time">
+  2018-05-08
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#火车装箱"><span class="post-toc-number">1.</span> <span class="post-toc-text">火车装箱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#要求："><span class="post-toc-number">1.2.</span> <span class="post-toc-text">要求：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">输入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Input："><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">Input：</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输出"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Output："><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">Output：</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#题解"><span class="post-toc-number">2.</span> <span class="post-toc-text">题解</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-实验室招新题目(2)"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">实验室招新题目②</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-08 18:00:07" datetime="2018-05-08T10:00:07.000Z"  itemprop="datePublished">2018-05-08</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="火车装箱"><a href="#火车装箱" class="headerlink" title="火车装箱"></a>火车装箱</h1><hr>
+<h2 id="现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车"><a href="#现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车" class="headerlink" title="现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车"></a>现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车</h2><h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ul>
+<li>其中每节车厢中包含两种元素 车厢号：<code>TrainNum</code> 以及所装载货物数量：<code>GoodsNum</code>；</li>
+<li>其中每节车厢以<code>前车厢</code> -&gt; <code>后车厢</code> 的形式进行连接；</li>
+<li>按照每节车厢的<code>GoodsNum</code>的降序进行连接；</li>
+<li><p>自定义一个<code>TrainCabin</code>数据结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span>&#123;</span></div><div class="line"></div><div class="line"><span class="comment">//TODO structure your struct</span></div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>写出一个函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">TrainCabin* <span class="title">AssembleTraninCabin</span><span class="params">(TrainCabin* TrainList)</span></span>;</div><div class="line"><span class="comment">//选择你认为时间复杂度最小的算法进行编码</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>返回值为已按照以上要求排好序后的火车链表</p>
+</blockquote>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><ul>
+<li>第一个值为<code>TrainNum</code></li>
+<li>第二个值为<code>GoodsNum</code></li>
+<li>中间以<code>|</code>分割</li>
+<li>输入<code>-1</code> 以结束输入</li>
+</ul>
+<h3 id="Input："><a href="#Input：" class="headerlink" title="Input："></a>Input：</h3><pre><code>1 | 3
+2 | 5
+3 | 7
+4 | 2
+5 | 0
+-1
+</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><ul>
+<li>在控制台中打印排好序的火车列</li>
+<li>按照以下示例格式</li>
+</ul>
+<h3 id="Output："><a href="#Output：" class="headerlink" title="Output："></a>Output：</h3><pre><code>| 3 | 7 | -&gt; | 2 | 5 | -&gt; | 1 | 3 | -&gt; | 4 | 2 | -&gt; | 5 | 0 |
+</code></pre><hr>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>非常基础的一道考察数据抽象、数据结构构造、排序算法、单向链表的简单题…但今天的现场情况不容乐观<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> TrainNum;</div><div class="line">	<span class="keyword">int</span> GoodsNum;</div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span> *<span class="title">next</span>;</span></div><div class="line">&#125;TrainCabin;</div><div class="line"></div><div class="line"><span class="function">TrainCabin* <span class="title">AssembleTraninCabin</span><span class="params">(TrainCabin *TrainList)</span></span></div><div class="line">&#123;</div><div class="line">	TrainCabin *i=TrainList;</div><div class="line">	TrainCabin *j;</div><div class="line">	TrainCabin *temp=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">	temp-&gt;next=<span class="literal">NULL</span>;</div><div class="line">	<span class="keyword">while</span>(i!=<span class="literal">NULL</span>)</div><div class="line">	&#123;</div><div class="line">		j=i-&gt;next;</div><div class="line">		<span class="keyword">while</span>(j!=<span class="literal">NULL</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>((*i).GoodsNum&gt;(*j).GoodsNum)</div><div class="line">			&#123;</div><div class="line">				(*temp).TrainNum=(*i).TrainNum;</div><div class="line">				(*temp).GoodsNum=(*i).GoodsNum;</div><div class="line">				(*i).TrainNum=(*j).TrainNum;</div><div class="line">				(*i).GoodsNum=(*j).GoodsNum;</div><div class="line">				(*j).TrainNum=(*temp).TrainNum;</div><div class="line">				(*j).GoodsNum=(*temp).GoodsNum;</div><div class="line">			&#125;</div><div class="line">			j=j-&gt;next;</div><div class="line">		&#125;</div><div class="line">		i=i-&gt;next;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> TrainList;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">const</span> TrainCabin *TrainList)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">while</span>(TrainList-&gt;next!=<span class="literal">NULL</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).TrainNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).GoodsNum&lt;&lt;<span class="string">"| -&gt; "</span>;</div><div class="line">		TrainList=TrainList-&gt;next;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).TrainNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).GoodsNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> TrainNum=<span class="number">0</span>,GoodsNum=<span class="number">0</span>;</div><div class="line">	TrainCabin *frist,*last;</div><div class="line">	TrainCabin *temp;</div><div class="line">	frist=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">	frist-&gt;next=<span class="literal">NULL</span>;</div><div class="line">	last=frist;</div><div class="line">	<span class="keyword">char</span> input;</div><div class="line">	<span class="keyword">while</span>(<span class="number">1</span>)</div><div class="line">	&#123;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;TrainNum;</div><div class="line">		<span class="keyword">if</span>(TrainNum==<span class="number">-1</span>)</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;input;</div><div class="line">		<span class="built_in">cin</span>&gt;&gt;GoodsNum;</div><div class="line"></div><div class="line">		temp=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">		temp-&gt;TrainNum=TrainNum;</div><div class="line">		temp-&gt;GoodsNum=GoodsNum;</div><div class="line">		temp-&gt;next=<span class="literal">NULL</span>;</div><div class="line"></div><div class="line">		last-&gt;next=temp;</div><div class="line">		last=temp;</div><div class="line">	&#125;</div><div class="line">	TrainCabin *result=AssembleTraninCabin((*frist).next);</div><div class="line">	display(result);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-05-08T16:09:44.840Z" itemprop="dateUpdated">2018-05-09 00:09:44</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/05/08/实验室招新题目(2)/" target="_blank" rel="external">https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lab-Interview/">Lab_Interview</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&title=《实验室招新题目②》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&title=《实验室招新题目②》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《实验室招新题目②》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/20/基于TensorFlow的CNN中文文本分类/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">基于TensorFlow的CNN中文文本分类</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/06/后生可畏/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">后生可畏</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&title=《实验室招新题目②》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&title=《实验室招新题目②》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《实验室招新题目②》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQW7jMBAEwPz/014gpwWysrtnRMcLlE6CbIssBRCZnvn6io/H9/Hzys8jv9vV9/++fnV+84GHh4c3mvrz6V7x9tPNH9Pwt3h4eHjHePm08jfw8+vtiMl88PDw8D6N93zB2C8V+cKDh4eH97/wZuftpnx2fzw8PLz385IwYhMlzF7x+Tb9hqwFDw8PbzJ6VAD7hPOD9T08PDy8RVW9LYnNGgv237y8Ax4eHt4BXhK5tgvG5kHkEUmxYODh4eHdyru66aaE38YZdz24f5zj4eHhHeDNfjx7fectBZvFJkqp8fDw8Ba8NgLYb4uT6CEnvQDj4eHhHeBtprsJfGeRcT4fPDw8vHO85xvodkmYvcpzRrKcFP0OeHh4eAteVIBfTK4Nf9uQ9/I+eHh4eAd4++1y2zi1iULazToeHh7eOV47rbzMvymJbcB4eHh4p3n5K3tWDGsjj3yU4bKEh4eHt+blQ7bBQbshPhJh4OHh4d3Ky+PaJLrdHElQ2/4Z8PDw8H6Lt4kh2gfXjv7i3wA8PDy8Y7zZpG+oucWF//wh4uHh4b2H17Y6zZq0kmJbu2y8OMfDw8M7wGsDiLa4lW/TZ6W1JMLAw8PDO8FrG56G/QhlY8H+0ePh4eG9h7cpO+Vls3bbnbQmXI6Fh4eHd4B3VytV21zVbtNns8XDw8M7wWtf3LNt9yaEbQtsUesVHh4e3pq3iQxOk/Kmq+gDPDw8vAXvUR45qY0M2uat6NHg4eHhHeDNXrubJq38V+15W4rDw8PD2/A2UWz7Ik4Wm/bTImvBw8PDu5W3WQweoyMvxW0aufDw8PA+gZcECnkD1ixKqNut8PDw8H6Jl2y7z7UgPB8FDw8P7/28e6eeX2nHTQpyeHh4eKd5+wJY22Qw24K3m3U8PDy8A7w/VTy7YECGZPAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

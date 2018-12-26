@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Android Chapter III.   Android四大组件的生命周期 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两事吧。 介绍生命周期之前，先提一下任务的概念 任务其实就是activity 的栈它由一个或多个Activity组成的共同完成一个完整的用户体验， 换句话说任务就是” 应用程序” （可以是一个也可以是多个，比如假设你想让用户看到某个地方的街道地图。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Chapter III.   Android四大组件的生命周期">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两事吧。 介绍生命周期之前，先提一下任务的概念 任务其实就是activity 的栈它由一个或多个Activity组成的共同完成一个完整的用户体验， 换句话说任务就是” 应用程序” （可以是一个也可以是多个，比如假设你想让用户看到某个地方的街道地图。">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_gif/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkNTAeU2NHBcaJv1C4jSuOJSqTia1TBicUphj5OWKtUbC3iapicuLVcEJYYQ/0?wx_fmt=gif">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkQfOBqT7NXX94icicbUVbsW3ibd4RbnCzASt0PAPX8sULuA2beEzNiaQNIg/0?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkDG0ZbEMBGdqEib2lDt3AqiasXqh7riagNsMbUPzkcAGic8UCq3fXCLm22w/0?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkfA6CMctrQDzy3WDJs0FG7sWZJbZVL8M73qicKr1QCdmSIXE4oImF5Ew/0?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/640?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_gif/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrrX47VWFxfPy0KfypgcmyAmthoepRES60fzibvWGsjic0dLhKK2OeM2yQ/0?wx_fmt=gif">
+<meta property="og:updated_time" content="2017-09-15T09:38:53.214Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Chapter III.   Android四大组件的生命周期">
+<meta name="twitter:description" content="​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两事吧。 介绍生命周期之前，先提一下任务的概念 任务其实就是activity 的栈它由一个或多个Activity组成的共同完成一个完整的用户体验， 换句话说任务就是” 应用程序” （可以是一个也可以是多个，比如假设你想让用户看到某个地方的街道地图。">
+<meta name="twitter:image" content="https://mmbiz.qlogo.cn/mmbiz_gif/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkNTAeU2NHBcaJv1C4jSuOJSqTia1TBicUphj5OWKtUbC3iapicuLVcEJYYQ/0?wx_fmt=gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android Chapter III.   Android四大组件的生命周期</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android Chapter III.   Android四大组件的生命周期</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-11T12:43:13.000Z" itemprop="datePublished" class="page-time">
+  2017-06-11
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+
+<article id="post-Android Chapter III.   Android四大组件的生命周期"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android Chapter III.   Android四大组件的生命周期</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-11 20:43:13" datetime="2017-06-11T12:43:13.000Z"  itemprop="datePublished">2017-06-11</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两事吧。</strong></p>
+<p>介绍生命周期之前，先提一下任务的概念</p>
+<p>任务其实就是activity 的栈它由一个或多个Activity组成的共同完成一个完整的用户体验， 换句话说任务就是” 应用程序” （可以是一个也可以是多个，比如假设你想让用户看到某个地方的街道地图。而已经存在一个具有此功能的activity 了，那么你的activity 所需要做的工作就是把请求信息放到一个Intent 对象里面，并把它传递给startActivity()。于是地图浏览器就会显示那个地图。而当用户按下BACK 键的时候，你的activity 又会再一次的显示在屏幕上，此时任务是由2个应用程序中的相关activity组成的）栈底的是启动整个任务的Activity，栈顶的是当前运行的用户可以交互的Activity，当一个activity 启动另外一个的时候，新的activity 就被压入栈，并成为当前运行的activity。而前一个activity 仍保持在栈之中。当用户按下BACK 键的时候，当前activity 出栈，而前一个恢复为当前运行的activity。栈中保存的其实是对象，栈中的Activity 永远不会重排，只会压入或弹出，所以如果发生了诸如需要多个地图浏览器的情况，就会使得一个任务中出现多个同一Activity 子类的实例同时存在。</p>
+<a id="more"></a>
+<hr>
+<p>任务中的所有activity 是作为一个整体进行移动的。整个的任务（即activity 栈）可以移到前台，或退至后台。举个例子说，比如当前任务在栈中存有四个activity──三个在当前activity 之下。当用户按下HOME 键的时候，回到了应用程序加载器，然后选择了一个新的应用程序（也就是一个新任务）。则当前任务遁入后台，而新任务的根activity 显示出来。然后，过了一小会儿，用户再次回到了应用程序加载器而又选择了前一个应用程序（上一个任务）。于是那个任务，带着它栈中所有的四个activity，再一次的到了前台。当用户按下BACK 键的时候，屏幕不会显示出用户刚才离开的activity（上一个任务的根activity）。取而代之，当前任务的栈中最上面的activity 被弹出，而同一任务中的上一个activity 显示了出来。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_gif/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkNTAeU2NHBcaJv1C4jSuOJSqTia1TBicUphj5OWKtUbC3iapicuLVcEJYYQ/0?wx_fmt=gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Activity栈：<strong>先进后出规则</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkQfOBqT7NXX94icicbUVbsW3ibd4RbnCzASt0PAPX8sULuA2beEzNiaQNIg/0?wx_fmt=jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>Android系统是一个多任务(Multi-Task)的操作系统，可以在用手机听音乐的同时，也执行其他多个程序。每多执行一个应用程序，就会多耗费一些系统内存，当同时执行的程序过多，或是关闭的程序没有正确释放掉内存，系统就会觉得越来越慢，甚至不稳定。</p>
+<p>为了解决这个问题， Android 引入了一个新的机制– 生命周期(Life Cycle)。</p>
+<p>Android 应用程序的生命周期是由Android 框架进行管理，而不是由应用程序直接控</p>
+<p>制。通常，每一个应用程序（入口一般会是一个Activity 的onCreate 方法），都会产生</p>
+<p>一个进程(Process)。当系统内存即将不足的时候，会依照优先级自动进行进程(process)的回收。不管是使用者或开发者， 都无法确定的应用程序何时会被回收。所以为了很好的防止数据丢失和其他问题，了解生命周期很重要。</p>
+<p>Activity生命周期：</p>
+<p> <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkDG0ZbEMBGdqEib2lDt3AqiasXqh7riagNsMbUPzkcAGic8UCq3fXCLm22w/0?wx_fmt=jpeg" alt=""></p>
+<p>图3.1activity生命周期图</p>
+<p><strong>Activity整个生命周期的4种状态、7个重要方法和3个嵌套循环</strong></p>
+<p>1&gt;   四种状态</p>
+<ol>
+<li>活动（Active/Running）状态</li>
+</ol>
+<p>当Activity运行在屏幕前台(处于当前任务活动栈的最上面),此时它获取了焦点能响应用户的操作,属于运行状态，同一个时刻只会有一个Activity 处于活动(Active)或运行</p>
+<p>(Running)状态</p>
+<ol>
+<li>暂停(Paused)状态</li>
+</ol>
+<p>当Activity失去焦点但仍对用户可见(如在它之上有另一个透明的Activity或Toast、AlertDialog等弹出窗口时)它处于暂停状态。暂停的Activity仍然是存活状态(它保留着所有的状态和成员信息并保持和窗口管理器的连接),但是当系统内存极小时可以被系统杀掉</p>
+<ol>
+<li>停止(Stopped)状态</li>
+</ol>
+<p>完全被另一个Activity遮挡时处于停止状态,它仍然保留着所有的状态和成员信息。只是对用户不可见,当其他地方需要内存时它往往被系统杀掉</p>
+<ol>
+<li>非活动（Dead）状态</li>
+</ol>
+<p>Activity 尚未被启动、已经被手动终止，或已经被系统回收时处于非活动的状态，要手动终止Activity，可以在程序中调用”finish”方法。</p>
+<p>如果是（按根据内存不足时的回收规则）被系统回收，可能是因为内存不足了</p>
+<p>内存不足时，Dalvak 虚拟机会根据其内存回收规则来回收内存：</p>
+<pre><code>1. 先回收与其他Activity 或Service/Intent Receiver 无关的进程(即优先回收独立的Activity)因此建议,我们的一些(耗时)后台操作，最好是作成Service的形式
+
+2.不可见(处于Stopped状态的)Activity
+
+3.Service进程(除非真的没有内存可用时会被销毁)
+
+4.非活动的可见的(Paused状态的)Activity
+
+5.当前正在运行（Active/Running状态的）Activity
+</code></pre><p>2&gt;  7个重要方法,当Activity从一种状态进入另一状态时系统会自动调用下面相应的方</p>
+<p>法来通知用户这种变化</p>
+<p>当Activity第一次被实例化的时候系统会调用,</p>
+<p>整个生命周期只调用1次这个方法</p>
+<p>通常用于初始化设置: 1、为Activity设置所要使用的布局文件2、为按钮绑定监听器等静态的设置操作</p>
+<p><strong>onCreate(Bundle savedInstanceState);</strong></p>
+<p>当Activity可见未获得用户焦点不能交互时系统会调用</p>
+<p><strong>onStart();</strong></p>
+<p>当Activity已经停止然后重新被启动时系统会调用</p>
+<p><strong>onRestart();</strong></p>
+<p>当Activity可见且获得用户焦点能交互时系统会调用</p>
+<p><strong>onResume();</strong></p>
+<p>当系统启动另外一个新的Activity时,在新Activity启动之前被系统调用保存现有的Activity中的持久数据、停止动画等,这个实现方法必须非常快。当系统而不是用户自己出于回收内存时，关闭了activity 之后。用户会期望当他再次回到这个activity 的时候，它仍保持着上次离开时的样子。此时用到了onSaveInstanceState()，方法onSaveInstanceState()用来保存Activity被杀之前的状态,在onPause()之前被触发,当系统为了节省内存销毁了Activity(用户本不想销毁)时就需要重写这个方法了,当此Activity再次被实例化时会通过onCreate(Bundle savedInstanceState)将已经保存的临时状态数据传入因为onSaveInstanceState()方法不总是被调用,触发条件为(按下HOME键,按下电源按键关闭屏幕,横竖屏切换情况下),你应该仅重写onSaveInstanceState()来记录activity的临时状态，而不是持久的数据。应该使用onPause()来存储持久数据。</p>
+<p><strong>onPause();</strong></p>
+<p>当Activity被新的Activity完全覆盖不可见时被系统调用</p>
+<p><strong>onStop();</strong></p>
+<p>当Activity(用户调用finish()或系统由于内存不足)被系统销毁杀掉时系统调用,（整个生命周期只调用1次）用来释放onCreate ()方法中创建的资源,如结束线程等</p>
+<p><strong>onDestroy();</strong></p>
+<p>3&gt;  3个嵌套循环</p>
+<pre><code>       1.Activity完整的生命周期:从第一次调用onCreate()开始直到调用onDestroy()结束
+
+       2.Activity的可视生命周期:从调用onStart()到相应的调用onStop()
+
+              在这两个方法之间,可以保持显示Activity所需要的资源。如在onStart()中注册一个广播接收者监听影响你的UI的改变,在onStop() 中注销。
+
+       3.Activity的前台生命周期:从调用onResume()到相应的调用onPause()。
+
+举例说明:
+</code></pre><p>例1：有3个Acitivity,分别用One,Two(透明的),Three表示,One是应用启动时的主Activity</p>
+<pre><code>启动第一个界面Activity One时,它的次序是
+
+       onCreate (ONE) - onStart (ONE) - onResume(ONE)
+
+点&quot;打开透明Activity&quot;按钮时,这时走的次序是
+
+       onPause(ONE) - onCreate(TWO) - onStart(TWO) - onResume(TWO)
+
+再点back回到第一个界面,Two会被杀这时走的次序是
+
+       onPause(TWO) - onActivityResult(ONE) - onResume(ONE) - onStop(TWO) - onDestroy(TWO)
+
+点&quot;打开全屏Activity&quot;按钮时,这时走的次序是
+
+       onPause(ONE) - onCreate(Three) - onStart(Three) - onResume(Three) - onStop(ONE)
+
+再点back回到第一个界面,Three会被杀这时走的次序是
+
+       onPause(Three) - onActivityResult(ONE) - onRestart(ONE) - onStart(ONE)- onResume(ONE) - onStop(Three) - onDestroy(Three)
+
+再点back退出应用时,它的次序是
+
+       onPause(ONE) - onStop(ONE) - onDestroy(ONE)           
+</code></pre><p>例2：横竖屏切换时候Activity的生命周期</p>
+<p>他切换时具体的生命周期是怎么样的：</p>
+<p>1、新建一个Activity，并把各个生命周期打印出来</p>
+<p>2、运行Activity，得到如下信息</p>
+<p>onCreate–&gt;<br>onStart–&gt;<br>onResume–&gt;</p>
+<p>3、按crtl+f12切换成横屏时</p>
+<p>onSaveInstanceState–&gt;<br>onPause–&gt;<br>onStop–&gt;<br>onDestroy–&gt;<br>onCreate–&gt;<br>onStart–&gt;<br>onRestoreInstanceState–&gt;<br>onResume–&gt;</p>
+<p>4、再按crtl+f12切换成竖屏时，发现打印了两次相同的log</p>
+<p>onSaveInstanceState–&gt;<br>onPause–&gt;<br>onStop–&gt;<br>onDestroy–&gt;<br>onCreate–&gt;<br>onStart–&gt;<br>onRestoreInstanceState–&gt;<br>onResume–&gt;<br>onSaveInstanceState–&gt;<br>onPause–&gt;<br>onStop–&gt;<br>onDestroy–&gt;<br>onCreate–&gt;<br>onStart–&gt;<br>onRestoreInstanceState–&gt;<br>onResume–&gt;</p>
+<p>5、修改AndroidManifest.xml，把该Activity添加android:configChanges=”orientation”，执行步骤3</p>
+<p>onSaveInstanceState–&gt;<br>onPause–&gt;<br>onStop–&gt;<br>onDestroy–&gt;<br>onCreate–&gt;<br>onStart–&gt;<br>onRestoreInstanceState–&gt;<br>onResume–&gt;</p>
+<p>6、再执行步骤4，发现不会再打印相同信息，但多打印了一行onConfigChanged</p>
+<p>onSaveInstanceState–&gt;<br>onPause–&gt;<br>onStop–&gt;<br>onDestroy–&gt;<br>onCreate–&gt;<br>onStart–&gt;<br>onRestoreInstanceState–&gt;<br>onResume–&gt;<br>onConfigurationChanged–&gt;</p>
+<p>7、把步骤5的android:configChanges=”orientation” 改成 android:configChanges=”orientation|keyboardHidden”，执行步骤3，就只打印onConfigChanged</p>
+<p>onConfigurationChanged–&gt;</p>
+<p>8、执行步骤4</p>
+<p>onConfigurationChanged–&gt;<br>onConfigurationChanged–&gt;</p>
+<p> 总结：</p>
+<p>1、不设置Activity的android:configChanges时，切屏会重新调用各个生命周期，切横屏时会执行一次，切竖屏时会执行两次</p>
+<p>2、设置Activity的android:configChanges=”orientation”时，切屏还是会重新调用各个生命周期，切横、竖屏时只会执行一次</p>
+<p>3、设置Activity的android:configChanges=”orientation|keyboardHidden”时，切屏不会重新调用各个生命周期，只会执行onConfigurationChanged方法</p>
+<p>总结一下整个Activity的生命周期</p>
+<p>补充一点，当前Activity产生事件弹出Toast和AlertDialog的时候Activity的生命周期不会有改变</p>
+<p>Activity运行时按下HOME键(跟被完全覆盖是一样的)：onSaveInstanceState –&gt; onPause –&gt; onStop，再次进入激活状态时： onRestart –&gt;onStart—&gt;onResume</p>
+<p>BroadcastReceive广播接收器生命周期：</p>
+<p>生命周期只有十秒左右，如果在 onReceive() 内做超过十秒内的事情，就会报ANR(Application No Response) 程序无响应的错误信息</p>
+<p>它的生命周期为从回调onReceive()方法开始到该方法返回结果后结束</p>
+<p>Service服务生命周期：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkfA6CMctrQDzy3WDJs0FG7sWZJbZVL8M73qicKr1QCdmSIXE4oImF5Ew/0?wx_fmt=jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br>图3.2service生命周期图</p>
+<p>Service完整的生命周期:从调用onCreate()开始直到调用onDestroy()结束</p>
+<p>Service有两种使用方法：</p>
+<p>1&gt;以调用Context.startService()启动，而以调用Context.stopService()结束</p>
+<p>2&gt;以调用Context.bindService()方法建立，以调用Context.unbindService()关闭</p>
+<p>service重要的生命周期方法</p>
+<p>当用户调用startService （）或bindService（）时，Service第一次被实例化的时候系统会调用,整个生命周期只调用1次这个方法，通常用于初始化设置。注意：多次调用startService（）或bindService（）方法不会多次触发onCreate（）方法</p>
+<p>void onCreate()</p>
+<p>当用户调用stopService()或unbindService（）来停止服务时被系统调用,（整个生命周期只调用1次）用来释放onCreate()方法中创建的资源</p>
+<p>void onDestroy()</p>
+<p>通过startService()方法启动的服务</p>
+<pre><code>初始化结束后系统会调用该方法，用于处理传递给startService()的Intent对象。如音乐服务会打开Intent 来探明将要播放哪首音乐，并开始播放。注意：多次调用startService（）方法会多次触发onStart（）方法
+</code></pre><p>void onStart(Intent intent)</p>
+<p>通过bindService ()方法启动的服务</p>
+<pre><code>初始化结束后系统会调用该方法，用来绑定传递给bindService 的Intent 的对象。注意：多次调用bindService（）时，如果该服务已启动则不会再触发此方法
+</code></pre><p>IBinder onBind(Intent intent)</p>
+<p>用户调用unbindService()时系统调用此方法，Intent 对象同样传递给该方法</p>
+<p>boolean onUnbind(Intent intent)</p>
+<p>如果有新的客户端连接至该服务，只有当旧的调用onUnbind()后，新的才会调用该方法</p>
+<p>void onRebind(Intent intent)</p>
+<p><strong>补充</strong>：onCreate(Bundle savedInstanceState)与onSaveInstanceState(Bundle savedInstanceState)配合使用，见如下代码，达到显示activity被系统杀死前的状态</p>
+<p> @Overridepublic void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);        if (null != savedInstanceState) {<br>            String _userid = savedInstanceState.getString(“StrUserId”);<br>            String _uid = savedInstanceState.getString(“StrUid”);<br>            String _serverid = savedInstanceState.getString(“StrServerId”);<br>            String _servername = savedInstanceState.getString(“StrServerName”);            int _rate = savedInstanceState.getInt(“StrRate”);            //updateUserId(_userid);            //updateUId(_uid);            //updateServerId(_serverid);            //updateUserServer(_servername);            //updateRate(_rate); }<br>    }</p>
+<pre><code>@Overrideprotected void onSaveInstanceState(Bundle savedInstanceState) {super.onSaveInstanceState(savedInstanceState);
+    savedInstanceState.putString(&quot;StrUserId&quot;, getUserId());
+    savedInstanceState.putString(&quot;StrUid&quot;, getUId());
+    savedInstanceState.putString(&quot;StrServerId&quot;, getServerId());
+    savedInstanceState.putString(&quot;StrServerName&quot;, getServerName());
+    savedInstanceState.putInt(&quot;StrRate&quot;, getRate());
+}
+</code></pre><hr>
+<center>如果大家对这有趣实用的技术贴感兴趣</center>
+
+<center>我后期会继续努力的！</center>
+
+<center>请大家扫描二维码！</center>
+
+<center>关注我！</center><br><center><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/640?wx_fmt=jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br></center><br><center><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_gif/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrrX47VWFxfPy0KfypgcmyAmthoepRES60fzibvWGsjic0dLhKK2OeM2yQ/0?wx_fmt=gif" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br></center>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-15T09:38:53.214Z" itemprop="dateUpdated">2017-09-15 17:38:53</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" target="_blank" rel="external">https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&title=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&title=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&source=​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/10/Android Chapter II.   Android四大组件/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android Chapter II.   Android四大组件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&title=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&title=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&source=​Hello everybody,上一次我们讲完了Android四大组件那么伴随四大组件必不可少的就是他们的生命周期了，那么今天我们就再叨叨生命周期的三两..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Chapter III.   Android四大组件的生命周期》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADNElEQVR42u3aQXKDMAwF0Nz/0vQAbZwviXTAPFaZITE8d6FK369XfB2/rt93179NVjveXMk6r29c2NjY2DdhH8sreUD+6tXVkjdMnv7Hs7CxsbG3YyeY9ede8VtvRL5+bsHGxsbGXhetXnnLi9N6s7CxsbGxe4UhuZu0N70xEzY2NjZ2tXjkY6PJ+nlL8/VZGjY2Nvbl2Xkqev3PX8m3sbGxsS/Mngx3eo1KL5rNY+NIgY2Njb0RuxfWVutCsllJM5M3QtH7Y2NjY2/Krr56XkLyJqfXZqw3rvBgbGxs7Fuxe6+YH9aZH9/Jt6bQwGBjY2Nvyk4OOFZHQvMRVS9U/nAXGxsbeyN29Z/76gHNXhGaR7nrPx42Njb2Tux5+9EreL31y1Huu43AxsbG3oidB7o5oFfqqgc9ezFDFBhgY2Nj35A9j1rzsX4vYF6/SbUFwsbGxt6JPRnWzI/m5GWpWlA/bBw2Njb2RuxkGNQb7uQFr9rwVLOOwjgJGxsb+4bs6ui/Fw+c1Yr0tqxwUgkbGxv7tuzkJXplL6+ivdF/0my8LWDY2NjY27GTH+fHcfLidNYGFQIGbGxs7AewqyOeeczQG1clZaxQwLCxsbFvyM7/fZ8cx0waicnBoF7IgY2Njf0c9uSozfyATq+9if542NjY2Juy82g2L1q9IKE33io0LdjY2NjbsfMH5Bt01nfy8lYYMGFjY2NvwV6T8mHQJACuDpXmcS82Njb2c9i9epi0K1VS0rQUfouNjY29NTsf91QP8fSakxOQozQYGxsb++rsySgnaWDygDb/TtKERK0LNjY29qbs/PhLr6Qlz+qFB/lGY2NjYz+BXV1iUpYmcUU+osLGxsZ+Dju/JqUlL2NnRQ5vTyphY2Nj35x9FK88WkhG9nl4nETLhSYKGxsbeyN2tVxNIoFqw1C9m0S/5S3AxsbGvgk7Hwn14uFqVJx/zgsYNjY29hPY+dioFwxM2oNqPJCsgI2Njf1kdi9eTYZNkw2tRg7Y2NjYT2bPj8707hZI/1O3sbGxsS/GzsdA1QAgWScfOVWf9eGkEjY2NvYW7LwAVB/fK1fVJidfARsbG3s79g+Q1ZHNvqwziQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

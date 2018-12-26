@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="DeepLearning">
+    <meta name="description" content="​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。 从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中间遇到了很多问题，比如说在图像处理方面CPU远不及GPU强而在IO读写上CPU又很占优势。当我在进一步学习卷积神经网络的过程中发现了Matlab的强大和不足。在两年前Google爸爸出品了TensorFlow这一深度学习开源框架。历经2天1夜13">
+<meta name="keywords" content="DeepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。 从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中间遇到了很多问题，比如说在图像处理方面CPU远不及GPU强而在IO读写上CPU又很占优势。当我在进一步学习卷积神经网络的过程中发现了Matlab的强大和不足。在两年前Google爸爸出品了TensorFlow这一深度学习开源框架。历经2天1夜13">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8bf593.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8b5b90.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8a57a6.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8bdb30.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8bc256.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8c0db6.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c8b74cb.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2da9972d83.bmp">
+<meta property="og:image" content="https://i.loli.net/2018/04/27/5ae2d9c94a7fd.gif">
+<meta property="og:updated_time" content="2018-04-27T08:09:27.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU">
+<meta name="twitter:description" content="​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。 从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中间遇到了很多问题，比如说在图像处理方面CPU远不及GPU强而在IO读写上CPU又很占优势。当我在进一步学习卷积神经网络的过程中发现了Matlab的强大和不足。在两年前Google爸爸出品了TensorFlow这一深度学习开源框架。历经2天1夜13">
+<meta name="twitter:image" content="https://i.loli.net/2018/04/27/5ae2d9c8bf593.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-30T12:43:13.000Z" itemprop="datePublished" class="page-time">
+  2017-06-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#requirements"><span class="post-toc-number">1.</span> <span class="post-toc-text">requirements</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装nvidia-driver"><span class="post-toc-number">2.</span> <span class="post-toc-text">安装nvidia driver</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装cuda8"><span class="post-toc-number">3.</span> <span class="post-toc-text">安装cuda8</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#配置cuda环境变量"><span class="post-toc-number">4.</span> <span class="post-toc-text">配置cuda环境变量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装深度学习库cuDNN-v5-1"><span class="post-toc-number">5.</span> <span class="post-toc-text">安装深度学习库cuDNN-v5.1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装tensorflow-gpu-enable-python-2-7-版本，详见官网"><span class="post-toc-number">6.</span> <span class="post-toc-text">安装tensorflow gpu enable python 2.7 版本，详见官网</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-30 20:43:13" datetime="2017-06-30T12:43:13.000Z"  itemprop="datePublished">2017-06-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。</p>
+<p>从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中间遇到了很多问题，比如说在图像处理方面CPU远不及GPU强而在IO读写上CPU又很占优势。当我在进一步学习卷积神经网络的过程中发现了Matlab的强大和不足。在两年前<strong>Google</strong>爸爸出品了<strong>TensorFlow</strong>这一深度学习开源框架。历经2天1夜13次重装系统。。。所以为什么要怒发教程，你懂的。话不多说直接开配！</p>
+<hr>
+<h3 id="requirements"><a href="#requirements" class="headerlink" title="requirements"></a>requirements</h3><blockquote>
+<ul>
+<li>Ubuntu-16.04</li>
+</ul>
+<ul>
+<li>python-2.7</li>
+</ul>
+<ul>
+<li>cuda-8</li>
+</ul>
+<ul>
+<li>cuDNN-5.1 </li>
+</ul>
+<ul>
+<li>tensorflow GPU 版本<a id="more"></a>
+<h3 id="安装nvidia-driver"><a href="#安装nvidia-driver" class="headerlink" title="安装nvidia driver"></a><strong>安装nvidia driver</strong></h3></li>
+</ul>
+</blockquote>
+<p>经过不断踩坑的安装，终于google到了靠谱的方法，首先检查你的NVIDIA VGA card model    </p>
+<p>Ctrl+Alt+T 打开终端 输入： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo lshw -numeric -C display</div></pre></td></tr></table></figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8bf593.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>可以看到你的显卡信息，比如我的就是 </p>
+<p>product: GM107M [GeForce GTX 960M] [10DE:139B]  </p>
+<p>找到 系统设置-&gt;软件更新-&gt;附加驱动 </p>
+<p>查看和上面GPU型号相对应的显卡</p>
+<p>选择最新的显卡驱动并点击应用更改</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8b5b90.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>然后喝杯咖啡静候应用更改完成</p>
+<p>输入以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mesa-common-devsudo apt-get install freeglut3-dev</div></pre></td></tr></table></figure>
+<p>安装完成之后，重启电脑，驱动应该就完成了！</p>
+<p>你可以在dashboard上搜索nvidia</p>
+<p>看到像 NVIDIA X Server Settings的东西</p>
+<p>就说明安装驱动成功了</p>
+<p>接下来就该安装cuda8</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8a57a6.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8bdb30.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="安装cuda8"><a href="#安装cuda8" class="headerlink" title="安装cuda8"></a><strong>安装cuda8</strong></h3><p>首先也是去下载cuda toolkit 8.0</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8bc256.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>老铁！看我的教程就按我的来！照着图好好选！</p>
+<p>一定要选择runfile.下载完成之后，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sh cuda_8.0.44_linux.run</div></pre></td></tr></table></figure>
+<p>然后就进入安装过程</p>
+<p>开始都是End User License Agreement</p>
+<p>你可以CTRL +C 跳过</p>
+<p>然后accept，下面就是安装的交互界面</p>
+<p>开始的Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 375.66?</p>
+<p>选择n，因为你已经安装驱动了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">Using more to view the EULA.</div><div class="line">End User License Agreement</div><div class="line"></div><div class="line">Preface</div><div class="line"></div><div class="line">The following contains specific license terms and conditionsfor four separate NVIDIA products. By accepting this</div><div class="line">agreement, you agree to comply with all the terms andconditions applicable to the specific product(s) included</div><div class="line">herein.</div><div class="line"></div><div class="line">NVIDIA CUDA Toolkit</div><div class="line"></div><div class="line">Description</div><div class="line"></div><div class="line">The NVIDIA CUDA Toolkit provides command-line and graphical</div><div class="line">tools for building, debugging and optimizing the performanceof applications accelerated by NVIDIA GPUs, runtime and math</div><div class="line">libraries, and documentation including programming guides,</div><div class="line">user manuals, and API references. The NVIDIA CUDA Toolkit</div><div class="line">License Agreement is available in Chapter 1.Default Install Location of CUDA Toolkit</div><div class="line"></div><div class="line">Windows platform:</div><div class="line"></div><div class="line">Do you accept the previously read EULA?</div><div class="line">accept/decline/quit: accept</div><div class="line"></div><div class="line">Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 367.48?</div><div class="line">(y)es/(n)o/(q)uit: n</div><div class="line"></div><div class="line">Install the CUDA 8.0 Toolkit?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Enter Toolkit Location</div><div class="line"> [ default is /usr/local/cuda-8.0 ]:  </div><div class="line"></div><div class="line">Do you want to install a symbolic link at /usr/local/cuda?</div><div class="line">(y)es/(n)o/(q)uit: y</div><div class="line"></div><div class="line">Install the CUDA 8.0 Samples?</div><div class="line">(y)es/(n)o/(q)uit: y </div><div class="line"></div><div class="line">Enter CUDA Samples Location</div><div class="line"> [ default is /home/kinny ]: </div><div class="line"></div><div class="line">Installing the CUDA Toolkit in /usr/local/cuda-8.0 ...</div><div class="line">Missing recommended library: libXmu.so</div><div class="line"></div><div class="line">Installing the CUDA Samples in /home/kinny ...</div><div class="line">Copying samples to /home/kinny/NVIDIA_CUDA-8.0_Samples now...</div><div class="line">Finished copying samples.</div><div class="line"></div><div class="line">===========</div><div class="line">= Summary =</div><div class="line">===========</div><div class="line"></div><div class="line">Driver:   Not Selected</div><div class="line">Toolkit:  Installed in /usr/local/cuda-8.0Samples:  Installed in /home/kinny, but missing recommended libraries</div><div class="line"></div><div class="line">Please make sure that</div><div class="line"> -   PATH includes /usr/local/cuda-8.0/bin</div><div class="line"> -   LD_LIBRARY_PATH includes /usr/local/cuda-8.0/lib64, or, add /usr/local/cuda-8.0/lib64 to /etc/ld.so.conf and run ldconfig as root</div><div class="line"></div><div class="line">To uninstall the CUDA Toolkit, run the uninstall script in /usr/local/cuda-8.0/bin</div><div class="line"></div><div class="line">Please see CUDA_Installation_Guide_Linux.pdf in /usr/local/cuda-8.0/doc/pdf for detailed information on setting up CUDA.</div><div class="line"></div><div class="line">***WARNING: Incomplete installation! This installation did not install the CUDA Driver. A driver of version at least 361.00 is required for CUDA 8.0 functionality to work.</div><div class="line">To install the driver using this installer, run the following command, replacing &lt;CudaInstaller&gt; with the name of this run file:</div><div class="line">    sudo &lt;CudaInstaller&gt;.run -silent -driver</div><div class="line"></div><div class="line">Logfile is /tmp/cuda_install_17494.log</div></pre></td></tr></table></figure>
+<h3 id="配置cuda环境变量"><a href="#配置cuda环境变量" class="headerlink" title="配置cuda环境变量"></a>配置cuda环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:/usr/local/cuda-8.0/bin&quot;export LD_LIBRARY_PATH=&quot;/usr/local/cuda-8.0/lib64&quot;nvidia-smi</div></pre></td></tr></table></figure>
+<p>结果出现以下输出，说明配置成功</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c8c0db6.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h3 id="安装深度学习库cuDNN-v5-1"><a href="#安装深度学习库cuDNN-v5-1" class="headerlink" title="安装深度学习库cuDNN-v5.1"></a><strong>安装深度学习库cuDNN-v5.1</strong></h3><p>首先下载cuDNN5.1，直接下载，注意前提是你已经注册为开发者了！ </p>
+<p><code>解压：</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar xvzf cudnn-8.0-linux-x64-v5.1.tgz</div></pre></td></tr></table></figure>
+<p>然后将库头文件Copy到cuda目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo cp cuda/include/cudnn.h /usr/local/cuda/include</div><div class="line">sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64</div><div class="line">sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*</div></pre></td></tr></table></figure>
+<h3 id="安装tensorflow-gpu-enable-python-2-7-版本，详见官网"><a href="#安装tensorflow-gpu-enable-python-2-7-版本，详见官网" class="headerlink" title="安装tensorflow gpu enable python 2.7 版本，详见官网"></a>安装tensorflow gpu enable python 2.7 版本，详见官网</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.11.0-cp27-none-linux_x86_64.whlsudo pip install --upgrade $TF_BINARY_URL</div><div class="line"></div><div class="line">验证</div><div class="line">$python </div><div class="line">Python 2.7.12 (default, Jul  1 2016, 15:12:24) </div><div class="line">[GCC 5.4.0 20160609] on linux2</div><div class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</div><div class="line">&gt;&gt;&gt; import tensorflow</div><div class="line">I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcublas.so locally</div><div class="line">I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcudnn.so locally</div><div class="line">I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcufft.so locally</div><div class="line">I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcuda.so.1 locally</div><div class="line">I tensorflow/stream_executor/dso_loader.cc:111] successfully opened CUDA library libcurand.so locally</div><div class="line">&gt;&gt;&gt; quit()</div><div class="line">大功告成！</div></pre></td></tr></table></figure>
+<p>全部结束 谢谢观看！</p>
+<p>现在就可以放心的开始你的深度学习之路了 </p>
+<p><img src="https://i.loli.net/2018/04/27/5ae2d9c8b74cb.jpg" alt=""></p>
+<p>不要觉得好容易。。。都是几十遍血的教训成就的！ </p>
+<p>之后我会继续更新个人公众号，发布一些自己在深度学习方面的见闻。 </p>
+<hr>
+<center> <em>CreatedbyEdwardZhang</em>∣一个不只做技术的公众号</center><br><center><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2da9972d83.bmp" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br><br></center><br><center>长按，识别二维码，加关注</center><br><center><br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/04/27/5ae2d9c94a7fd.gif" alt="0.gif" title="">
+                </div>
+                <div class="image-caption">0.gif</div>
+            </figure><br></center>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-04-27T08:09:27.378Z" itemprop="dateUpdated">2018-04-27 16:09:27</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" target="_blank" rel="external">https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&title=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&title=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&source=​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。
+从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/07/15/TensorFlow_Cifar10测试教程/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">TensorFlow_Cifar_10</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android Chapter III.   Android四大组件的生命周期</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&title=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&title=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&source=​大概在一个月前开始接触模式识别、人工神经网络、图像识别方向。
+从Matlab开始一边理解神经网络层一边看代码跑了最基础的MNIST识别手写数字的代码，中..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/30/DeepLearning   怒发教程！！！Ubuntu16.04系统搭建TensorFlowGPU/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAAD0UlEQVR42u3aS27bUBAEQN3/0gmQVRYx1T0zMhyguApiiXwsL9rzeb3i69efa/+Zvz/5fH31+eSe7XnqCwcOHDhwLA6XH2j/Al/hPp+k/Z9nehw4cODAccWRHCgJwg1rQtCeNn9HHDhw4MDx/Rx5wfYM90zZvmT+XRw4cODA8b9w5A9um4zJ3Wbnx4EDBw4cn+ZISq/kW+1xn5+V37k9z0GvFAcOHDhwdJOjVxurP/nfH9zvwIEDBw4c5bhoE5abMM7HSPnZ3pwKBw4cOHAcBUVetrWl1yz88qLu9ik4cODAgWPP0bbh8rWG589vlueSOyfLFv94Og4cOHDgWHPMmmhtudVytEOmdmHizRvhwIEDB45TjuRVN1ObqwFYEszD2MaBAwcOHKccbYxtjpXTt7ht8YkDBw4cOG452hduAzX/fB7JedOwLQVx4MCBA8cVR/LI2eOTJmD7mVkAtwMqHDhw4MAx45itMuRwm5ZfG8+bkRgOHDhw4LjiSL52FW+3jcKrkhIHDhw4cHyOIymiNsXVbCVuttyw+kXiwIEDB44PcOQR1a5EbNYgZvGcNx9x4MCBA8eeY9Z0y6+kdZjHYRLYbRmJAwcOHDhuOfZXHs/7+6+GSaMiEAcOHDhwzDiG45kyVmcNwc1SXbvShwMHDhw4NhztGsEs/JJWYEKwQYywcODAgQPHmmMzKKqTfES2Cem8vbh6JA4cOHDgWBdpOcpm5JOvL8zO/+XfHThw4MCB45QjeWQeve1S9b7NNwt1HDhw4MBxxbEZGs2wZsvTLdaslYkDBw4cOG45NqsGz99tIzm5WzvKqktKHDhw4MAx4shfe/My+VLCLEpnf1PgwIEDB45PcCQRe3vo/XLDfoXiDQ0OHDhw4Fhw5Pt0bSm1Ccj2VJsT1jsUOHDgwIGjXB1og2o27EnKrXYNYh/YOHDgwIFjz9GGbjuIapcb2pjPC7lh3xQHDhw4cIw4NuHXHisv+ZJGZDsYK8ZOOHDgwIFjdId8UNQusc2uNhqT0+YFJA4cOHDguOLIY2+2lHDVHGyHT22LEwcOHDhw7DlmhVMbje0QaN+UXI2mcODAgQPHgmNWYs2GQzPcfFx0cH8cOHDgwHF//9fVgdpIvl2Su8XCgQMHDhwtRx6ut7+B5Kdta282fIr+XsCBAwcOHCXHPkSviqW2aHyNrjdBiwMHDhw4voXjEy+/WVDYL0bgwIEDB46fwDEb5+zLuf0iRTQSw4EDBw4cRxxtczD/fFuY5UXdZgnjeOyEAwcOHDgWCw3JrZPY2xeQnygOceDAgQPHguM3muOkt+FbTnEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

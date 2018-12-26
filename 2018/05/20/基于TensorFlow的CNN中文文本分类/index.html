@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>基于TensorFlow的CNN中文文本分类 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="TensorFlow">
+    <meta name="description" content="CNN在计算机视觉领域取得了很好的结果，同时它可以应用在文本分类上面，此文主要介绍如何使用tensorflow实现此任务。  CNN实现文本分类的原理下图展示了如何使用cnn进行句子分类。输入是一个句子，为了使其可以进行卷积，首先需要将其转化为向量表示，通常使用word2vec实现。d=5表示每个词转化为5维的向量，矩阵的形状是[sentence_length ×× 5]，即[7 ×× 5]。6">
+<meta name="keywords" content="TensorFlow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于TensorFlow的CNN中文文本分类">
+<meta property="og:url" content="https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="CNN在计算机视觉领域取得了很好的结果，同时它可以应用在文本分类上面，此文主要介绍如何使用tensorflow实现此任务。  CNN实现文本分类的原理下图展示了如何使用cnn进行句子分类。输入是一个句子，为了使其可以进行卷积，首先需要将其转化为向量表示，通常使用word2vec实现。d=5表示每个词转化为5维的向量，矩阵的形状是[sentence_length ×× 5]，即[7 ×× 5]。6">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-12.05.40-PM-1024x937.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM-1024x413.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-9.47.41-AM-1024x261.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20161218225721289?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl1eXVlbWFpY2hh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-11-at-6.29.14-AM-1024x347.png">
+<meta property="og:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-11-at-6.27.48-AM-1024x350.png">
+<meta property="og:updated_time" content="2018-05-20T10:50:21.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于TensorFlow的CNN中文文本分类">
+<meta name="twitter:description" content="CNN在计算机视觉领域取得了很好的结果，同时它可以应用在文本分类上面，此文主要介绍如何使用tensorflow实现此任务。  CNN实现文本分类的原理下图展示了如何使用cnn进行句子分类。输入是一个句子，为了使其可以进行卷积，首先需要将其转化为向量表示，通常使用word2vec实现。d=5表示每个词转化为5维的向量，矩阵的形状是[sentence_length ×× 5]，即[7 ×× 5]。6">
+<meta name="twitter:image" content="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-12.05.40-PM-1024x937.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">基于TensorFlow的CNN中文文本分类</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">基于TensorFlow的CNN中文文本分类</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-20T10:00:07.000Z" itemprop="datePublished" class="page-time">
+  2018-05-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#CNN实现文本分类的原理"><span class="post-toc-number">1.</span> <span class="post-toc-text">CNN实现文本分类的原理</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#本文使用的模型"><span class="post-toc-number">2.</span> <span class="post-toc-text">本文使用的模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Input-placeholder"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Input placeholder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#EMBEDDING-LAYER"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">EMBEDDING LAYER</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CONVOLUTION-AND-MAX-POOLING-LAYERS"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">CONVOLUTION AND MAX-POOLING LAYERS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DROPOUT-LAYER"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">DROPOUT LAYER</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SCORES-AND-PREDICTIONS"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">SCORES AND PREDICTIONS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#LOSS-AND-ACCURACY"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">LOSS AND ACCURACY</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MINIMIZING-THE-LOSS"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">MINIMIZING THE LOSS</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CHECKPOINTING"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">CHECKPOINTING</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#DEFINING-A-SINGLE-TRAINING-STEP"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">DEFINING A SINGLE TRAINING STEP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#TRAINING-LOOP"><span class="post-toc-number">2.10.</span> <span class="post-toc-text">TRAINING LOOP</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#VISUALIZING-RESULTS-IN-TENSORBOARD"><span class="post-toc-number">2.11.</span> <span class="post-toc-text">VISUALIZING RESULTS IN TENSORBOARD</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#参考：http-www-wildml-com-2015-12-implementing-a-cnn-for-text-classification-in-tensorflow"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考：http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-基于TensorFlow的CNN中文文本分类"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">基于TensorFlow的CNN中文文本分类</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-20 18:00:07" datetime="2018-05-20T10:00:07.000Z"  itemprop="datePublished">2018-05-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>CNN在计算机视觉领域取得了很好的结果，同时它可以应用在文本分类上面，此文主要介绍如何使用tensorflow实现此任务。</p>
+</blockquote>
+<h1 id="CNN实现文本分类的原理"><a href="#CNN实现文本分类的原理" class="headerlink" title="CNN实现文本分类的原理"></a>CNN实现文本分类的原理</h1><p>下图展示了如何使用cnn进行句子分类。输入是一个句子，为了使其可以进行卷积，首先需要将其转化为向量表示，通常使用word2vec实现。d=5表示每个词转化为5维的向量，矩阵的形状是[sentence_length ×× 5]，即[7 ×× 5]。6个filter（卷积核），与图像中使用的卷积核不同的是，nlp使用的卷积核的宽与句子矩阵的宽相同，只是长度不同。这里有（2，3，4）三种size，每种size有两个filter，一共有6个filter。然后开始卷积，从图中可以看出，stride是1，因为对于高是4的filter，最后生成4维的向量，（7-4）/1+1=4。对于高是3的filter，最后生成5维的向量，（7-3）/1+1=5。卷积之后，我们得到句子的特征，使用activation function和1-max-pooling得到最后的值，每个filter最后得到两个特征。将所有特征合并后，使用softmax进行分类。图中没有用到chanel,下文的实验将会使用两个通道，static和non-static，有相关的具体解释。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-12.05.40-PM-1024x937.png" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure></p>
+<h1 id="本文使用的模型"><a href="#本文使用的模型" class="headerlink" title="本文使用的模型"></a>本文使用的模型</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-06-at-8.03.47-AM-1024x413.png" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>主要包括五层，第一层是embedding layer,第二层是convolutional layer,第三层是max-pooling layer,第四层是fully connected layer，最后一层是softmax layer.接下来依次介绍相关代码实现。</p>
+<h2 id="Input-placeholder"><a href="#Input-placeholder" class="headerlink" title="Input placeholder"></a>Input placeholder</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Placeholders for input, output and dropout</div><div class="line">self.input_x = tf.placeholder(tf.int32, [None, sequence_length], name=&quot;input_x&quot;)</div><div class="line">self.input_y = tf.placeholder(tf.float32, [None, num_classes], name=&quot;input_y&quot;)</div><div class="line">self.dropout_keep_prob = tf.placeholder(tf.float32, name=&quot;dropout_keep_prob&quot;)</div></pre></td></tr></table></figure>
+<p><code>tf.placeholder</code> 创建一个占位符变量，在训练或者测试的时候，需要将占位符输入到网络中进行计算，其中的第二个参数是输入张量的形状。None 意味着它可以是任何维度的长度，在我们的实验中它代表批处理的大小，None使得网络可以处理任意长度的batches。<br>失活率同样也是输入的一部分，在训练的时候使用dropout ，测试的时候不使用dropout 。</p>
+<h2 id="EMBEDDING-LAYER"><a href="#EMBEDDING-LAYER" class="headerlink" title="EMBEDDING LAYER"></a>EMBEDDING LAYER</h2><p>这一层将单词索引映射到低维的向量表示，它本质上是一个查找表，我们从数据中通过学习得到。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">with tf.device(&apos;/cpu:0&apos;), tf.name_scope(&quot;embedding&quot;):</div><div class="line">    W = tf.Variable(tf.random_uniform([vocab_size, embedding_size], -1.0, 1.0), name=&quot;W&quot;)</div><div class="line">    self.embedded_chars = tf.nn.embedding_lookup(W, self.input_x)</div><div class="line">    self.embedded_chars_expanded = tf.expand_dims(self.embedded_chars, -1)</div></pre></td></tr></table></figure>
+<p>其中，<code>W</code> 是 在训练时得到的embedding matrix.，用随机均匀分布进行初始化。<a href="http://blog.csdn.net/u013713117/article/details/55048040" target="_blank" rel="external">tf.nn.embedding_lookup</a>实现embedding操作，得到 一个3-dimensional 的张量，形状是 <code>[None, sequence_length, embedding_size].</code> <code>sequence_length</code> 是数据集中最长句子的长度，其他句子都通过添加“PAD”补充到这个长度。<code>embedding_size</code> 是词向量的大小。</p>
+<p>TensorFlow的卷积函数-<code>conv2d</code> 需要四个参数， 分别是batch, width, height 以及channel。 embedding之后不包括 channel, 所以我们人为地添加上它，并设置为1。现在就是<code>[None, sequence_length, embedding_size, 1]</code></p>
+<h2 id="CONVOLUTION-AND-MAX-POOLING-LAYERS"><a href="#CONVOLUTION-AND-MAX-POOLING-LAYERS" class="headerlink" title="CONVOLUTION AND MAX-POOLING LAYERS"></a>CONVOLUTION AND MAX-POOLING LAYERS</h2><p>由图中可知， 我们有不同size的filters。因为每次卷积都会产生不同形状的张量，所以我们要遍历每个filter，然后将结果合并成一个大的特征向量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">pooled_outputs = []</div><div class="line">for i, filter_size in enumerate(filter_sizes):</div><div class="line">    with tf.name_scope(&quot;conv-maxpool-%s&quot; % filter_size):</div><div class="line">        # Convolution Layer</div><div class="line">        filter_shape = [filter_size, embedding_size, 1, num_filters]</div><div class="line">        W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name=&quot;W&quot;)</div><div class="line">        b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name=&quot;b&quot;)</div><div class="line">        conv = tf.nn.conv2d(</div><div class="line">            self.embedded_chars_expanded,</div><div class="line">            W,</div><div class="line">            strides=[1, 1, 1, 1],</div><div class="line">            padding=&quot;VALID&quot;,</div><div class="line">            name=&quot;conv&quot;)</div><div class="line">        # Apply nonlinearity</div><div class="line">        h = tf.nn.relu(tf.nn.bias_add(conv, b), name=&quot;relu&quot;)</div><div class="line">        # Max-pooling over the outputs</div><div class="line">        pooled = tf.nn.max_pool(</div><div class="line">            h,</div><div class="line">            ksize=[1, sequence_length - filter_size + 1, 1, 1],</div><div class="line">            strides=[1, 1, 1, 1],</div><div class="line">            padding=&apos;VALID&apos;,</div><div class="line">            name=&quot;pool&quot;)</div><div class="line">        pooled_outputs.append(pooled)</div><div class="line"></div><div class="line"># Combine all the pooled features</div><div class="line">num_filters_total = num_filters * len(filter_sizes)</div><div class="line">self.h_pool = tf.concat(3, pooled_outputs)</div><div class="line">self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])</div></pre></td></tr></table></figure>
+<p>这里<code>W</code> 是filter 矩阵，<code>h</code> 是对卷积结果进行非线性转换之后的结果。每个 filter都从整个embedding划过,不同之处在于覆盖多少单词。 “VALID” padding意味着没有对句子的边缘进行padding,也就是用了narrow convolution，输出的形状是 <code>[1, sequence_length - filter_size + 1, 1, 1]</code>。narrow convolution与 wide convolution的区别是是否对边缘进行填充。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/11/Screen-Shot-2015-11-05-at-9.47.41-AM-1024x261.png" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br><em>Narrow vs. Wide Convolution. Filter size 5, input size 7. Source: A Convolutional Neural Network for Modelling Sentences (2014)</em><br>当你的filter比输入的size还大时，你可以看到wide convolution是多么的有用，甚至说是必须的。如上所示，narrow convolution产出的尺寸是（7-5）+1=3，而wide convolution产出尺寸是（7+2*4-5）+1=11。通常，输出尺寸的规则表达式为：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://img-blog.csdn.net/20161218225721289?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGl1eXVlbWFpY2hh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure><br>对输出进行max-pooling后得到形状是 <code>[batch_size, 1, 1, num_filters]</code> 的张量，本质上是一个特征向量，最后一个维度是特征代表数量。把每一个max-pooling之后的张量合并起来之后得到一个长向量 <code>[batch_size, num_filters_total]</code>. in <code>tf.reshape</code> 中的 -1表示T将向量展平。</p>
+<h2 id="DROPOUT-LAYER"><a href="#DROPOUT-LAYER" class="headerlink" title="DROPOUT LAYER"></a>DROPOUT LAYER</h2><p>Dropout也许是cnn中最流行的正则化方法。dropout的想法很简单，dropout layer随机地选择一些神经元，使其失活。这样可以阻止co-adapting,迫使它们每一个都学习到有用的特征。失活的神经单元个数由<code>dropout_keep_prob</code> 决定。在训练的时候设为 0.5 ,测试的时候设为 1 (disable dropout) .</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Add dropout</div><div class="line">with tf.name_scope(&quot;dropout&quot;):</div><div class="line">    self.h_drop = tf.nn.dropout(self.h_pool_flat, self.dropout_keep_prob)</div></pre></td></tr></table></figure>
+<h2 id="SCORES-AND-PREDICTIONS"><a href="#SCORES-AND-PREDICTIONS" class="headerlink" title="SCORES AND PREDICTIONS"></a>SCORES AND PREDICTIONS</h2><p>利用特征向量，我们可以用矩阵相乘计算两类的得分，也可以用 softmax函数计算两类的概率值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">with tf.name_scope(&quot;output&quot;):</div><div class="line">    W = tf.Variable(tf.truncated_normal([num_filters_total, num_classes], stddev=0.1), name=&quot;W&quot;)</div><div class="line">    b = tf.Variable(tf.constant(0.1, shape=[num_classes]), name=&quot;b&quot;)</div><div class="line">    self.scores = tf.nn.xw_plus_b(self.h_drop, W, b, name=&quot;scores&quot;)</div><div class="line">    self.predictions = tf.argmax(self.scores, 1, name=&quot;predictions&quot;)</div></pre></td></tr></table></figure>
+<h2 id="LOSS-AND-ACCURACY"><a href="#LOSS-AND-ACCURACY" class="headerlink" title="LOSS AND ACCURACY"></a>LOSS AND ACCURACY</h2><p>可以用得分定义损失值。损失计算的是网络的误差，我们的目标是将其最小化，分类问题标准的损失函数是交叉熵损失。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Calculate mean cross-entropy loss</div><div class="line">with tf.name_scope(&quot;loss&quot;):</div><div class="line">    losses = tf.nn.softmax_cross_entropy_with_logits(self.scores, self.input_y)</div><div class="line">    self.loss = tf.reduce_mean(losses)</div></pre></td></tr></table></figure>
+<p>计算正确率</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Calculate Accuracy</div><div class="line">with tf.name_scope(&quot;accuracy&quot;):</div><div class="line">    correct_predictions = tf.equal(self.predictions, tf.argmax(self.input_y, 1))</div><div class="line">    self.accuracy = tf.reduce_mean(tf.cast(correct_predictions, &quot;float&quot;), name=&quot;accuracy&quot;)</div></pre></td></tr></table></figure>
+<h2 id="MINIMIZING-THE-LOSS"><a href="#MINIMIZING-THE-LOSS" class="headerlink" title="MINIMIZING THE LOSS"></a>MINIMIZING THE LOSS</h2><p>利用TensorFlow 内置的optimizers，例如 Adam optimizer，优化网络损失。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">global_step = tf.Variable(0, name=&quot;global_step&quot;, trainable=False)</div><div class="line">optimizer = tf.train.AdamOptimizer(1e-4)</div><div class="line">grads_and_vars = optimizer.compute_gradients(cnn.loss)</div><div class="line">train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)</div></pre></td></tr></table></figure>
+<p><code>train_op</code> 是一个新建的操作，我们可以在参数上进行梯度更新。每执行一次 <code>train_op</code> 就是一次训练步骤。 TensorFlow 可以自动地计算才那些变量是“可训练的”然后计算他们的梯度。通过<code>global_step</code>这个变量可以计算训练的步数，每训练一次自动加一。</p>
+<h2 id="CHECKPOINTING"><a href="#CHECKPOINTING" class="headerlink" title="CHECKPOINTING"></a>CHECKPOINTING</h2><p>TensorFlow 中可以用checkpointing 保存模型的参数。checkpointing中的参数也可以用来继续训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># Checkpointing</div><div class="line">checkpoint_dir = os.path.abspath(os.path.join(out_dir, &quot;checkpoints&quot;))</div><div class="line">checkpoint_prefix = os.path.join(checkpoint_dir, &quot;model&quot;)</div><div class="line"># Tensorflow assumes this directory already exists so we need to create it</div><div class="line">if not os.path.exists(checkpoint_dir):</div><div class="line">    os.makedirs(checkpoint_dir)</div><div class="line">saver = tf.train.Saver(tf.all_variables())</div></pre></td></tr></table></figure>
+<h2 id="DEFINING-A-SINGLE-TRAINING-STEP"><a href="#DEFINING-A-SINGLE-TRAINING-STEP" class="headerlink" title="DEFINING A SINGLE TRAINING STEP"></a>DEFINING A SINGLE TRAINING STEP</h2><p>用一个batch的数据进行一次训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">def train_step(x_batch, y_batch):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    A single training step</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    feed_dict = &#123;</div><div class="line">      cnn.input_x: x_batch,</div><div class="line">      cnn.input_y: y_batch,</div><div class="line">      cnn.dropout_keep_prob: FLAGS.dropout_keep_prob</div><div class="line">    &#125;</div><div class="line">    _, step, summaries, loss, accuracy = sess.run(</div><div class="line">        [train_op, global_step, train_summary_op, cnn.loss, cnn.accuracy],</div><div class="line">        feed_dict)</div><div class="line">    time_str = datetime.datetime.now().isoformat()</div><div class="line">    print(&quot;&#123;&#125;: step &#123;&#125;, loss &#123;:g&#125;, acc &#123;:g&#125;&quot;.format(time_str, step, loss, accuracy))</div><div class="line">    train_summary_writer.add_summary(summaries, step)</div></pre></td></tr></table></figure>
+<p><code>train_op</code> 什么也不返回，只是更新网络中的参数。最终，打印出当前训练的损失值与正确率。如果batch的size很小的话，这两者在不同的batch中差别很大。因为使用了dropout，训练的metrics可能要比测试的metrics糟糕。</p>
+<p>同样的函数也可以用在测试时。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">def dev_step(x_batch, y_batch, writer=None):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    Evaluates model on a dev set</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    feed_dict = &#123;</div><div class="line">      cnn.input_x: x_batch,</div><div class="line">      cnn.input_y: y_batch,</div><div class="line">      cnn.dropout_keep_prob: 1.0</div><div class="line">    &#125;</div><div class="line">    step, summaries, loss, accuracy = sess.run(</div><div class="line">        [global_step, dev_summary_op, cnn.loss, cnn.accuracy],</div><div class="line">        feed_dict)</div><div class="line">    time_str = datetime.datetime.now().isoformat()</div><div class="line">    print(&quot;&#123;&#125;: step &#123;&#125;, loss &#123;:g&#125;, acc &#123;:g&#125;&quot;.format(time_str, step, loss, accuracy))</div><div class="line">    if writer:</div><div class="line">        writer.add_summary(summaries, step)</div></pre></td></tr></table></figure>
+<h2 id="TRAINING-LOOP"><a href="#TRAINING-LOOP" class="headerlink" title="TRAINING LOOP"></a>TRAINING LOOP</h2><p>通过迭代数据进行训练。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># Generate batches</div><div class="line">batches = data_helpers.batch_iter(</div><div class="line">    zip(x_train, y_train), FLAGS.batch_size, FLAGS.num_epochs)</div><div class="line"># Training loop. For each batch...</div><div class="line">for batch in batches:</div><div class="line">    x_batch, y_batch = zip(*batch)</div><div class="line">    train_step(x_batch, y_batch)</div><div class="line">    current_step = tf.train.global_step(sess, global_step)</div><div class="line">    if current_step % FLAGS.evaluate_every == 0:</div><div class="line">        print(&quot;\nEvaluation:&quot;)</div><div class="line">        dev_step(x_dev, y_dev, writer=dev_summary_writer)</div><div class="line">        print(&quot;&quot;)</div><div class="line">    if current_step % FLAGS.checkpoint_every == 0:</div><div class="line">        path = saver.save(sess, checkpoint_prefix, global_step=current_step)</div><div class="line">        print(&quot;Saved model checkpoint to &#123;&#125;\n&quot;.format(path))</div></pre></td></tr></table></figure>
+<h2 id="VISUALIZING-RESULTS-IN-TENSORBOARD"><a href="#VISUALIZING-RESULTS-IN-TENSORBOARD" class="headerlink" title="VISUALIZING RESULTS IN TENSORBOARD"></a>VISUALIZING RESULTS IN TENSORBOARD</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-11-at-6.29.14-AM-1024x347.png" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://d3kbpzbmcynnmx.cloudfront.net/wp-content/uploads/2015/12/Screen-Shot-2015-12-11-at-6.27.48-AM-1024x350.png" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<p>从上图中我们可以观察到:</p>
+<ul>
+<li>我们的训练 metrics不平滑，因为用的batch sizes很小。如果用大的batches (或者在整个测试集上进行评估)，会得到平滑的线。</li>
+<li>测试集的 accuracy明显比训练集的低，说明网络过拟合了，我们应该用更大的数据集，更强的正则化，更少的模型参数。</li>
+<li>训练集上的 loss 和 accuracy比测试集低的原因是用了dropout.</li>
+</ul>
+<h1 id="参考：http-www-wildml-com-2015-12-implementing-a-cnn-for-text-classification-in-tensorflow"><a href="#参考：http-www-wildml-com-2015-12-implementing-a-cnn-for-text-classification-in-tensorflow" class="headerlink" title="参考：http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/"></a>参考：<a href="http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/" target="_blank" rel="external">http://www.wildml.com/2015/12/implementing-a-cnn-for-text-classification-in-tensorflow/</a></h1>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-05-20T10:50:21.054Z" itemprop="dateUpdated">2018-05-20 18:50:21</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2018/05/20/基于TensorFlow的CNN中文文本分类/" target="_blank" rel="external">https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TensorFlow/">TensorFlow</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&title=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&title=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/08/27/回环，未来可期/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">回环，未来可期</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/05/08/实验室招新题目(2)/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">实验室招新题目②</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&title=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&title=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《基于TensorFlow的CNN中文文本分类》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2018/05/20/基于TensorFlow的CNN中文文本分类/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awW7bQAwEUP//T7vXFqmUGVJbp8DTKTBiaZ8C7DJDvl7x9f5y/f558t37e379zdmzhhceHh7eeulXt77/5GoR95/MeMma8fDw8E7z7jf0+035Hn//+Hdw5evBw8PD+5m8fCufldrJ7+Ph4eH977z7B+exwg89GPDw8PAWYcTspczuv7kzHh4e3mneppz91M9H+nt4eHh466560gzLS9v2KbNj5o/74OHh4R3gteVsO1IwG0HIhxKSVhweHh7eOd6mrXWu9ZUPbF1+Cw8PD+8YL1luW2rPtvj8hb42bwgPDw9vxGuXOGuPtVt529C6vD8eHh7eMd5s822PjbZcLormpwB4eHh4o5K6bVzlge9sEGHWirs8HvDw8PDWvHzjTjCzNOBElIyHh4d3jjcLVfeNrk3Um4TOeHh4eOd47ULbiGEW+G5iYjw8PLzTvHzLbhtawzNqVHYXRxceHh7eQ7x6AHQR7ybHTP7XKP5ieHh4eA/x8sfkA1htCDt7QdEneHh4eAd4eUNr1ujaHA/JeupWGR4eHt6al/x7vwle2zgjf3r0QvHw8PAO85Jm2OzAaMeq2nbX5R3w8PDwjvHaoDbf0DftsXaM4PJgwMPDw3uUNyuRk4W2iUgCqDt7eHh4eId5s8C0HZzKw99Zef2Xb+Hh4eEd482om3Z+En8My+jNtBceHh5ezGvL4jZWmL3cTaSLh4eH9yleO2pQt6keur7JqvHw8PAe4r3Lq93Qnx26qoex8PDw8A7wHjhV4qNl1vTahMh4eHh453ibUae2NZUX6PuIGQ8PD+80rw1wN4NQz55a0cGAh4eH91FefpC08cQmCin0eHh4eP+cl4Sns0I5CTLquBYPDw/vGG+zcSdxw2w0YR9S4OHh4Z3gtf/wJ7A9eFaOrya28PDw8L7n/QI/h8U6RL+vYAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

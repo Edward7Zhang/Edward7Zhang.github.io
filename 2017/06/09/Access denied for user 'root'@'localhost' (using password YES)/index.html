@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES) | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="MySQL">
+    <meta name="description" content="Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/0?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrwp3ic2XTChZ5z52aEPa4CDrT0bzct28icT14hrTAyO9WPWCrlwUV6icwg/0?wx_fmt=png">
+<meta property="og:updated_time" content="2017-09-15T04:23:30.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)">
+<meta name="twitter:description" content="Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。">
+<meta name="twitter:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/0?wx_fmt=jpeg">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-09T12:43:13.000Z" itemprop="datePublished" class="page-time">
+  2017-06-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Access-denied-for-user-‘root’-’localhost’-using-password-YES"><span class="post-toc-number">1.</span> <span class="post-toc-text">Access denied for user ‘root’@’localhost’ (using password:YES)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-登录出现Access-denied-for-user-‘root’-’localhost’-using-password-YES-问题"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.登录出现Access denied for user ‘root’@’localhost’ (using       password:YES)问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-找不到默认的C：-pragramdata下MySQL数据库文件问题"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2.找不到默认的C：//pragramdata下MySQL数据库文件问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Access denied for user 'root'@'localhost' (using password YES)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-09 20:43:13" datetime="2017-06-09T12:43:13.000Z"  itemprop="datePublished">2017-06-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Access-denied-for-user-‘root’-’localhost’-using-password-YES"><a href="#Access-denied-for-user-‘root’-’localhost’-using-password-YES" class="headerlink" title="Access denied for user ‘root’@’localhost’ (using password:YES)"></a>Access denied for user ‘root’@’localhost’ (using password:YES)</h2><p>安装成功的MySQL，再次登录问题。</p>
+<a id="more"></a>
+<h3 id="1-登录出现Access-denied-for-user-‘root’-’localhost’-using-password-YES-问题"><a href="#1-登录出现Access-denied-for-user-‘root’-’localhost’-using-password-YES-问题" class="headerlink" title="1.登录出现Access denied for user ‘root’@’localhost’ (using       password:YES)问题"></a>1.登录出现Access denied for user ‘root’@’localhost’ (using       password:YES)问题</h3><ul>
+<li>认准登录命令是否写正确，请一定看仔细了。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -hlocalhost -uroot -p</div></pre></td></tr></table></figure>
+<p>然后输入密码。用户名一定为root。输错就是如上问题。</p>
+<h3 id="2-找不到默认的C：-pragramdata下MySQL数据库文件问题"><a href="#2-找不到默认的C：-pragramdata下MySQL数据库文件问题" class="headerlink" title="2.找不到默认的C：//pragramdata下MySQL数据库文件问题"></a>2.找不到默认的C：//pragramdata下MySQL数据库文件问题</h3><ul>
+<li><p>在win10中programdata文件夹是被隐藏了的，显示隐藏即可。</p>
+</li>
+<li><p>如果要将已存在的数据库存放路径改为自己想要的，把原文件剪切到目标路径下。</p>
+</li>
+<li><p>然后，更改my.ini配置文件中的datadir值为目标路径。</p>
+</li>
+<li><p>重启MySQL即可。</p>
+</li>
+</ul>
+<p>注意：</p>
+<p>如果修改了datadir路径，但是没有将原文件拷贝过来，会出现无法启动MySQL。</p>
+<hr>
+<p> <em>CreatedbyEdwardZhang</em>∣一个不只做技术的公众号</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/0?wx_fmt=jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure> 
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrwp3ic2XTChZ5z52aEPa4CDrT0bzct28icT14hrTAyO9WPWCrlwUV6icwg/0?wx_fmt=png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<center>长按，识别二维码，加关注</center>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-15T04:23:30.106Z" itemprop="dateUpdated">2017-09-15 12:23:30</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/06/09/Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)/" target="_blank" rel="external">https://edward7zhang.github.io/2017/06/09/Access denied for user &#39;root&#39;@&#39;localhost&#39; (using password YES)/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&title=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&title=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&source=Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/09/Android Chapter I. 磨人的不是 Android 而是 AndroidStudio/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android Chapter I. 磨人的不是 Android 而是 AndroidStudio :（</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/08/利用 Github+Hexo 搭建Blog/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">利用 Github+Hexo 搭建Blog</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&title=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&title=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&source=Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Access denied for user 'root'@'localhost' (using password YES)》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/09/Access denied for user 'root'@'localhost' (using password YES)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADLElEQVR42u3ay1LjQBAEQP7/p9krEaxNVbcIrHHqtLFgaVI+FP34+Iivzy/X1//5/tPvV3LnR8+a3eGyCxsbG/sm7OTQ7VEeHevRZx/hn7/i1ReAjY2NfRy7Pe5zfHKUGSOP1R9Oi42NjY1dYvZFS/5cbGxsbOw9O79/Ema3CTBsbGzsP2XnwZA0gNpGT877g14aNjY29suzNy3+V/v3r8y3sbGxsV+Y/VleyR3aI+YFxqxR9Z/PYmNjYx/EzgOgLSdmqzbtyk5eZmBjY2Ofzc5Hs5u/9tsip/1K2jtjY2Njn8SeFQN5o39W0uRBOItbbGxs7DPYm1ZREjA5fl94FK8JGxsb+zj2tch9g2nT6oqKE2xsbOyD2HlTKYmWvBWVh1BShFy2voONjY19c/bsFSQh1K71zEYOs1eGjY2NfXd2XjDkjZ62hZTEWzty+EGBjY2NfRy7XbLZh0reBvqVMgYbGxv7aHZeluSPbF9cEo2bOMTGxsY+iZ0vvuQFQ/s6ZsPaZCBRxCQ2Njb2bdnt0Vtkvr7TLvrMCpLhN4aNjY19E3beVMof2cZYu12TD5UfBhg2Njb2QezNmDYfweYNpnz8kKwNXffOsLGxsV+RnR/xqoXLvPXfDpWj0TI2Njb2QezkkZsh7uwOV5U02NjY2O/AzhciZ2365BD5S88j8IeXi42NjX0Qu42QTRuoHSq0Y+D8hNjY2NgnsWeHa8uGWeu/fVZ+YWNjY5/EbgOpXbvZk/K21+yn2NjY2HdnJ3/6J7DkL/x2SJzHZ71mhI2NjX0Qu8XvC4x9C2lzWmxsbOx3YOerjZuQm5UTSaQVY2lsbGzsQ9ktdRZvv5cj2NjY2NizAz1v9DxvAH0EVxtgwwoMGxsb+4bs/bJLu2o5C8jNGR4OBrCxsbGPYOdXHjztIdp7JkG7j0xsbGzse7GT0GobQ9cmxSzAoqYSNjY29kHsPBhmodKudbbtrfpT2NjY2G/MnrWf2lZU2+qqVzCxsbGx35jdlgFJjLWM2aj4gtzGxsbGfmF2Eg9t039WJMwGt8nvY2NjY5/KzgMgLy2uXfHJX8q+FYWNjY19K/Y/0fs1ACyuDAoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

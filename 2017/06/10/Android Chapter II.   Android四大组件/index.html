@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Android Chapter II.   Android四大组件 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。Android四大基本组件分别是Activity，Service服务,Content Provider内容提供者，BroadcastReceiver广播接收器。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android Chapter II.   Android四大组件">
+<meta property="og:url" content="https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。Android四大基本组件分别是Activity，Service服务,Content Provider内容提供者，BroadcastReceiver广播接收器。">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkcH28VhTtPZ1YApshpmGPdg8MkibbLxfYzibt15iczfianNc1ic1pkS2QTicg/0?wx_fmt=png">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/0?wx_fmt=jpeg">
+<meta property="og:image" content="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrwp3ic2XTChZ5z52aEPa4CDrT0bzct28icT14hrTAyO9WPWCrlwUV6icwg/0?wx_fmt=png">
+<meta property="og:updated_time" content="2017-09-15T04:25:18.665Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android Chapter II.   Android四大组件">
+<meta name="twitter:description" content="​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。Android四大基本组件分别是Activity，Service服务,Content Provider内容提供者，BroadcastReceiver广播接收器。">
+<meta name="twitter:image" content="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkcH28VhTtPZ1YApshpmGPdg8MkibbLxfYzibt15iczfianNc1ic1pkS2QTicg/0?wx_fmt=png">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:Super_Mr.Z@hotmail.com" title="Super_Mr.Z@hotmail.com" class="mail">Super_Mr.Z@hotmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/edward_zhang777/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android Chapter II.   Android四大组件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android Chapter II.   Android四大组件</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-06-10T12:43:13.000Z" itemprop="datePublished" class="page-time">
+  2017-06-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。"><span class="post-toc-number">1.</span> <span class="post-toc-text">​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Android Chapter II.   Android四大组件"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android Chapter II.   Android四大组件</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-06-10 20:43:13" datetime="2017-06-10T12:43:13.000Z"  itemprop="datePublished">2017-06-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。"><a href="#​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。" class="headerlink" title="​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。"></a>​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。</h3><p>Android四大基本组件分别是Activity，Service服务,Content Provider内容提供者，BroadcastReceiver广播接收器。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j7L2w9iczkxxwMKRb16ZeeSkcH28VhTtPZ1YApshpmGPdg8MkibbLxfYzibt15iczfianNc1ic1pkS2QTicg/0?wx_fmt=png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<a id="more"></a>
+<p><strong>了解四大基本组件</strong></p>
+<p><strong>Activity**</strong> :**</p>
+<p>应用程序中，一个Activity通常就是一个单独的屏幕，它上面可以显示一些控件也可以监听并处理用户的事件做出响应。</p>
+<p>Activity之间通过Intent进行通信。在Intent 的描述结构中，有两个最重要的部分：动作和动作对应的数据。</p>
+<p>典型的动作类型有：M AIN（activity的门户）、VIEW、PICK、EDIT 等。而动作对应的数据则以URI 的形式进行表示。例如：要查看一个人的联系方式，你需要创建一个动作类型为VIEW 的intent，以及一个表示这个人的URI。</p>
+<p>与之有关系的一个类叫IntentFilter。相对于intent 是一个有效的做某事的请求，一个intentfilter 则用于描述一个activity（或者IntentReceiver）能够操作哪些intent。一个activity 如果要显示一个人的联系方式时，需要声明一个IntentFilter，这个IntentFilter 要知道怎么去处理VIEW 动作和表示一个人的URI。IntentFilter 需要在AndroidManifest.xml 中定义。通过解析各种intent，从一个屏幕导航到另一个屏幕是很简单的。当向前导航时，activity 将会调用startActivity(Intent myIntent)方法。然后，系统会在所有安装的应用程序中定义的IntentFilter 中查找，找到最匹配myIntent 的Intent 对应的activity。新的activity 接收到myIntent 的通知后，开始运行。当startActivity 方法被调用将触发解析myIntent 的动作，这个机制提供了两个关键好处：</p>
+<p>A、Activities 能够重复利用从其它组件中以Intent 的形式产生的一个请求；</p>
+<p>B、Activities 可以在任何时候被一个具有相同IntentFilter 的新的Activity 取代。</p>
+<p>AndroidManifest文件中含有如下过滤器的Activity组件为默认启动类当程序启动时系统自动调用它</p>
+<p><intent-filter><br>       <action android:name="android.intent.action.MAIN"><br>       <category android:name="android.intent.category.LAUNCHER"></category></action></intent-filter></p>
+<p><strong>BroadcastReceive</strong>广播接收器:</p>
+<p>你的应用可以使用它对外部事件进行过滤只对感兴趣的外部事件(如当电话呼入时，或者数据网络可用时)进行接收并做出响应。广播接收器没有用户界面。然而，它们可以启动一个activity或serice 来响应它们收到的信息，或者用NotificationManager 来通知用户。通知可以用很多种方式来吸引用户的注意力──闪动背灯、震动、播放声音等。一般来说是在状态栏上放一个持久的图标，用户可以打开它并获取消息。</p>
+<p><strong>广播类型：</strong></p>
+<p><strong>普通广播</strong>，通过Context.sendBroadcast(Intent myIntent)发送的</p>
+<p><strong>有序广播</strong>，通过Context.sendOrderedBroadcast(intent, receiverPermission)发送的，该方法第2个参数决定该广播的级别，级别数值是在 -1000 到 1000 之间 , 值越大 , 发送的优先级越高；广播接收者接收广播时的级别级别（可通过intentfilter中的priority进行设置设为2147483647时优先级最高），同级别接收的先后是随机的， 再到级别低的收到广播，高级别的或同级别先接收到广播的可以通过abortBroadcast()方法截断广播使其他的接收者无法收到该广播，还有其他构造函数</p>
+<p><strong>异步广播</strong>，通过Context.sendStickyBroadcast(Intent myIntent)发送的，还有sendStickyOrderedBroadcast(intent, resultReceiver, scheduler,  initialCode, initialData, initialExtras)方法，该方法具有有序广播的特性也有异步广播的特性；发送异步广播要： <uses-permission android:name="_"android.permission.BROADCAST_STICKY"_">权限，接收并处理完Intent后，广播依然存在，直到你调用removeStickyBroadcast(intent)主动把它去掉</uses-permission></p>
+<p><em>注意：发送广播时的intent参数与Contex.startActivity()启动起来的Intent不同,前者可以被多个订阅它的广播接收器调用,后者只能被一个(Activity或service)调用</em></p>
+<p>监听广播Intent步骤:</p>
+<pre><code>1&gt;写一个继承BroadCastReceiver的类,重写onReceive()方法,广播接收器仅在它执行这个方法时处于活跃状态。当onReceive()返回后，它即为失活状态,注意:为了保证用户交互过程的流畅,一些费时的操作要放到线程里,如类名SMSBroadcastReceiver
+
+2&gt;注册该广播接收者,注册有两种方法程序动态注册和AndroidManifest文件中进行静态注册（可理解为系统中注册）如下：
+
+    静态注册,注册的广播，下面的priority表示接收广播的级别&quot;2147483647&quot;为最高优先级
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;receiver android:name=&quot;.SMSBroadcastReceiver&quot;  &gt;　　&lt;intent-filter android:priority = &quot;2147483647&quot;  &gt;　　　　&lt;action android:name=&quot;android.provider.Telephony.SMS_RECEIVED&quot;  /&gt;　　&lt;/intent-filter&gt;&lt;/receiver &gt;</div></pre></td></tr></table></figure>
+<p>动态注册，一般在Activity可交互时onResume()内注册BroadcastReceiver</p>
+<p>IntentFilter intentFilter=new IntentFilter(“android.provider.Telephony.SMS_RECEIVED”);<br>registerReceiver(mBatteryInfoReceiver ,intentFilter);//反注册unregisterReceiver(receiver);</p>
+<p><em>注意：</em></p>
+<p><em>1.生命周期只有十秒左右，如果在 onReceive() 内做超过十秒内的事情，就会报ANR(Application No Response) 程序无响应的错误信息，如果需要完成一项比较耗时的工作 , 应该通过发送 Intent 给 Service, 由Service 来完成 . 这里不能使用子线程来解决 , 因为 BroadcastReceiver 的生命周期很短 , 子线程可能还没有结束BroadcastReceiver 就先结束了 .BroadcastReceiver 一旦结束 , 此时 BroadcastReceiver 的所在进程很容易在系统需要内存时被优先杀死 , 因为它属于空进程 ( 没有任何活动组件的进程 ). 如果它的宿主进程被杀死 , 那么正在工作的子线程也会被杀死 . 所以采用子线程来解决是不可靠的</em></p>
+<p><em>2. 动态注册广播接收器还有一个特点，就是当用来注册的Activity关掉后，广播也就失效了。静态注册无需担忧广播接收器是否被关闭,只要设备是开启状态,广播接收器也是打开着的。也就是说哪怕app本身未启动,该app订阅的广播在触发时也会对它起作用</em></p>
+<p>系统常见广播Intent,如开机启动、电池电量变化、时间改变等广播</p>
+<p><strong>Service </strong>服务:</p>
+<p>一个Service 是一段长生命周期的，没有用户界面的程序，可以用来开发如监控类程序。</p>
+<p>比较好的一个例子就是一个正在从播放列表中播放歌曲的媒体播放器。在一个媒体播放器的应用中，应该会有多个activity，让使用者可以选择歌曲并播放歌曲。然而，音乐重放这个功能并没有对应的activity，因为使用者当然会认为在导航到其它屏幕时音乐应该还在播放的。在这个例子中，媒体播放器这个activity 会使用Context.startService()来启动一个service，从而可以在后台保持音乐的播放。同时，系统也将保持这个service 一直执行，直到这个service 运行结束。另外，我们还可以通过使用Context.bindService()方法，连接到一个service 上（如果这个service 还没有运行将启动它）。当连接到一个service 之后，我们还可以service 提供的接口与它进行通讯。拿媒体播放器这个例子来说，我们还可以进行暂停、重播等操作。</p>
+<p>Service使用步骤如下</p>
+<pre><code>1&gt;继承service类
+
+2&gt;AndroidManifast.xml配置清单文件中&lt;application&gt;节点里对服务进行配置
+
+       &lt;service name=&quot;.SMSService&quot;/&gt;
+</code></pre><p>服务不能自己运行,需要通过Contex.startService()或Contex.bindService()启动服务</p>
+<p>通过startService()方法启动的服务于调用者没有关系,即使调用者关闭了,服务仍然运行想停止服务要调用Context.stopService(),此时系统会调用onDestory(),使用此方法启动时,服务首次启动系统先调用服务的onCreate()–&gt;onStart(),如果服务已经启动再次调用只会触发onStart()方法</p>
+<p>使用bindService()启动的服务与调用者绑定,只要调用者关闭服务就终止,使用此方法启动时,服务首次启动系统先调用服务的onCreate()–&gt;onBind(),如果服务已经启动再次调用不会再触发这2个方法,调用者退出时系统会调用服务的onUnbind()–&gt;onDestory(),想主动解除绑定可使用Contex.unbindService(),系统依次调用onUnbind()–&gt;onDestory();</p>
+<p><strong>Content Provider</strong>内容提供者 :</p>
+<p>android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式,</p>
+<p>其他应用可以通过ContentResolver类(见ContentProviderAccessApp例子)从该内容提供者中获取或存入数据.(相当于在应用外包了一层壳),</p>
+<p>只有需要在多个应用程序间共享数据是才需要内容提供者。例如，通讯录数据被多个应用程序使用，且必须存储在一个内容提供者中</p>
+<p>它的好处:统一数据访问方式。</p>
+<p>android系统自带的内容提供者(顶级的表示数据库名,非顶级的都是表名)这些内容提供者在SDK文档的android.provider Java包中都有介绍。见：<em><a href="http://developer.android.com/reference/android/provider/package-summary.html" target="_blank" rel="external">http://developer.android.com/reference/android/provider/package-summary.html</a></em></p>
+<p>├────Browser</p>
+<p>├────CallLog</p>
+<p>├────Contacts</p>
+<p>│                ├────Groups</p>
+<p>│                ├────People</p>
+<p>│                ├────Phones</p>
+<p>│                └────Photos</p>
+<p>├────Images</p>
+<p>│                └────Thumbnails</p>
+<p>├────MediaStore</p>
+<p>│                ├────Albums</p>
+<p>│                ├────Artists</p>
+<p>│                ├────Audio</p>
+<p>│                ├────Genres</p>
+<p>│                └────Playlists</p>
+<p>├────Settings</p>
+<p>└────Video</p>
+<p> CallLog：地址和接收到的电话信息</p>
+<p> Contact.People.Phones：存储电话号码</p>
+<p> Setting.System：系统设置和偏好设置</p>
+<p>使用Content Provider对外共享数据的步骤</p>
+<p>1&gt;继承ContentProvider类并根据需求重写以下方法:</p>
+<p>　　　　public boolean onCreate();//处理初始化操作</p>
+<pre><code>/**
+ * 插入数据到内容提供者(允许其他应用向你的应用中插入数据时重写)
+ * @param uri
+ * @param initialValues 插入的数据
+ * @return
+ */
+public Uri insert(Uri uri, ContentValues initialValues); /**
+ * 从内容提供者中删除数据(允许其他应用删除你应用的数据时重写)
+ * @param uri
+ * @param selection 条件语句
+ * @param selectionArgs 参数
+ * @return
+ */
+public int delete(Uri uri, String selection, String[] selectionArgs); /**
+ * 更新内容提供者已存在的数据(允许其他应用更新你应用的数据时重写)
+ * @param uri
+ * @param values 更新的数据
+ * @param selection 条件语句
+ * @param selectionArgs 参数
+ * @return
+ */
+public int update(Uri uri, ContentValues values, String selection,
+              String[] selectionArgs); /**
+ * 返回数据给调用者(允许其他应用从你的应用中获取数据时重写)
+ * @param uri
+ * @param projection 列名
+ * @param selection 条件语句
+ * @param selectionArgs 参数
+ * @param sortOrder 排序
+ * @return
+ */
+public Cursor query(Uri uri, String[] projection, String selection,
+              String[] selectionArgs, String sortOrder) ; /**
+ * 用于返回当前Uri所代表数据的MIME类型
+ * 如果操作的数据为集合类型(多条数据),那么返回的类型字符串应该为vnd.android.cursor.dir/开头
+ * 例如要得到所有person记录的Uri为content://com.bravestarr.provider.personprovider/person,
+</code></pre><p>　　　　 *　　　那么返回的MIME类型字符串应该为”vnd.android.cursor.dir/person”</p>
+<pre><code>* 如果操作的数据为单一数据,那么返回的类型字符串应该为vnd.android.cursor.item/开头
+* 例如要得到id为10的person记录的Uri为content://com.bravestarr.provider.personprovider/person/10,
+</code></pre><p>　　　　 *　　　那么返回的MIME类型字符串应该为”vnd.android.cursor.item/person”</p>
+<pre><code> * @param uri        */
+public String getType(Uri uri)
+</code></pre><p>这些方法中的Uri参数,得到后需要进行解析然后做对应处理,Uri表示要操作的数据,包含两部分信息:</p>
+<pre><code>1.需要操作的contentprovider
+
+2.对contentprovider中的什么数据进行操作,一个Uri格式:结构头://authorities(域名)/路径(要操作的数据,根据业务而定)
+
+       content://com.bravestarr.provider.personprovider/person/10
+</code></pre><p>说明:contentprovider的结构头已经由android规定为content://</p>
+<p>authorities用于唯一标识这个contentprovider程序,外部调用者可以根据这个找到他</p>
+<p>路径表示我们要操作的数据,路径的构建根据业务而定.路径格式如下:                                                        </p>
+<pre><code>要操作person表行号为10的记录,可以这样构建/person/10
+
+要操作person表的所有记录,可以这样构建/person
+</code></pre><p>2&gt;在AndroidManifest.xml中使用<provider>对ContentProvider进行配置注册(内容提供者注册它自己就像网站注册域名),ContentProvider采用authoritie(原意授权,可理解为域名)作为唯一标识,方便其他应用能找到</provider></p>
+<application android:icon="@drawable/ic_launcher" android:label="@string/app_name"><br>        <!-- authorities属性命名建议:公司名.provider.SomeProvider--><br>        <provider android:name=".PersonProvider" android:authorities="com.bravestarr.provider.personprovider"> …</provider></application>
+
+<p>关于四大基本组件的一个总结：</p>
+<p>1&gt;    4大组件的注册</p>
+<p>4大基本组件都需要注册才能使用,每个Activity、service、Content Provider内容提供者都需要在AndroidManifest文件中进行配置AndroidManifest文件中未进行声明的activity、服务以及内容提供者将不为系统所见，从而也就不可用，而BroadcastReceive广播接收者的注册分静态注册（在AndroidManifest文件中进行配置）和通过代码动态创建并以调用Context.registerReceiver()的方式注册至系统。需要注意的是在AndroidManifest文件中进行配置的广播接收者会随系统的启动而一直处于活跃状态,只要接收到感兴趣的广播就会触发（即使程序未运行）</p>
+<p>AndroidManifest文件中进行注册格式如下：</p>
+<p><activity>元素的name 属性指定了实现了这个activity 的Activity 的子类。icon 和label 属性指向了包含展示给用户的此activity 的图标和标签的资源文件。</activity></p>
+<p><service> 元素用于声明服务</service></p>
+<p><receiver> 元素用于声明广播接收器</receiver></p>
+<p><provider> 元素用于声明内容提供者</provider></p>
+<p>2&gt;   4大组件的激活</p>
+<p>• 容提供者的激活：当接收到ContentResolver 发出的请求后，内容提供者被激活。而其它三种组件──activity、服务和广播接收器被一种叫做intent 的异步消息所激活</p>
+<p>• Activity的激活通过传递一个Intent 对象至Context.startActivity()或Activity.startActivityForResult()以载入（或指定新工作给）一个activity。相应的activity 可以通过调用getIntent() 方法来查看激活它的intent。如果它期望它所启动的那个activity 返回一个结果，它会以调用startActivityForResult()来取代startActivity()。比如说，如果它启动了另外一个Activity 以使用户挑选一张照片，它也许想知道哪张照片被选中了。结果将会被封装在一个Intent 对象中，并传递给发出调用的activity 的onActivityResult() 方法。</p>
+<p>• 服务的激活可以通过传递一个Intent 对象至Context.startService()或Context.bindService()前者Android 调用服务的onStart()方法并将Intent 对象传递给它，后者Android 调用服务的onBind()方法将这个Intent 对象传递给它</p>
+<p>• 发送广播可以通过传递一个Intent 对象至给Context.sendBroadcast() 、</p>
+<p>Context.sendOrderedBroadcast()或Context.sendStickyBroadcast()Android 会调用所有对此广播有兴趣的广播接收器的onReceive()方法，将intent 传递给它们</p>
+<p>3&gt;   四大组件的关闭</p>
+<p>内容提供者仅在响应ContentResolver 提出请求的时候激活。而一个广播接收器仅在响应广播信息的时候激活。所以，没有必要去显式的关闭这些组件。</p>
+<p>Activity关闭：可以通过调用它的finish()方法来关闭一个activity</p>
+<p>服务关闭：对于通过startService()方法启动的服务要调用Context.stopService()方法关闭服务，使用bindService()方法启动的服务要调用Contex.unbindService ()方法关闭服务</p>
+<hr>
+<p> <em>CreatedbyEdwardZhang</em>∣一个不只做技术的公众号</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_jpg/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrNfyf8Mick5jHQbHMNhfVq0QKsgqOSNeg0vJBSw2nH10EXuiaV0EOh2BA/0?wx_fmt=jpeg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure> 
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://mmbiz.qlogo.cn/mmbiz_png/Rh5a9wBL4j6xnFYgWHSCQBDbOZLTicmHrwp3ic2XTChZ5z52aEPa4CDrT0bzct28icT14hrTAyO9WPWCrlwUV6icwg/0?wx_fmt=png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<center>长按，识别二维码，加关注</center>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-15T04:25:18.665Z" itemprop="dateUpdated">2017-09-15 12:25:18</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2017/06/10/Android Chapter II.   Android四大组件/" target="_blank" rel="external">https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&title=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&title=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&source=​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。Android四大..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/06/11/Android Chapter III.   Android四大组件的生命周期/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android Chapter III.   Android四大组件的生命周期</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/09/Android Chapter I. 磨人的不是 Android 而是 AndroidStudio/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android Chapter I. 磨人的不是 Android 而是 AndroidStudio :（</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&title=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&title=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&source=​学习Android最重要的莫过于对于四大组件、五大布局以及生命周期的学习，这一期我们就一起来叨叨Android四大基本组件相关的知识。Android四大..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android Chapter II.   Android四大组件》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2017/06/10/Android Chapter II.   Android四大组件/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3aQU7DQAwF0N7/0iCxAtFE3/a4FOllVZWQzMsi43778YiPj6/j++erb66O31e7+v7356tvjh14eHh4raXfL+t+iVfLvV9c7y75mvHw8PC2eflmkNzmfgPIt4Grc5Jr4uHh4b0Db1J231+zd308PDy89+clG0MeH+Dh4eH9d15eHPeih14w8dKsBQ8PDy/m9Rpgf/t5vb+Hh4eH1+qq9164efzaGyworBYPDw9vgXdf4Fbjifwl3oszksGvQv2Oh4eH1+KdGqXqvfpzQDVE/rHv4eHh4R3l5QHE5DXdK5rXw1w8PDy8o22wvNhNkPcFemEIYPDg8PDw8E7xJvFBNZ7IFzdpyDWnuvDw8PAO9dyrG0Cv8T8f4Soj8fDw8Aa8/Md8NdXoNcAmIwhPro+Hh4e3wKuOND2KR29BvXiiEOPi4eHhDXjNpnsQofY2koRd2JDw8PDw1njV5TbD03FwXKXi4eHhbfCqL+Vqnd67Qm9MFg8PD+81vOSln4+o9jaJ3vBB9Cjx8PDwFnj5D/75QEAeRlSbW1E+jYeHh3eIl4ShvUgieUD5OfmDeNIAw8PDw1vm5dFqvgHMW2L5Y8LDw8Pb5p2NaKuDU4UhgGKAi4eHh7fNK+QWrWXl1Plfmy0xPDw8vJhXbTjlBXQ1XDg7sIWHh4e3zevdJjn/1OOrbglPshY8PDy8Q7w8us2DiaQ0z2PfSXMODw8Pb4N3ahQgb/ZXa+DRf+Hh4eEt8+YN/urtJ2MKUeSBh4eHt8DLjzy2qJbX+SNo9vTw8PDwFnjJZpC3svKR1kliUNhs8PDw8NZ41Wig+vrOG1p52R2F0Xh4eHh/ypsvcT5MUP6VgIeHh/c2vLwQnweyo2EFPDw8vDVe9YVevVnvnF7bDA8PD2+b16tLq+FvviXkpfnj1IGHh4eX8j4BaiRUuWfq5x4AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
