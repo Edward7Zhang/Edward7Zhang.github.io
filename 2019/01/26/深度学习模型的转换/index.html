@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>深度学习模型的转换 [学习&amp;转载] | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="DeepLearning">
+    <meta name="description" content="由于各种深度学习框架的层出不穷，我们在进行算法开发到算法部署的过程中，往往都需要用到不同的框架。例如我们很有可能使用tensorflow,pytorch等进行算法开发和调试，在早期工程inference的时候我们往往使用较为轻量的caffe或者魔改后的caffe。到了移动端部署我们可能会使用feather CNN nihui的NCNN或者小米的mace等框架。facebook ONNX的出现为模型">
+<meta name="keywords" content="DeepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深度学习模型的转换 [学习&amp;转载]">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="由于各种深度学习框架的层出不穷，我们在进行算法开发到算法部署的过程中，往往都需要用到不同的框架。例如我们很有可能使用tensorflow,pytorch等进行算法开发和调试，在早期工程inference的时候我们往往使用较为轻量的caffe或者魔改后的caffe。到了移动端部署我们可能会使用feather CNN nihui的NCNN或者小米的mace等框架。facebook ONNX的出现为模型">
+<meta property="og:image" content="https://i.loli.net/2019/01/09/5c35f0ad3eaf1.png">
+<meta property="og:image" content="https://github.com/Microsoft/MMdnn/wiki/image/mobilenet1.png">
+<meta property="og:updated_time" content="2019-01-26T14:04:00.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深度学习模型的转换 [学习&amp;转载]">
+<meta name="twitter:description" content="由于各种深度学习框架的层出不穷，我们在进行算法开发到算法部署的过程中，往往都需要用到不同的框架。例如我们很有可能使用tensorflow,pytorch等进行算法开发和调试，在早期工程inference的时候我们往往使用较为轻量的caffe或者魔改后的caffe。到了移动端部署我们可能会使用feather CNN nihui的NCNN或者小米的mace等框架。facebook ONNX的出现为模型">
+<meta name="twitter:image" content="https://i.loli.net/2019/01/09/5c35f0ad3eaf1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:super7edwardzhang@gmail.com" title="super7edwardzhang@gmail.com" class="mail">super7edwardzhang@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/major7edward/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">深度学习模型的转换 [学习&amp;转载]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">深度学习模型的转换 [学习&amp;转载]</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-26T11:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-01-26
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MMdnn的安装"><span class="post-toc-number">1.</span> <span class="post-toc-text">MMdnn的安装</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#转换中的一些坑"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">转换中的一些坑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1-并不是所有Layer和所有网络都支持转换"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1.并不是所有Layer和所有网络都支持转换</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2-Tensorflow与caffe的padding方式并不相同"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">2.Tensorflow与caffe的padding方式并不相同</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#转换步骤"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">转换步骤</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-深度学习模型的转换"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">深度学习模型的转换 [学习&转载]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-26 19:07:14" datetime="2019-01-26T11:07:14.000Z"  itemprop="datePublished">2019-01-26</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>由于各种深度学习框架的层出不穷，我们在进行算法开发到算法部署的过程中，往往都需要用到不同的框架。例如我们很有可能使用tensorflow,pytorch等进行算法开发和调试，在早期工程inference的时候我们往往使用较为轻量的caffe或者魔改后的caffe。到了移动端部署我们可能会使用feather CNN nihui的NCNN或者小米的mace等框架。facebook ONNX的出现为模型的转换提供了一种思路，但除了pytorch等框架能很好的支持ONNX。其他等框架并未很好的对接ONNX。在<a href="https://github.com/Microsoft/MMdnn" target="_blank" rel="external">MMdnn</a>出现之前，大家都把caffemodel作为一个中间体来进行转换。</p>
+<p>其实就模型转换而言只是个填参数的过程，把模型结构搭好，把参数填进去就即可，但是实践过的朋友大家一定会知道这其中存在不少坑，但是我们更希望有一种自动化的模型转换方案来进行模型转换。</p>
+<p><a href="https://github.com/Microsoft/MMdnn" target="_blank" rel="external">MMdnn</a>的出现为模型转换带来了不少的福音，<a href="https://github.com/Microsoft/MMdnn" target="_blank" rel="external">MMdnn</a>提供了一种IR(中间表示)来来衔接各个模型之间的转换。他囊括并支持了主流的DNN框架。</p>
+<p>下面我就简要讲一下几个的简单模型转换</p>
+<p>在此我推荐一个查看模型结构的工具<a href="https://github.com/lutzroeder/Netron" target="_blank" rel="external">Netron</a> 支持数种主流深度学习框架(Caffe,Tensorflow,ONNX等)的模型结构查看。</p>
+<p>例如下图是MTCNN Pnet的模型结构图</p>
+<p><img src="https://i.loli.net/2019/01/09/5c35f0ad3eaf1.png" alt="det1.png"></p>
+<h3 id="MMdnn的安装"><a href="#MMdnn的安装" class="headerlink" title="MMdnn的安装"></a>MMdnn的安装</h3><p><a href="https://github.com/Microsoft/MMdnn" target="_blank" rel="external">MMdnn</a>的安装非常简单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install mmdnn</div></pre></td></tr></table></figure>
+<h4 id="转换中的一些坑"><a href="#转换中的一些坑" class="headerlink" title="转换中的一些坑"></a>转换中的一些坑</h4><h5 id="1-并不是所有Layer和所有网络都支持转换"><a href="#1-并不是所有Layer和所有网络都支持转换" class="headerlink" title="1.并不是所有Layer和所有网络都支持转换"></a>1.并不是所有Layer和所有网络都支持转换</h5><p>由于各个深度学习框架之间的设计模式不同有的是基于命令式的有的是基于符号形式的。各个框架之间的op的粒度不同，又由于没有一个统一的标准，支持所有框架之间的转换是一件非常难的事情。MMdnn也只是把一些提供的常用的op，如conv,pooling等常规op。</p>
+<h5 id="2-Tensorflow与caffe的padding方式并不相同"><a href="#2-Tensorflow与caffe的padding方式并不相同" class="headerlink" title="2.Tensorflow与caffe的padding方式并不相同"></a>2.Tensorflow与caffe的padding方式并不相同</h5><p>这个问题会出现在MobileNet在转换的过程中，因为Tensorflow的padding方式和其他框架是不同的。Tensorflow标准的卷积操作通常采用非对称的padding，而caffe等其他框架的卷积操作则是采用对称的padding。</p>
+<p>如下图 ，比如当 卷积核的大小为3x3 stride为2的时候。尽管他们的padding方式不同，但卷积之后的尺寸确是一样的。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://github.com/Microsoft/MMdnn/wiki/image/mobilenet1.png" alt="img" title="">
+                </div>
+                <div class="image-caption">img</div>
+            </figure>
+<h4 id="转换步骤"><a href="#转换步骤" class="headerlink" title="转换步骤"></a>转换步骤</h4><p>例如现在我们想把MTCNN的Keras Pnet转化成caffeodel用于部署。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mmtoir -f keras -w pnet.h5 -o pnet</div></pre></td></tr></table></figure>
+<p>把keras模型转化成MMdnn IR中间表示，在当然目录下会生成一个.npy 的weights文件和一个.pb文件。接着使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mmtomodel -f caffe -in pnet -iw pnet.npy -o pnet</div></pre></td></tr></table></figure>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-01-26T14:04:00.096Z" itemprop="dateUpdated">2019-01-26 22:04:00</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2019/01/26/深度学习模型的转换/" target="_blank" rel="external">https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DeepLearning/">DeepLearning</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&title=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&title=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/16/深度学习经典卷积神经网络/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">深度学习经典卷积神经网络 [学习&amp;转载]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&title=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&title=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深度学习模型的转换 [学习&转载]》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/01/26/深度学习模型的转换/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aS27jQAwFQN//0snWQGzp8dOJA5RWA0WWu3qAJk3y8Yivr6fr+c67Z3pX/u3LFx4eHt5g6e++MuH9vJ9vSnVDC9uEh4eHd4yXLLS6KddPJovO1/P2Ph4eHt6H8a7z2PydSbqMh4eH9395efKdvKGXjuPh4eF9Aq+X+ObF1jxdzgPDcq0FDw8Pr9NpKqezf/XvI/09PDw8vHFXvdfarxZ/rxPoPBi8eDMeHh7eAV41nc2bVb3zOacWxrPw8PDwDvCqh3uvhJHcmSBv1oyHh4e3xJsPOVUbafnYQRVT+B/Dw8PDG/OaSeqvpN15cHrxJB4eHt5hXo/RG43qBYzyk3h4eHjHeL0SQLU11RtEyAu+N8UIPDw8vAO8BNk7vnsb0SuF3ExG4OHh4a3ykqM5KVL0NmteJi7EPTw8PLwBr9ekz0u9u7BqkRcPDw/vBC9vTfXYyUDA9ab0yiVv4x4eHh7emFf9qV9d9OROPnp1s+l4eHh4q7xqgyoPGMmik7+OChZ4eHh4B3i93+zJp3qbUi1zRO/Ew8PDW+XlqWq1ANFrrVWDxM2oAR4eHt5hXj72VC0WzJthzcIEHh4e3gFedRHJnXk46VUS8PDw8P6K11vEbnpdTbWjmTI8PDy8VV7zwG3VjCdl3GpijYeHh3eOl4xD5T/+8xQ8HwWottmiuISHh4c35lWXkg9mVYcDkgZYYbV4eHh4h3lboWJy3C9feHh4eAdg+ZUn07tvyAPGi8kIPDw8vFXevInVGyzoJcfVz+Lh4eGd4+XBIDnWqxuxGxjw8PDwfpO32zmaJLjVT0WBAQ8PD+8DeMlRnldT8xCVByo8PDy8z+H1SJO6SM6O4gYeHh7eEi8/sqtpbn7QX39Lr6SLh4eHd4I3WW41wa0GjGUGHh4e3pT3DR/ZDQFiupriAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
