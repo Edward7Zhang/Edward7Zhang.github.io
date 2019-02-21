@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>ByteDance【一面总结】 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Interview">
+    <meta name="description" content="大概在数天前投递了字节跳动-抖音方向的实习生岗位昨天接到了面试通知，今天面试后对涉及到的问题进行一个复盘。（字节跳动果然名不虚传…面试官相当亲切且善于循循善诱来引导我回答问题） 1.Java中的引用类型有没有什么了解？Java.lang.ref是Java类库中比较特殊的一个包，它提供了与Java垃圾回收器密切相关的引用类。 StrongReference（强引用） SoftReference（软引">
+<meta name="keywords" content="Interview">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ByteDance【一面总结】">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="大概在数天前投递了字节跳动-抖音方向的实习生岗位昨天接到了面试通知，今天面试后对涉及到的问题进行一个复盘。（字节跳动果然名不虚传…面试官相当亲切且善于循循善诱来引导我回答问题） 1.Java中的引用类型有没有什么了解？Java.lang.ref是Java类库中比较特殊的一个包，它提供了与Java垃圾回收器密切相关的引用类。 StrongReference（强引用） SoftReference（软引">
+<meta property="og:updated_time" content="2019-02-21T04:16:48.953Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ByteDance【一面总结】">
+<meta name="twitter:description" content="大概在数天前投递了字节跳动-抖音方向的实习生岗位昨天接到了面试通知，今天面试后对涉及到的问题进行一个复盘。（字节跳动果然名不虚传…面试官相当亲切且善于循循善诱来引导我回答问题） 1.Java中的引用类型有没有什么了解？Java.lang.ref是Java类库中比较特殊的一个包，它提供了与Java垃圾回收器密切相关的引用类。 StrongReference（强引用） SoftReference（软引">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:super7edwardzhang@gmail.com" title="super7edwardzhang@gmail.com" class="mail">super7edwardzhang@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/major7edward/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ByteDance【一面总结】</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ByteDance【一面总结】</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-02-18T11:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-02-18
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Java中的引用类型有没有什么了解？"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.Java中的引用类型有没有什么了解？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#引用类型对比"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">引用类型对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-StrongReference（强引用）"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1.StrongReference（强引用）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-SoftReference（软引用）"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">2.SoftReference（软引用）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-WeakReference（弱引用）"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">3.WeakReference（弱引用）</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-PhantomReference（虚引用）"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">4.PhantomReference（虚引用）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-Java中创建线程的方式有哪些"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.Java中创建线程的方式有哪些</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-继承Thread类创建线程类"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.继承Thread类创建线程类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-通过Runnable接口创建线程类"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.通过Runnable接口创建线程类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-通过Callable和Future创建线程"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3.通过Callable和Future创建线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建线程的三种方式的对比"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">创建线程的三种方式的对比</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Android中的进程间通信有哪些方式？具体说说Binder"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.Android中的进程间通信有哪些方式？具体说说Binder</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Android中的AsyncTask的作用？"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.Android中的AsyncTask的作用？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-Android中的消息机制？"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.Android中的消息机制？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-Android中的事件分发机制了解多少？如何解决滑动冲突"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.Android中的事件分发机制了解多少？如何解决滑动冲突</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-Java设计模式了解多少？观察者模式在哪里使用过？"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.Java设计模式了解多少？观察者模式在哪里使用过？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-有没有用过MVC-MVP-MVVM？有什么区别？MVP是如何使model与view进行互通的？"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.有没有用过MVC\MVP\MVVM？有什么区别？MVP是如何使model与view进行互通的？</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-ByteDance【一面总结】"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ByteDance【一面总结】</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-02-18 19:07:14" datetime="2019-02-18T11:07:14.000Z"  itemprop="datePublished">2019-02-18</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>大概在数天前投递了字节跳动-抖音方向的实习生岗位<br>昨天接到了面试通知，今天面试后对涉及到的问题进行一个复盘。（字节跳动果然名不虚传…面试官相当亲切且善于循循善诱来引导我回答问题）</p>
+<h2 id="1-Java中的引用类型有没有什么了解？"><a href="#1-Java中的引用类型有没有什么了解？" class="headerlink" title="1.Java中的引用类型有没有什么了解？"></a>1.Java中的引用类型有没有什么了解？</h2><p>Java.lang.ref是Java类库中比较特殊的一个包，它提供了与Java垃圾回收器密切相关的引用类。</p>
+<pre><code>StrongReference（强引用）
+SoftReference（软引用）
+WeakReference（弱引用）
+PhantomReference（虚引用）
+</code></pre><h3 id="引用类型对比"><a href="#引用类型对比" class="headerlink" title="引用类型对比"></a>引用类型对比</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>引用类型</th>
+<th>取得目标对象方式</th>
+<th>垃圾回收条件</th>
+<th>是否可能内存泄漏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>强引用</td>
+<td>直接调用</td>
+<td>不回收</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>2</td>
+<td>软引用</td>
+<td>通过 get()方法</td>
+<td>视内存情况回收</td>
+<td>不可能</td>
+</tr>
+<tr>
+<td>3</td>
+<td>弱引用</td>
+<td>通过 get()方法</td>
+<td>永远回收</td>
+<td>不可能</td>
+</tr>
+<tr>
+<td>4</td>
+<td>虚引用</td>
+<td>无法取得</td>
+<td>不回收</td>
+<td>可能</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-StrongReference（强引用）"><a href="#1-StrongReference（强引用）" class="headerlink" title="1.StrongReference（强引用）"></a>1.StrongReference（强引用）</h4><p>如果一个对象具有强引用，那垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。</p>
+<p><strong>示例</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String[] arr = <span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;;</div></pre></td></tr></table></figure>
+<h4 id="2-SoftReference（软引用）"><a href="#2-SoftReference（软引用）" class="headerlink" title="2.SoftReference（软引用）"></a>2.SoftReference（软引用）</h4><p>如果一个对象只具有软引用，如果内存空间足够，垃圾回收器就不会回收它；如果内存空间不足，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这个软引用加入到与之关联的引用队列中。</p>
+<p><strong>示例</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Example1</span></div><div class="line">SoftReference&lt;String[]&gt; softBean = <span class="keyword">new</span> SoftReference&lt;String[]&gt;(<span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>,<span class="string">"b"</span>,<span class="string">"c"</span>&#125;);</div><div class="line"></div><div class="line"><span class="comment">//Example2</span></div><div class="line">ReferenceQueue&lt;String[]&gt; referenceQueue = <span class="keyword">new</span> ReferenceQueue&lt;String[]&gt;();</div><div class="line">SoftReference&lt;String[]&gt; softBean = <span class="keyword">new</span> SoftReference&lt;String[]&gt;(<span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;, referenceQueue);</div></pre></td></tr></table></figure></p>
+<h4 id="3-WeakReference（弱引用）"><a href="#3-WeakReference（弱引用）" class="headerlink" title="3.WeakReference（弱引用）"></a>3.WeakReference（弱引用）</h4><p>弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。<br>    弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。<br>    <br><strong>示例</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//Example1</div><div class="line">WeakReference&lt;String[]&gt; weakBean = new WeakReference&lt;String[]&gt;(new String[]&#123;&quot;a&quot;, &quot;b&quot;, &quot;c&quot;&#125;);</div><div class="line">//Example2</div><div class="line">ReferenceQueue&lt;String[]&gt; referenceQueue = new ReferenceQueue&lt;String[]&gt;();</div><div class="line">WeakReference&lt;String[]&gt; softBean = new WeakReference&lt;String[]&gt;(new String[]&#123;&quot;a&quot;, &quot;b&quot;, &quot;c&quot;&#125;, referenceQueue);</div></pre></td></tr></table></figure></p>
+<h4 id="4-PhantomReference（虚引用）"><a href="#4-PhantomReference（虚引用）" class="headerlink" title="4.PhantomReference（虚引用）"></a>4.PhantomReference（虚引用）</h4><p>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。<br>虚引用主要用来跟踪对象被垃圾回收器回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。</p>
+<p><strong>示例</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ReferenceQueue&lt;String[]&gt; referenceQueue = <span class="keyword">new</span> ReferenceQueue&lt;String[]&gt;();</div><div class="line">PhantomReference&lt;String[]&gt; referent = <span class="keyword">new</span> PhantomReference&lt;String&gt;(<span class="keyword">new</span> String[]&#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;, referenceQueue);</div></pre></td></tr></table></figure></p>
+<h2 id="2-Java中创建线程的方式有哪些"><a href="#2-Java中创建线程的方式有哪些" class="headerlink" title="2.Java中创建线程的方式有哪些"></a>2.Java中创建线程的方式有哪些</h2><h3 id="1-继承Thread类创建线程类"><a href="#1-继承Thread类创建线程类" class="headerlink" title="1.继承Thread类创建线程类"></a>1.继承Thread类创建线程类</h3><pre><code>(1) 定义Thread类的子类，并重写该类的run方法，该run方法的方法体就代表了线程要完成的任务。因此把run()方法称为执行体。
+(2) 创建Thread子类的实例，即创建了线程对象。
+(3) 调用线程对象的start()方法来启用该线程。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>  <span class="class"><span class="keyword">class</span>  <span class="title">FirstThreadTest</span>  <span class="keyword">extends</span>  <span class="title">Thread</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">int</span>  i  =  <span class="number">0</span>; <span class="comment">//重写run方法，run方法的方法体就是现场执行体</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span>  <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (; i &lt;  <span class="number">100</span>; i++) &#123;</div><div class="line"></div><div class="line">System.out.println(getName() +  <span class="string">" "</span>  + i);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">static</span>  <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span>  i  =  <span class="number">0</span>; i &lt;  <span class="number">100</span>; i++) &#123;</div><div class="line"></div><div class="line">System.out.println(Thread.currentThread().getName() +  <span class="string">" : "</span>  + i);</div><div class="line"></div><div class="line"><span class="keyword">if</span> (i ==  <span class="number">20</span>) &#123;</div><div class="line"></div><div class="line"><span class="keyword">new</span>  FirstThreadTest().start();</div><div class="line"></div><div class="line"><span class="keyword">new</span>  FirstThreadTest().start();</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上述代码中Thread.currentThread()方法返回当前正在执行的线程对象。GetName() 方法返回调用该方法的线程的名字。</p>
+<h3 id="2-通过Runnable接口创建线程类"><a href="#2-通过Runnable接口创建线程类" class="headerlink" title="2.通过Runnable接口创建线程类"></a>2.通过Runnable接口创建线程类</h3><pre><code>（1）定义runnable接口的实现类，并重写该接口的run()方法，该run()方法的方法 体同样是该线程的线程执行体。
+（2）创建 Runnable实现类的实例，并依此实例作为Thread的target来创建Thread 对象，该Thread对象才是真正的线程对象。
+（3）调用线程对象的start()方法来启动该线程。
+</code></pre><h3 id="3-通过Callable和Future创建线程"><a href="#3-通过Callable和Future创建线程" class="headerlink" title="3.通过Callable和Future创建线程"></a>3.通过Callable和Future创建线程</h3><pre><code>（1）创建Callable接口的实现类，并实现call()方法，该call()方法将作为线程执行 体，并且有返回值。
+（2）创建Callable实现类的实例，使用FutureTask类来包装Callable对象，该 FutureTask对象封装了该Callable对象的call()方法的返回值。
+（3）使用FutureTask对象作为Thread对象的target创建并启动新线程。
+（4）调用FutureTask对象的get()方法来获得子线程执行结束后的返回值，调用 get()方法会阻塞线程。
+</code></pre><h3 id="创建线程的三种方式的对比"><a href="#创建线程的三种方式的对比" class="headerlink" title="创建线程的三种方式的对比"></a>创建线程的三种方式的对比</h3><p>采用实现Runnable、Callable接口的方式创见多线程时，优势是： 线程类只是实现了Runnable接口或Callable接口，还可以继承其他类。 在这种方式下，多个线程可以共享同一个target对象，所以非常适合多个相同线程 来处理同一份资源的情况，从而可以将CPU、代码和数据分开，形成清晰的模型， 较好地体现了面向对象的思想。 劣势是： 编程稍微复杂，如果要访问当前线程，则必须使用Thread.currentThread()方法。 使用继承Thread类的方式创建多线程时优势是： 编写简单，如果需要访问当前线程，则无需使用Thread.currentThread()方法，直接 使用this即可获得当前线程。 劣势是： 线程类已经继承了Thread类，所以不能再继承其他父类。</p>
+<h2 id="3-Android中的进程间通信有哪些方式？具体说说Binder"><a href="#3-Android中的进程间通信有哪些方式？具体说说Binder" class="headerlink" title="3.Android中的进程间通信有哪些方式？具体说说Binder"></a>3.Android中的进程间通信有哪些方式？具体说说Binder</h2><h2 id="4-Android中的AsyncTask的作用？"><a href="#4-Android中的AsyncTask的作用？" class="headerlink" title="4.Android中的AsyncTask的作用？"></a>4.Android中的AsyncTask的作用？</h2><h2 id="5-Android中的消息机制？"><a href="#5-Android中的消息机制？" class="headerlink" title="5.Android中的消息机制？"></a>5.Android中的消息机制？</h2><h2 id="6-Android中的事件分发机制了解多少？如何解决滑动冲突"><a href="#6-Android中的事件分发机制了解多少？如何解决滑动冲突" class="headerlink" title="6.Android中的事件分发机制了解多少？如何解决滑动冲突"></a>6.Android中的事件分发机制了解多少？如何解决滑动冲突</h2><h2 id="7-Java设计模式了解多少？观察者模式在哪里使用过？"><a href="#7-Java设计模式了解多少？观察者模式在哪里使用过？" class="headerlink" title="7.Java设计模式了解多少？观察者模式在哪里使用过？"></a>7.Java设计模式了解多少？观察者模式在哪里使用过？</h2><h2 id="8-有没有用过MVC-MVP-MVVM？有什么区别？MVP是如何使model与view进行互通的？"><a href="#8-有没有用过MVC-MVP-MVVM？有什么区别？MVP是如何使model与view进行互通的？" class="headerlink" title="8.有没有用过MVC\MVP\MVVM？有什么区别？MVP是如何使model与view进行互通的？"></a>8.有没有用过MVC\MVP\MVVM？有什么区别？MVP是如何使model与view进行互通的？</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-02-21T04:16:48.953Z" itemprop="dateUpdated">2019-02-21 12:16:48</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2019/02/18/ByteDance【一面总结】/" target="_blank" rel="external">https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&title=《ByteDance【一面总结】》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&title=《ByteDance【一面总结】》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ByteDance【一面总结】》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/26/深度学习模型的转换/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">深度学习模型的转换 [学习&amp;转载]</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&title=《ByteDance【一面总结】》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&title=《ByteDance【一面总结】》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ByteDance【一面总结】》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/02/18/ByteDance【一面总结】/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqElEQVR42u3aQXLjMAwEQP//09kHpGTPEETWh+bJpZIlNg8kBOD1isfPw3i68/2/8qf9fs5rY+Dh4eFdmnoy0feTeLryfjmS/xbLhIeHh7fGS7b4jUPl1jI9XsfDw8P7St77qeTHwN378fDw8L6Tl4e2Zxg8PDy8b+bNA988LJ6Hyyu5Fjw8PLyTStMrD5r/7++V+h4eHh7euKrelvbztMUkEC9mi4eHh7fAyzfcNsWQtx20sHqeeHh4eAu8ZPuuk6dvUxhnhbS22QsPDw9vg9e68xecIduA/sPM8fDw8BZ4eZF+AmtLU+2BVNT38PDw8K7yzl68F0DnBblrt+Lh4eEFdyZJh7b1atK62ha3PswfDw8Pb4F3N/xNEq9nU2zbF4pDAg8PD6/ktenRjamfpXqjQB8PDw9vgdeOWy1Wd9O1k6QGHh4eXvvMtlX0rAyWHBLzdquo6QoPDw9vgddu0235vw3Bz95V9ETg4eHhnVT8o4/8vLlqEmTPy2yPSDw8PLxLvDwzkbcCtAnis00/Cq/x8PDwFngTTJueyAtj7dvzjwE8PDy8Dd4Z7G7YPUl/vObnGx4eHl7AO2O07QVnrQntwj2mJPDw8PAu8XLApDB2luS9EEzj4eHh/cl3+iQIzq+0YXR7JDx2SeDh4eFd4rUJ1jbDkSzcrTvrOB0PDw/vEi/PZEy2/nxxR81heHh4eMu85MrkkEgW5fLAw8PDW4C1DQFnKdd501Xb5oWHh4e3wTvbY+eHSvI7L3RdOFTw8PDwSl5+GCTheBuCnxXYiuYGPDw8vDVeWzlqU6vzFMlhMgUPDw/vy3jtAXBWTps0GeDh4eF9M2+evDhrS/1w/ODh4eGt8SZbdptybQP0s7QvHh4e3h6v/eCfBLj5VPIluzDw8PDwUt4/oScNAZ8GfboAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
