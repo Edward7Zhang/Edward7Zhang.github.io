@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Retrofit2.0 使用教程（与常见网络请求库对比） | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="前言 在Android开发中，网络请求十分常用 当下的网络请求加载库中，Retrofit则是当下hottest的一个网络请求库  简介                                                                                                           特别注意：  准确来说，Retrofit是一个 RE">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit2.0 使用教程（与常见网络请求库对比）">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="前言 在Android开发中，网络请求十分常用 当下的网络请求加载库中，Retrofit则是当下hottest的一个网络请求库  简介                                                                                                           特别注意：  准确来说，Retrofit是一个 RE">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-a3109ad0446b0540.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-b5194f1d16673589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-3089d23889f04d87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-58819416dfd2767a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-03-03T04:55:02.515Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit2.0 使用教程（与常见网络请求库对比）">
+<meta name="twitter:description" content="前言 在Android开发中，网络请求十分常用 当下的网络请求加载库中，Retrofit则是当下hottest的一个网络请求库  简介                                                                                                           特别注意：  准确来说，Retrofit是一个 RE">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/944365-a3109ad0446b0540.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:super7edwardzhang@gmail.com" title="super7edwardzhang@gmail.com" class="mail">super7edwardzhang@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/major7edward/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Retrofit2.0 使用教程（与常见网络请求库对比）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Retrofit2.0 使用教程（与常见网络请求库对比）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-03T04:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-03-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#简介"><span class="post-toc-number">2.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#与其他开源库对比"><span class="post-toc-number">3.</span> <span class="post-toc-text">与其他开源库对比</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Retrofit使用介绍"><span class="post-toc-number">4.</span> <span class="post-toc-text">Retrofit使用介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤1：添加-Retrofit-库的依赖"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">步骤1：添加 Retrofit 库的依赖</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-在Gradle加入Retrofit库的依赖"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">1.在Gradle加入Retrofit库的依赖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-添加-网络权限"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">2.添加 网络权限</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤2：创建-接受服务器返回数据-的类"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">步骤2：创建 接受服务器返回数据 的类</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤3：创建-用于描述网络请求-的接口"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">步骤3：创建 用于描述网络请求 的接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤4：创建-Retrofit-实例"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">步骤4：创建 Retrofit 实例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤5：创建-网络请求接口实例-并-配置网络请求参数"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">步骤5：创建 网络请求接口实例 并 配置网络请求参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤6：发送网络请求（异步-同步）"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">步骤6：发送网络请求（异步\同步）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤7：处理服务器返回的数据"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">步骤7：处理服务器返回的数据</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Retrofit2.0 使用教程（与常见网络请求库对比）"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Retrofit2.0 使用教程（与常见网络请求库对比）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-03 12:07:14" datetime="2019-03-03T04:07:14.000Z"  itemprop="datePublished">2019-03-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li>在<strong>Android</strong>开发中，网络请求十分常用</li>
+<li>当下的网络请求加载库中，<strong>Retrofit</strong>则是当下hottest的一个网络请求库</li>
+</ul>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-a3109ad0446b0540.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<p>特别注意：</p>
+<ul>
+<li>准确来说，<strong>Retrofit是一个 RESTful 的 HTTP 网络请求框架的封装</strong></li>
+<li>原因：网络请求的工作本质上是<code>OkHttp</code>完成的，而<code>Retrofit</code>仅负责网络请求接口的封装<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-b5194f1d16673589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></li>
+<li>App应用程序通过 Retrofit 请求网络，实际上是使用Retrofit接口层封装请求参数、Header、Url等信息，之后由OkHttp完成后续的请求操作</li>
+<li>在服务端返回数据之后，OkHttp将原始的结果交给Retrofit，Retrofit根据用户的需求对结果进行解析</li>
+</ul>
+<h1 id="与其他开源库对比"><a href="#与其他开源库对比" class="headerlink" title="与其他开源库对比"></a>与其他开源库对比</h1><p>除了 Retrofit，如今 Android 中主流的网络请求框架有：</p>
+<ul>
+<li>Android-Async-Http</li>
+<li>Volly</li>
+<li>OkHttp<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-3089d23889f04d87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="介绍" title="">
+                </div>
+                <div class="image-caption">介绍</div>
+            </figure>
+</li>
+</ul>
+<p>几种网络请求库之间的区别对比<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/944365-58819416dfd2767a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>附：各个主流网络请求库的 Github 地址</p>
+<ul>
+<li><a href="https://github.com/loopj/android-async-http" target="_blank" rel="external">Android-Async-Http</a></li>
+<li><a href="https://github.com/stormzhang/AndroidVolley" target="_blank" rel="external">Volley</a></li>
+<li><a href="https://github.com/square/okhttp" target="_blank" rel="external">OkHttp</a></li>
+<li><a href="https://github.com/square/retrofit" target="_blank" rel="external">Retrofit</a></li>
+</ul>
+<h1 id="Retrofit使用介绍"><a href="#Retrofit使用介绍" class="headerlink" title="Retrofit使用介绍"></a>Retrofit使用介绍</h1><p>使用Retrofit的步骤共有7个：</p>
+<pre><code>步骤1：添加 Retrofit 库的依赖
+步骤2：创建 接受服务器返回数据 的类
+步骤3：创建 用于描述网络请求 的接口
+步骤4：创建 Retrofit 实例
+步骤5：创建 网络请求接口实例 并 配置网络请求参数
+步骤6：发送网络请求（异步\同步）
+    &gt; 封装了 数据转换、线程切换的操作
+步骤7：处理服务器返回的数据
+</code></pre><p>接下来我们将这些步骤进行分解</p>
+<h2 id="步骤1：添加-Retrofit-库的依赖"><a href="#步骤1：添加-Retrofit-库的依赖" class="headerlink" title="步骤1：添加 Retrofit 库的依赖"></a>步骤1：添加 Retrofit 库的依赖</h2><h3 id="1-在Gradle加入Retrofit库的依赖"><a href="#1-在Gradle加入Retrofit库的依赖" class="headerlink" title="1.在Gradle加入Retrofit库的依赖"></a>1.在<code>Gradle</code>加入<code>Retrofit</code>库的依赖</h3><blockquote>
+<p>由于<code>Retrofit</code>是基于<code>OkHttp</code>，所以还需要添加<code>OkHttp</code>库依赖</p>
+</blockquote>
+<p><em>build.gradle</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dependencies &#123; </div><div class="line">   compile&apos;com.squareup.retrofit2:retrofit:2.0.2&apos;  </div><div class="line">  // Retrofit库 </div><div class="line">  compile &apos;com.squareup.okhttp3:okhttp:3.1.2&apos;  </div><div class="line">  // Okhttp库 </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-添加-网络权限"><a href="#2-添加-网络权限" class="headerlink" title="2.添加 网络权限"></a>2.添加 网络权限</h3><p><em>AndroidManifest.xml</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="步骤2：创建-接受服务器返回数据-的类"><a href="#步骤2：创建-接受服务器返回数据-的类" class="headerlink" title="步骤2：创建 接受服务器返回数据 的类"></a>步骤2：创建 接受服务器返回数据 的类</h2><h2 id="步骤3：创建-用于描述网络请求-的接口"><a href="#步骤3：创建-用于描述网络请求-的接口" class="headerlink" title="步骤3：创建 用于描述网络请求 的接口"></a>步骤3：创建 用于描述网络请求 的接口</h2><h2 id="步骤4：创建-Retrofit-实例"><a href="#步骤4：创建-Retrofit-实例" class="headerlink" title="步骤4：创建 Retrofit 实例"></a>步骤4：创建 Retrofit 实例</h2><h2 id="步骤5：创建-网络请求接口实例-并-配置网络请求参数"><a href="#步骤5：创建-网络请求接口实例-并-配置网络请求参数" class="headerlink" title="步骤5：创建 网络请求接口实例 并 配置网络请求参数"></a>步骤5：创建 网络请求接口实例 并 配置网络请求参数</h2><h2 id="步骤6：发送网络请求（异步-同步）"><a href="#步骤6：发送网络请求（异步-同步）" class="headerlink" title="步骤6：发送网络请求（异步\同步）"></a>步骤6：发送网络请求（异步\同步）</h2><h2 id="步骤7：处理服务器返回的数据"><a href="#步骤7：处理服务器返回的数据" class="headerlink" title="步骤7：处理服务器返回的数据"></a>步骤7：处理服务器返回的数据</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-03T04:55:02.515Z" itemprop="dateUpdated">2019-03-03 12:55:02</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" target="_blank" rel="external">https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&title=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&title=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/01/记一道简单的Java面试题/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">记一道简单的Java面试题【转载自 知乎——方志宏】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&title=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&title=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Retrofit2.0 使用教程（与常见网络请求库对比）》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADOUlEQVR42u3ay3LbQAwEQP3/TztXu1KmZwA6JW6aJ5UkPnp1gHaA1ys+Pj4dyfufP73+/t+vv3vn+nj9xoGNjY39EHZyufz96wXKn+f69fX3o6XBxsbGPo7d3v56IRLq9bmbEpiUUmxsbGzsfAmSBcq3JUlBxcbGxsbOqfsoqo2Q2hKIjY2N/f+w79pgzIKepLDl596cpWFjY2O/PfuuyP4dXv9KfxsbGxv7jdkf5TEL92fFaTa4EymwsbGxD2K3W4s26G/j/k1zoo63sLGxsY9g5/F9MkyTnztr7s52FquuBTY2NvbbszfDi/lozuysTdEquiLY2NjYB7GT7cSm7brZorQLmowHYWNjY5/ETj7eFLZkC7QfEpo9LTY2NvYZ7LbAtAM9s+snP0D+8wzTLGxsbOyHsNsClo/ytHH/vc3g6L7Y2NjYD2e3wdAwuImLTXLf2XW+vMbGxsY+iL2/WVvY2hKYN3rb72BjY2Ofwd4ERvmnLWzWAC5aBdjY2NgHsYsqtwiA8uUoHnrRisDGxsY+m922ZpNByeujHe5pm9ZFixcbGxv7CPasOM02A5vwKGkw//Ak2NjY2Eew23CnHdbJNxWblkMbdWFjY2OfxM6Hb2YjO79RCNulia6PjY2N/Vh2W5Da5mu+fPn1Z9uYHxoD2NjY2A9n16eNpl+SBUoCqc3m5EsBw8bGxj6UvYn+21Apj7TaH+OHp8LGxsY+iN1mTnnZaL+TNw/a4c66PYCNjY39KHZeAJKwaRb6t3fMtytR3cbGxsY+gp3/uc+j/7Yl3A73tAv0bVcEGxsb++Hse6OidnCnLW+zJsQrP7CxsbEfy24D9xbZlpZ8q7OKn7CxsbGPZrdbjlkRakc5sbGxsbGv2ZuH2EdL+7LXtg2wsbGxz2B/lEe7FUnat22w1cZedS3FxsbGfhS7bRi0pWsW3M9+gDb8wsbGxj6JPYt7rrcKbfSfX6ctpd8+JzY2NvZx7M1MSx4ezRZuv8HAxsbGxt6XkHx70wZe7VJiY2NjY+cFY1bSNiXzH9VtbGxs7LdkJ+UhH6zJexH3Bk/FUmJjY2MfxJ4VpFkp2mxaZle4ob+NjY2N/b7sP89dsLytm3zsAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
