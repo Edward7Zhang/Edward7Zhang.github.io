@@ -42,7 +42,7 @@ ga('send', 'pageview');
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-b5194f1d16673589.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-3089d23889f04d87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/944365-58819416dfd2767a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2019-03-03T04:55:02.515Z">
+<meta property="og:updated_time" content="2019-03-03T05:19:31.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Retrofit2.0 使用教程（与常见网络请求库对比）">
 <meta name="twitter:description" content="前言 在Android开发中，网络请求十分常用 当下的网络请求加载库中，Retrofit则是当下hottest的一个网络请求库  简介                                                                                                           特别注意：  准确来说，Retrofit是一个 RE">
@@ -154,7 +154,7 @@ ga('send', 'pageview');
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -282,9 +282,19 @@ ga('send', 'pageview');
 <p>由于<code>Retrofit</code>是基于<code>OkHttp</code>，所以还需要添加<code>OkHttp</code>库依赖</p>
 </blockquote>
 <p><em>build.gradle</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dependencies &#123; </div><div class="line">   compile&apos;com.squareup.retrofit2:retrofit:2.0.2&apos;  </div><div class="line">  // Retrofit库 </div><div class="line">  compile &apos;com.squareup.okhttp3:okhttp:3.1.2&apos;  </div><div class="line">  // Okhttp库 </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="2-添加-网络权限"><a href="#2-添加-网络权限" class="headerlink" title="2.添加 网络权限"></a>2.添加 网络权限</h3><p><em>AndroidManifest.xml</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="步骤2：创建-接受服务器返回数据-的类"><a href="#步骤2：创建-接受服务器返回数据-的类" class="headerlink" title="步骤2：创建 接受服务器返回数据 的类"></a>步骤2：创建 接受服务器返回数据 的类</h2><h2 id="步骤3：创建-用于描述网络请求-的接口"><a href="#步骤3：创建-用于描述网络请求-的接口" class="headerlink" title="步骤3：创建 用于描述网络请求 的接口"></a>步骤3：创建 用于描述网络请求 的接口</h2><h2 id="步骤4：创建-Retrofit-实例"><a href="#步骤4：创建-Retrofit-实例" class="headerlink" title="步骤4：创建 Retrofit 实例"></a>步骤4：创建 Retrofit 实例</h2><h2 id="步骤5：创建-网络请求接口实例-并-配置网络请求参数"><a href="#步骤5：创建-网络请求接口实例-并-配置网络请求参数" class="headerlink" title="步骤5：创建 网络请求接口实例 并 配置网络请求参数"></a>步骤5：创建 网络请求接口实例 并 配置网络请求参数</h2><h2 id="步骤6：发送网络请求（异步-同步）"><a href="#步骤6：发送网络请求（异步-同步）" class="headerlink" title="步骤6：发送网络请求（异步\同步）"></a>步骤6：发送网络请求（异步\同步）</h2><h2 id="步骤7：处理服务器返回的数据"><a href="#步骤7：处理服务器返回的数据" class="headerlink" title="步骤7：处理服务器返回的数据"></a>步骤7：处理服务器返回的数据</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dependencies &#123; </div><div class="line">  compile&apos;com.squareup.retrofit2:retrofit:2.0.2&apos;  </div><div class="line">  // Retrofit库 </div><div class="line">  compile &apos;com.squareup.okhttp3:okhttp:3.1.2&apos;  </div><div class="line">  // Okhttp库 </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-添加-网络权限"><a href="#2-添加-网络权限" class="headerlink" title="2.添加 网络权限"></a>2.添加 网络权限</h3><p><em>AndroidManifest.xml</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;</div></pre></td></tr></table></figure>
+<h2 id="步骤2：创建-接受服务器返回数据-的类"><a href="#步骤2：创建-接受服务器返回数据-的类" class="headerlink" title="步骤2：创建 接受服务器返回数据 的类"></a>步骤2：创建 接受服务器返回数据 的类</h2><p><em>Reception.java</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Reception</span></span>&#123;</div><div class="line">  ...</div><div class="line">  <span class="comment">//根据返回数据的格式和数据解析方式（Json、XML等）定义</span></div><div class="line">  <span class="comment">//下面会在实例中进行说明</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="步骤3：创建-用于描述网络请求-的接口"><a href="#步骤3：创建-用于描述网络请求-的接口" class="headerlink" title="步骤3：创建 用于描述网络请求 的接口"></a>步骤3：创建 用于描述网络请求 的接口</h2><ul>
+<li>Retrofit将Http请求抽象成Java接口：采用<strong>注解</strong>描述网络请求的参数 和 配置网络请求参数</li>
+</ul>
+<blockquote>
+<p>1.用 动态代理 动态 将该接口的注解“翻译”成一个Http请求，最后再执行Http请求<br>2.注：接口中的每个方法的参数都需要使用注解标注，否则会报错</p>
+</blockquote>
+<p><em>GetRequest__Interface.interface</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GetRequest_Interface</span></span>&#123;</div><div class="line">    <span class="meta">@GET</span>(<span class="string">"openapi.do?keyfrom=Yanzhikai&amp;key=2032414398&amp;type=data&amp;doctype=json&amp;version=1.1&amp;q=car"</span>)</div><div class="line">    <span class="function">Call&lt;Translation&gt; <span class="title">getCall</span><span class="params">()</span></span>;</div><div class="line">    <span class="comment">//@GET注解的作用：采用Get方法发送网络请求</span></div><div class="line">    <span class="comment">//getCall() = 接受网络请求数据的方法</span></div><div class="line">    <span class="comment">//其中返回类型为Call&lt;*&gt;,*是接收数据的类（即上面定义的Translation类）</span></div><div class="line">    <span class="comment">//如果想直接获得Responsebody中的内容，可以定义网络请求返回值为Call&lt;ResponseBody&gt;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="步骤4：创建-Retrofit-实例"><a href="#步骤4：创建-Retrofit-实例" class="headerlink" title="步骤4：创建 Retrofit 实例"></a>步骤4：创建 Retrofit 实例</h2><h2 id="步骤5：创建-网络请求接口实例-并-配置网络请求参数"><a href="#步骤5：创建-网络请求接口实例-并-配置网络请求参数" class="headerlink" title="步骤5：创建 网络请求接口实例 并 配置网络请求参数"></a>步骤5：创建 网络请求接口实例 并 配置网络请求参数</h2><h2 id="步骤6：发送网络请求（异步-同步）"><a href="#步骤6：发送网络请求（异步-同步）" class="headerlink" title="步骤6：发送网络请求（异步\同步）"></a>步骤6：发送网络请求（异步\同步）</h2><h2 id="步骤7：处理服务器返回的数据"><a href="#步骤7：处理服务器返回的数据" class="headerlink" title="步骤7：处理服务器返回的数据"></a>步骤7：处理服务器返回的数据</h2>
         </div>
 
         <blockquote class="post-copyright">
@@ -292,7 +302,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-03-03T04:55:02.515Z" itemprop="dateUpdated">2019-03-03 12:55:02</time>
+    最終更新：<time datetime="2019-03-03T05:19:31.272Z" itemprop="dateUpdated">2019-03-03 13:19:31</time>
 </span><br>
 
 
@@ -431,7 +441,7 @@ ga('send', 'pageview');
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
         </p>
     </div>
     <div class="bottom">
