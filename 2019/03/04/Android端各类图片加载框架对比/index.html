@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>Android端各类图片加载框架对比 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Android">
+    <meta name="description" content="前段时间的面试过程中被问到用过什么图片加载框架，我随口而出Glide，面试官继续追问下去是做过什么比较得出Glide比较高效吗？我就阻塞了…所以在此做一次复盘，针对Android端的各种加载框架进行对比  前言  图片加载是Android开发中最最基础的功能，同时图片加载OOM也一直困扰着很多开发者，因此为了降低开发周期和难度，我们经常会选用一些图片加载的开源库。 老牌的有ImageLoader">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android端各类图片加载框架对比">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="前段时间的面试过程中被问到用过什么图片加载框架，我随口而出Glide，面试官继续追问下去是做过什么比较得出Glide比较高效吗？我就阻塞了…所以在此做一次复盘，针对Android端的各种加载框架进行对比  前言  图片加载是Android开发中最最基础的功能，同时图片加载OOM也一直困扰着很多开发者，因此为了降低开发周期和难度，我们经常会选用一些图片加载的开源库。 老牌的有ImageLoader">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d4ab13d?imageslim">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/14/1635f431b88df0e0?imageslim">
+<meta property="og:updated_time" content="2019-03-04T01:13:13.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android端各类图片加载框架对比">
+<meta name="twitter:description" content="前段时间的面试过程中被问到用过什么图片加载框架，我随口而出Glide，面试官继续追问下去是做过什么比较得出Glide比较高效吗？我就阻塞了…所以在此做一次复盘，针对Android端的各种加载框架进行对比  前言  图片加载是Android开发中最最基础的功能，同时图片加载OOM也一直困扰着很多开发者，因此为了降低开发周期和难度，我们经常会选用一些图片加载的开源库。 老牌的有ImageLoader">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d4ab13d?imageslim">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:super7edwardzhang@gmail.com" title="super7edwardzhang@gmail.com" class="mail">super7edwardzhang@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/major7edward/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android端各类图片加载框架对比</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android端各类图片加载框架对比</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-04T04:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-03-04
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Picasso，Glide，Fresco的前世今生"><span class="post-toc-number">2.</span> <span class="post-toc-text">Picasso，Glide，Fresco的前世今生</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本项对比"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基本项对比</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加载图片耗时及内存对比"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">加载图片耗时及内存对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#without-animations"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">without animations</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#allow-animations"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">allow animations</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#详细属性对比"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">详细属性对比</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">依赖</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#bitmap操作"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">bitmap操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优点"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">优点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#缺点"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">缺点</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#结论"><span class="post-toc-number">3.</span> <span class="post-toc-text">结论</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-Android端各类图片加载框架对比"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android端各类图片加载框架对比</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-04 12:07:14" datetime="2019-03-04T04:07:14.000Z"  itemprop="datePublished">2019-03-04</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>前段时间的面试过程中被问到用过什么图片加载框架，我随口而出Glide，面试官继续追问下去是做过什么比较得出Glide比较高效吗？我就阻塞了…所以在此做一次复盘，针对Android端的各种加载框架进行对比</p>
+</blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<ul>
+<li>图片加载是Android开发中最最基础的功能，同时图片加载OOM也一直困扰着很多开发者，因此为了降低开发周期和难度，我们经常会选用一些图片加载的开源库。</li>
+<li>老牌的有ImageLoader，UIL,  Volley，主流的有，Picasso，Glide，Fresco等等，选择一款好的图片加载裤就成了我们的首要问题。</li>
+<li>接下来我们对比一下主流的三款 Picasso，Glide，Fresco框架的优缺点。</li>
+</ul>
+</blockquote>
+<h1 id="Picasso，Glide，Fresco的前世今生"><a href="#Picasso，Glide，Fresco的前世今生" class="headerlink" title="Picasso，Glide，Fresco的前世今生"></a>Picasso，Glide，Fresco的前世今生</h1><h2 id="基本项对比"><a href="#基本项对比" class="headerlink" title="基本项对比"></a>基本项对比</h2><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Picasso</th>
+<th>Glide</th>
+<th>Fresco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地址</td>
+<td><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fsquare%2Fpicasso" target="_blank" rel="external">github.com/square/pica…</a></td>
+<td><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fbumptech%2Fglide" target="_blank" rel="external">github.com/bumptech/gl…</a></td>
+<td><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Ffacebook%2Ffresco" target="_blank" rel="external">github.com/facebook/fr…</a></td>
+</tr>
+<tr>
+<td>发布时间</td>
+<td>2013年5月</td>
+<td>2014年9月</td>
+<td>2015年5月</td>
+</tr>
+<tr>
+<td>是否支持gif</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>是否支持webP</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>视频缩略图</td>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>大小</td>
+<td>100k</td>
+<td>500 KB</td>
+<td>2～3M</td>
+</tr>
+<tr>
+<td>加载速度</td>
+<td>中</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>Disk+Men Cache</td>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>Easy of use</td>
+<td>low</td>
+<td>mediun</td>
+<td>difficult</td>
+</tr>
+<tr>
+<td>star</td>
+<td>13160</td>
+<td>14709</td>
+<td>12444</td>
+</tr>
+<tr>
+<td>开发者</td>
+<td>Square主导</td>
+<td>Google主导</td>
+<td>Facebook主导</td>
+</tr>
+</tbody>
+</table>
+<h2 id="加载图片耗时及内存对比"><a href="#加载图片耗时及内存对比" class="headerlink" title="加载图片耗时及内存对比"></a>加载图片耗时及内存对比</h2><h3 id="without-animations"><a href="#without-animations" class="headerlink" title="without animations"></a>without animations</h3><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Picasso</th>
+<th>Glide</th>
+<th>Fresco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java heap／native heap/平均耗时（without animations）</td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d4ab13d?imageslim" alt="Picasso加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d2b55e8?imageslim) | ![Glide加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d1496bb?imageslim) | ![Fresco加载无动画图片" title="">
+                </div>
+                <div class="image-caption">Picasso加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d2b55e8?imageslim) | ![Glide加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d1496bb?imageslim) | ![Fresco加载无动画图片</div>
+            </figure></td>
+</tr>
+<tr>
+<td>max java heap</td>
+<td>12.6MB</td>
+<td>11.1MB</td>
+<td>13.9MB</td>
+</tr>
+<tr>
+<td>max native heap</td>
+<td>43.8MB</td>
+<td>43.8MB</td>
+<td>43.8MB</td>
+</tr>
+<tr>
+<td>avg wait time</td>
+<td>241ms</td>
+<td>34ms</td>
+<td>44ms</td>
+</tr>
+</tbody>
+</table>
+<p>从上面的加载静态图片可以看出三大主流框架性能都不错，不过用数据说话整体而言Glide更胜一筹。</p>
+<hr>
+<h3 id="allow-animations"><a href="#allow-animations" class="headerlink" title="allow animations"></a>allow animations</h3><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Picasso</th>
+<th>Glide</th>
+<th>Fresco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java heap／native heap/平均耗时（allow animations）</td>
+<td><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/5/14/1635f431b88df0e0?imageslim" alt="Picasso加载动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d57eddb?imageslim) | ![Glide加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f431b031be09?imageslim) | ![Fresco加载动画图片" title="">
+                </div>
+                <div class="image-caption">Picasso加载动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f4318d57eddb?imageslim) | ![Glide加载无动画图片](https://user-gold-cdn.xitu.io/2018/5/14/1635f431b031be09?imageslim) | ![Fresco加载动画图片</div>
+            </figure></td>
+</tr>
+<tr>
+<td>max java heap</td>
+<td>6.8MB</td>
+<td>74.8.1MB</td>
+<td>36.1MB</td>
+</tr>
+<tr>
+<td>max native heap</td>
+<td>18.2MB</td>
+<td>66.8MB</td>
+<td>545.3MB</td>
+</tr>
+<tr>
+<td>avg wait time</td>
+<td>1707ms</td>
+<td>33910ms</td>
+<td>15142ms</td>
+</tr>
+</tbody>
+</table>
+<p><em>上面的数据我们可以忽略Picasso了，因为它根本不支持gif，那么Glide和Fresco可以看出Fresco的java heap基本保持较低平稳状态，而Glide的java heap基本为Fresco的一倍，所以OOM的风险也比fresco大一倍。</em><br><em>从时间上glide是有一定差距，不过fresco有两张图片没加载完成，所以时间不是完全可靠的数据</em><br><em>从native heap可以看出Fresco最高545MB，这个有点恐怖，下面我们看个知识点。</em></p>
+<p><strong><em>知识点</em></strong></p>
+<blockquote>
+<ul>
+<li>Java Heap是对于Java 虚拟机而说的，一般的大小上限是 16M 24M 48M 76M 具体视手机而定。</li>
+<li>Native Heap是对于C/C++直接操纵的系统堆内存，所以它的上限一般是具体RAM的2/3左右。</li>
+<li>所以对于2G的手机而言，Java Heap 大概76M，而Native Heap是760M左右，相差10倍。</li>
+</ul>
+</blockquote>
+<p>所以Fresco也是存在一定风险的，因为native heap数据实在是太恐怖了。</p>
+<h2 id="详细属性对比"><a href="#详细属性对比" class="headerlink" title="详细属性对比"></a>详细属性对比</h2><p>接下来只详细对比Fresco和Glide<br>Picasso从各方面都比这两个弱，这里就不浪费时间了。</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Glide</th>
+<th>Fresco</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>配置</td>
+<td><code>compile &#39;com.github.bumptech.glide:glide:XXX.XXX&#39;</code></td>
+<td><code>compile &#39;com.facebook.fresco:fresco:XXX.XXX</code></td>
+</tr>
+<tr>
+<td>初始化</td>
+<td>直接使用</td>
+<td><code>Fresco.initialize(this);</code></td>
+</tr>
+<tr>
+<td>layout</td>
+<td>普通ImageView</td>
+<td>独有的SimpleDraweeView</td>
+</tr>
+<tr>
+<td>圆角， 圆形</td>
+<td>需要自己实现圆角，继承自BitmapTransformation操作bitmap对象实现</td>
+<td>通过RoundingParams设置参数</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>Glide内存和磁盘缓存</td>
+<td>三级缓存，分别是 Bitmap缓存，未解码图片缓存， 文件缓存。</td>
+</tr>
+<tr>
+<td>缓存图像大小</td>
+<td>Glide则会根据ImageView控件尺寸获得对应的大小的bitmap来展示，从而缓存也可以针对不同的对象：原始图像（source），结果图像(result)</td>
+<td>缓存原始图像</td>
+</tr>
+<tr>
+<td>加载策略</td>
+<td>Glide只有占位图</td>
+<td>先加载小尺寸图片，再加载大尺寸的</td>
+</tr>
+<tr>
+<td>加载进度</td>
+<td>false</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+<p>从上面的对比中可以看出来Fresco蛮强大的，不过使用起来相对Glide要复杂一点，而且需要自己的SimpleDraweeView，这一点在切换框架的时候最让人头疼了。而且Glide直接缓存相对大小的图片，节省空间的同时下场如果是同样大小的图片就不要再次请求，直接可以使用。</p>
+<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p><strong>Glide</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">repositories &#123;</div><div class="line">  mavenCentral()</div><div class="line">  google()</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">  implementation <span class="string">'com.github.bumptech.glide:glide:4.9.0'</span></div><div class="line">  annotationProcessor <span class="string">'com.github.bumptech.glide:compiler:4.9.0'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Fresco</strong><br>要使用完整的Fresco功能就要导入如下的依赖<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dependencies &#123;</div><div class="line">  implementation <span class="string">'com.facebook.fresco:fresco:1.12.1'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="bitmap操作"><a href="#bitmap操作" class="headerlink" title="bitmap操作"></a>bitmap操作</h3><p><strong>Glide</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Bitmap myBitmap = Glide.with(上下文)  </div><div class="line">    .load(url)  </div><div class="line">    .asBitmap() //必须    </div><div class="line">    .get()</div></pre></td></tr></table></figure>
+<p><strong>Fresco</strong><br>Fresco要获取bitmap更加复杂， 而且使用起来也并不是那么顺畅。首先，Fresco为了更好地管理bitmap 对象（bitmap对象申请和释放会引起频繁的GC操作，从而引起界面卡顿）， 引入了可关闭的引用（CloseableReference）, 持有者在离开作用域的时候需要关闭该引用，而我们要获取的bitmap 对象就是可关闭的引用。也就是说，我们不能像上面Glide那样把bitmap 对象取出来传递给其它地方使用， 只能在Fresco提供的作用域范围内使用。<br>实际项目中会获取缓冲的文件对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//同样在DataSubscriber中获取</div><div class="line">FileBinaryResource resource = (FileBinaryResource) Fresco.getImagePipelineFactory().getMainFileCache().getResource(new SimpleCacheKey(url));</div><div class="line">if (resource != null &amp;&amp; resource.getFile() != null) &#123;           </div><div class="line">    setImage(ImageSource.uri(Uri.fromFile(resource.getFile())));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p><strong>Glide</strong></p>
+<blockquote>
+<ul>
+<li>多种图片格式的缓存，适用于更多的内容表现形式（如Gif、WebP、缩略图、Video）</li>
+<li>生命周期集成（根据Activity或者Fragment的生命周期管理图片加载请求）</li>
+<li>高效处理Bitmap（bitmap的复用和主动回收，减少系统回收压力）</li>
+<li>高效的缓存策略，灵活（Picasso只会缓存原始尺寸的图片，Glide缓存的是多种规格），加载速度快且内存开销小（默认Bitmap格式的不同，使得内存开销是Picasso的一半）</li>
+</ul>
+</blockquote>
+<p><strong>Fresco</strong></p>
+<blockquote>
+<ul>
+<li>最大的优势在于5.0以下(最低2.3)的bitmap加载。在5.0以下系统，Fresco将图片放到一个特别的内存区域(Ashmem区)</li>
+<li>大大减少OOM（在更底层的Native层对OOM进行处理，图片将不再占用App的内存）</li>
+<li>适用于需要高性能加载大量图片的场景</li>
+</ul>
+</blockquote>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p><strong>Glide</strong></p>
+<blockquote>
+<p>-没有文件缓存 -java heap比Fresco高</p>
+</blockquote>
+<p><strong>Fresco</strong></p>
+<blockquote>
+<ul>
+<li>包较大（2~3M）</li>
+<li>用法复杂</li>
+<li>底层涉及c++领域，阅读源码深入学习难度大</li>
+</ul>
+</blockquote>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>Fresco虽然很强大，但是包很大，依赖很多，使用复杂，而且还要在布局使用SimpleDraweeView控件加载图片。相对而言Glide会轻好多，上手快，使用简单，配置方便，而且从加载速度和性能方面不相上下。对于一般的APP来说Glide是一个不错的选择，如果是专业的图片APP那么Fresco还是必要的。</p>
+<p><em><a href="https://juejin.im/entry/5af9aabf51882542bd69d0c0" target="_blank" rel="external">文章部分转载于</a></em></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最終更新：<time datetime="2019-03-04T01:13:13.575Z" itemprop="dateUpdated">2019-03-04 09:13:13</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2019/03/04/Android端各类图片加载框架对比/" target="_blank" rel="external">https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&title=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&title=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Retrofit2.0 使用教程（与常见网络请求库对比）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&title=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&title=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android端各类图片加载框架对比》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/04/Android端各类图片加载框架对比/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3aQY4bMQwEQP//05trgMDjbkrM+lBzCoy1rFIAidPU6xU/P389z5+/+yQZczbOhQcPDw/vYOr/Pjkjn9Zd/Ls54+Hh4W3z3v3AbIrJQiQL97zcz3PGw8PD+zZeUsfmY278PR4eHt538pLjYVaOJyU1Hh4e3u/y2qGfp9hOeraUl7MWPDw8vJjXlsjf8O+V/h4eHh7ecVc9PwCSTfnur0Tj4OHh4S3w8g03b0SdTDeJKurLYXh4eHgLvLaATjbrWXusPU7aOAMPDw/vFm8Wg+ZXqdot/mQ+l4fDw8PDC1pf+Wv/ycbdLtysNMfDw8Pb4CWF8jk438pnx0D0foCHh4d3ideWxXn0MCu4T46cD/09PDw8vAVeHoy2La78W8/ffT4GhmEEHh4eXslLtvK2k5b8fN2RCwrxOpLAw8PDG/HaZn8bzraLlS9TtMR4eHh4C7zzMLcNW88L8XYEPDw8vLu8drptM6yl5qO9ZhPFw8PDu8pLXvXb9tVJBz85zT4sBx4eHt4CbxaqtgXurMieXc8a/h/i4eHhxbzhZaa4bdZeI0iOk3zOeHh4eHu82YaeXwjIr0wNL1Q9J9N4eHh4V3n5ZaY2YsijhFsFNx4eHt7/4c0i2pMrVhvxx9tx8PDw8BZ47aWrPKrILxOcHDzFt/Dw8PCu8tqgYbah55+3IxTvCnh4eHhXebNW1mzSJwFEveh4eHh4a7w2hG0L3/OwIx8/6ozh4eHhjXg/5ZNHALPg9STgeBtD4OHh4V3ltRtuXhzPQtuToOTCeYKHh4cX8/KGVr6V542r/GJWe1Dh4eHhbfNmm3IbXmwUxx+CYzw8PLwv482aZ23o0DbVjlJqPDw8vAVesn3PtvWkzVYX8Xh4eHhrvNlm3bbH6ighjoDfIvHw8PAWeCfb94wxa6dtXNLCw8PDK3l/AGGpVLnqr/NXAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
