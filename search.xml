@@ -17,7 +17,7 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Android端各类图片加载框架对比]]></title>
+    <title><![CDATA[AndroidStudio编译过程]]></title>
     <url>%2F2019%2F03%2F02%2FAndroidStudio%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[在此记录一下AndroidStudio编译过程 其中使用到的编译工具：aapt、aidl、Java Compiler、dex、zipalign 主要步骤描述： 1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;非二进制如res/raw和pic保持原样） 2.处理.aidl文件，生成对应的Java接口文件 3.通过Java Compiler编译R.java、Java接口文件、Java源文件，生成.class文件 4.通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex 5.通过apkbuilder工具，将aapt生成的resource.arsc和res文件、assets文件和classes.dex一起打包生成apk 6.通过Jarsigner工具，对上面的apk进行debug或release签名 7.通过zipalign工具，将签名后的apk进行对齐处理 link]]></content>
       <tags>
@@ -306,19 +306,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Android Chapter I. 磨人的不是 Android 而是 AndroidStudio :（]]></title>
-    <url>%2F2017%2F06%2F09%2FAndroid%20Chapter%20I.%20%E7%A3%A8%E4%BA%BA%E7%9A%84%E4%B8%8D%E6%98%AF%20Android%20%E8%80%8C%E6%98%AF%20AndroidStudio%2F</url>
-    <content type="text"><![CDATA[解决 Android Studio 创建项目时极其的慢的尴尬Android Studio 创建新项目的时候，会在进度条的界面滞留很久。 有时候一天都卡在这. 打开其它项目有些时候,也会出现这种情况。 这里写图片描述 ♦创建工程 原因：在创建新项目的时候导致进度条一直停在 Gradle:Project: 的主要原因就是，你导入的项目与你的IDE版本不匹配，此过程正在下载对应版本的 gradle。如果网络杯具的话， 呵呵 … 这里写图片描述 按照下面的步骤来就能完美解决这个问题，只要两步就OK了，Here we go ! 查看对应的 Gradle 版本找到你创建项目时的保存路径，项目根目录下的 gradle 文件夹 这里写图片描述 ♦找到 gradle 文件夹 接着双击进入 gradle 文件夹下找到 wrapper\gradle-wrapper.properties 文件 这里写图片描述 ♦gradle-wrapper.properties 打开这个文件 distributionBase=GRADLE_USER_HOMEdistributionPath=wrapper/distszipStoreBase=GRADLE_USER_HOMEzipStorePath=wrapper/distsdistributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip在最后一行可以看到，当前项目使用的版本是 gradle-3.3-all，如果你的电脑上，已经下载了这个版本，那么项目很快就打开了。当然， 如果不存在的话，肯定是需要下载的 … 呵呵 你可以在以下位置找到电脑上安装了什么版本的 Gradle： 1%USERPROFILE%\.gradle\wrapper\dists 这里写图片描述 查看当前已安装的 Gradle 版本注意：有些时候，你会发现你创建的项目中根本没有 gradle 文件夹。 (我擦，那岂不是瞎比比了？) 当项目中不存在 gradle 文件夹的时候， 这种情况和创建新的项目是一样的。都默认使用 Android Studio 版本对应的 gradle 版本；也就是如果你的 Android Studio 版本越高, 对应的 gradle 版本就越高 … 具体的需要在 Android 官网 查看，或者查看 Android Studio 安装目录下的 gradle 文件夹。2. 手动下载对应的 Gradle 版本很多时候，自动下载会 很慢 很慢 很慢（重要的事情要说几遍来着？这就是创建项目时卡半天的原因），毕竟不是所有人的网络都那么吊 … 总有痛苦的人群 … 这个时候，就需要手动下载了。 手动下载之前，需要知道当前 Android Studio 对应的 Gradle 版本是多少 … 怎么看呢？ 方法1：官网查看 … (不推荐)方法2：在我们上面查看当前项目对应的 Gradle 版本时（项目名\gradle\wrapper\gradle-wrapper.properties ），这里的就是我们需要的版本，使用这个链接下载即可。 1distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip 那么我们下载好了，要保存在哪里呢，不急，我们结合下面这个方法一起看 方法3：（未创建项目的兄弟）打开 Android Studio，创建一个新项目，当出现进度条的时候. (一般来说会卡在这里.) 此时莫慌， 重点来了 打开这个路径： %USERPROFILE%\.gradle\wrapper\dists ，不出意外, 你会看到一个包含版本信息的文件夹.( 如果没有看到，那就等等 … ) 这里写图片描述 打开这个版本文件夹，你会看到一个随机生成的文件夹：( 这个文件夹特别需要注意，因为这是关键 。有些时候，你会发现，明明已经下载了对应版本的 Gradle，但是莫名其妙的又下载了一次。就是因为这个随机文件夹不对导致的。解决方法是，在每个随机文件夹中都 拷贝 一份你下载好的 gradle-版本-all.zip 就行了 ) 这里写图片描述 随机生成的文件夹如果上面的随机文件夹没有生成, 那就等等 …. 通过以上翻山越岭，我们只需要这个包含随机文件夹的路径 … 因为手动下载的 Gradle 必须放在这个苛刻的路径下，才有效 。 一定要按照对应的版本下载哦，并且一定要放在刚刚千辛万苦生成的随机文件夹的路径中… 之后，重启 Android Studio，再次创建新项目，你就会发现 … 哇塞，这么快 ??? 这里写图片描述 相见恨晚 hhh如果大家对这有趣实用的技术贴感兴趣我后期会继续努力的！请大家扫描二维码！关注我！ 这里写图片描述 这里写图片描述]]></content>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Access denied for user 'root'@'localhost' (using password YES)]]></title>
     <url>%2F2017%2F06%2F09%2FAccess%20denied%20for%20user%20'root'%40'localhost'%20(using%20password%20YES)%2F</url>
     <content type="text"><![CDATA[Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。 1.登录出现Access denied for user ‘root’@’localhost’ (using password:YES)问题 认准登录命令是否写正确，请一定看仔细了。 1mysql -hlocalhost -uroot -p 然后输入密码。用户名一定为root。输错就是如上问题。 2.找不到默认的C：//pragramdata下MySQL数据库文件问题 在win10中programdata文件夹是被隐藏了的，显示隐藏即可。 如果要将已存在的数据库存放路径改为自己想要的，把原文件剪切到目标路径下。 然后，更改my.ini配置文件中的datadir值为目标路径。 重启MySQL即可。 注意： 如果修改了datadir路径，但是没有将原文件拷贝过来，会出现无法启动MySQL。 CreatedbyEdwardZhang∣一个不只做技术的公众号 长按，识别二维码，加关注]]></content>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Android Chapter I. 磨人的不是 Android 而是 AndroidStudio :（]]></title>
+    <url>%2F2017%2F06%2F09%2FAndroid%20Chapter%20I.%20%E7%A3%A8%E4%BA%BA%E7%9A%84%E4%B8%8D%E6%98%AF%20Android%20%E8%80%8C%E6%98%AF%20AndroidStudio%2F</url>
+    <content type="text"><![CDATA[解决 Android Studio 创建项目时极其的慢的尴尬Android Studio 创建新项目的时候，会在进度条的界面滞留很久。 有时候一天都卡在这. 打开其它项目有些时候,也会出现这种情况。 这里写图片描述 ♦创建工程 原因：在创建新项目的时候导致进度条一直停在 Gradle:Project: 的主要原因就是，你导入的项目与你的IDE版本不匹配，此过程正在下载对应版本的 gradle。如果网络杯具的话， 呵呵 … 这里写图片描述 按照下面的步骤来就能完美解决这个问题，只要两步就OK了，Here we go ! 查看对应的 Gradle 版本找到你创建项目时的保存路径，项目根目录下的 gradle 文件夹 这里写图片描述 ♦找到 gradle 文件夹 接着双击进入 gradle 文件夹下找到 wrapper\gradle-wrapper.properties 文件 这里写图片描述 ♦gradle-wrapper.properties 打开这个文件 distributionBase=GRADLE_USER_HOMEdistributionPath=wrapper/distszipStoreBase=GRADLE_USER_HOMEzipStorePath=wrapper/distsdistributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip在最后一行可以看到，当前项目使用的版本是 gradle-3.3-all，如果你的电脑上，已经下载了这个版本，那么项目很快就打开了。当然， 如果不存在的话，肯定是需要下载的 … 呵呵 你可以在以下位置找到电脑上安装了什么版本的 Gradle： 1%USERPROFILE%\.gradle\wrapper\dists 这里写图片描述 查看当前已安装的 Gradle 版本注意：有些时候，你会发现你创建的项目中根本没有 gradle 文件夹。 (我擦，那岂不是瞎比比了？) 当项目中不存在 gradle 文件夹的时候， 这种情况和创建新的项目是一样的。都默认使用 Android Studio 版本对应的 gradle 版本；也就是如果你的 Android Studio 版本越高, 对应的 gradle 版本就越高 … 具体的需要在 Android 官网 查看，或者查看 Android Studio 安装目录下的 gradle 文件夹。2. 手动下载对应的 Gradle 版本很多时候，自动下载会 很慢 很慢 很慢（重要的事情要说几遍来着？这就是创建项目时卡半天的原因），毕竟不是所有人的网络都那么吊 … 总有痛苦的人群 … 这个时候，就需要手动下载了。 手动下载之前，需要知道当前 Android Studio 对应的 Gradle 版本是多少 … 怎么看呢？ 方法1：官网查看 … (不推荐)方法2：在我们上面查看当前项目对应的 Gradle 版本时（项目名\gradle\wrapper\gradle-wrapper.properties ），这里的就是我们需要的版本，使用这个链接下载即可。 1distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip 那么我们下载好了，要保存在哪里呢，不急，我们结合下面这个方法一起看 方法3：（未创建项目的兄弟）打开 Android Studio，创建一个新项目，当出现进度条的时候. (一般来说会卡在这里.) 此时莫慌， 重点来了 打开这个路径： %USERPROFILE%\.gradle\wrapper\dists ，不出意外, 你会看到一个包含版本信息的文件夹.( 如果没有看到，那就等等 … ) 这里写图片描述 打开这个版本文件夹，你会看到一个随机生成的文件夹：( 这个文件夹特别需要注意，因为这是关键 。有些时候，你会发现，明明已经下载了对应版本的 Gradle，但是莫名其妙的又下载了一次。就是因为这个随机文件夹不对导致的。解决方法是，在每个随机文件夹中都 拷贝 一份你下载好的 gradle-版本-all.zip 就行了 ) 这里写图片描述 随机生成的文件夹如果上面的随机文件夹没有生成, 那就等等 …. 通过以上翻山越岭，我们只需要这个包含随机文件夹的路径 … 因为手动下载的 Gradle 必须放在这个苛刻的路径下，才有效 。 一定要按照对应的版本下载哦，并且一定要放在刚刚千辛万苦生成的随机文件夹的路径中… 之后，重启 Android Studio，再次创建新项目，你就会发现 … 哇塞，这么快 ??? 这里写图片描述 相见恨晚 hhh如果大家对这有趣实用的技术贴感兴趣我后期会继续努力的！请大家扫描二维码！关注我！ 这里写图片描述 这里写图片描述]]></content>
+      <tags>
+        <tag>Android</tag>
       </tags>
   </entry>
   <entry>
