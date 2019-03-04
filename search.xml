@@ -17,6 +17,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Android端各类图片加载框架对比]]></title>
+    <url>%2F2019%2F03%2F02%2FAndroidStudio%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[在此记录一下AndroidStudio编译过程 其中使用到的编译工具：aapt、aidl、Java Compiler、dex、zipalign 主要步骤描述： 1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;非二进制如res/raw和pic保持原样） 2.处理.aidl文件，生成对应的Java接口文件 3.通过Java Compiler编译R.java、Java接口文件、Java源文件，生成.class文件 4.通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex 5.通过apkbuilder工具，将aapt生成的resource.arsc和res文件、assets文件和classes.dex一起打包生成apk 6.通过Jarsigner工具，对上面的apk进行debug或release签名 7.通过zipalign工具，将签名后的apk进行对齐处理 link]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[记一道简单的Java面试题【转载自 知乎——方志宏】]]></title>
     <url>%2F2019%2F03%2F01%2F%E8%AE%B0%E4%B8%80%E9%81%93%E7%AE%80%E5%8D%95%E7%9A%84Java%E9%9D%A2%E8%AF%95%E9%A2%98%2F</url>
     <content type="text"><![CDATA[这可能是历史上最简单的一道java面试题了。 题目很简单，完成代码，判断一个整数是否是奇数： 1public boolean isOdd(int i) 相信相当数量的人都已经在准备吐槽了，只要看过《编程珠玑》的人都知道这道题的答案和其中极为简单的道理。不过别着急骂街，不管你信不信，这道笔试题我拿到的答案好多都长这样： 1234567public boolean isOdd(int i) &#123; if (i % 2 == 1) &#123; System.out.println("是奇数"); &#125; else &#123; System.out.println("是偶数"); &#125;&#125; 然后编译一下，发现错误了，挠挠头，顶多改成这样： 1234567public boolean isOdd(int i) &#123; if (i % 2 == 1) &#123; return true; &#125; else &#123; return false; &#125;&#125; 好吧，我承认我在筛选简历的能力可能有一些问题，不过不管你信不信，好多大厂工作了几年的程序员，都会写出如上风格的代码。 于是我继续进行引导： 我：“这个函数的定义要求返回一个什么类型的值？” 候选人看了看题干：“布尔类型。” 我：“那么，你if后面的括号里面的表达式的值是一个什么类型的？” 引导到这一步的时候，依然有高达两成的候选人选择了放弃，表示他们不知道。好吧，我真的不知道你们来面试这个职位的信心何在。不过大部分人想了想，还会回答出正确答案： 候选人：“也是布尔类型。” 我：“然后呢？” 有少量候选人虽然没说出来，但是我能看出来他们觉得这只是一个巧合，并不知道怎么进行下一步。不过，大多数人想了想之后，还是会优化成如下代码： 123public boolean isOdd(int i) &#123; return i % 2 == 1;&#125; 终于过了第一关了，进行第二关的引导： 我：“那我传进来一个-1呢？” 将近一半的人在想了想之后会嘴硬地表示他们从小被教导只有自然数才有奇数偶数之分，负数没有奇偶这一说。剩余的人接受了这个设定，想了一会儿，改成这样： 123public boolean isOdd(int i) &#123; return i % 2 == 1 || i % 2 == -1;&#125; 并且在提示之后优化成这样： 123public boolean isOdd(int i) &#123; return i % 2 != 0;&#125; 好吧，这是迄今为止第一个能通过编译且完全满足了需求的代码实现了。说实话，一开始就写成这样的人，如果没有其他什么明显的缺点的话，我这里基本就能通过了。我承认我的要求比较低，但是来面试的人能直接写出这样的真的不太多，粗略地估计的话，大概占一到两成吧。 但是这里还没完呢，还有最重要的第三关呢： 我：“有更好的办法吗？” 候选人：“？” 我：“我觉得取模操作比较慢，有更快的解决方案吗？” 除了少数人能自己想想就想出来了之外，绝大部分（毫不夸张）候选人表示没有或者不知道，于是进行下一步提示： 我：“奇数和偶数转换成二进制有什么区别？” 相当一部分候选人表示自己不懂什么叫二进制和位运算，有的还表示java不是c语言，不用研究这些，就跟很多评论会吐槽我在装逼一样。少部分候选人想了想，会怯怯地回答。 候选人：“奇数最后一位是1，偶数最后一位是0。” 我：“然后呢？” 这里很奇怪的点是，大部分能聊到这里来的候选人会想起来移位操作，我真的不知道是为什么，虽然这道题确实可以有这种操作： 123public boolean isOdd(int i) &#123; return i &gt;&gt; 1 &lt;&lt; 1 != i;&#125; 但是这根本不是重点好吧！！！ 总之，无论如何，能在第三关的各种引导之后，能写出下面这个结果来的人，真的不多。能一开始没有任何引导的就写出来的人，至今只见过两个，一个我去哪儿都带着，一个拒了我的offer。 123public boolean isOdd(int i) &#123; return (i &amp; 1) == 1;&#125; 别以为这就完了！终极boss来了： 我：“这样是不是比上面取模运算要快？” 候选人：“那当然了，位运算肯定快啊。” 我：“但是我们实际代码测试过，发现上面的按位与操作和取模操作，实际运行的时间是差不多的，为什么呢？” 候选人心里mmp：“闹了半天你这是在逗我玩啊？？？” 然而真正能回答出原因来的人，面试过程中我没见过，可能是大牛都看不上我所在的公司吧。只有在某公司的时候，一个同事想了想，给出了我正确答案：“编译器会将对2的指数的取模操作，优化成位运算操作。” 难道是我经历的公司都太low了么…… 作者：方志宏链接：https://zhuanlan.zhihu.com/p/57859872来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。]]></content>
@@ -298,19 +306,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Access denied for user 'root'@'localhost' (using password YES)]]></title>
-    <url>%2F2017%2F06%2F09%2FAccess%20denied%20for%20user%20'root'%40'localhost'%20(using%20password%20YES)%2F</url>
-    <content type="text"><![CDATA[Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。 1.登录出现Access denied for user ‘root’@’localhost’ (using password:YES)问题 认准登录命令是否写正确，请一定看仔细了。 1mysql -hlocalhost -uroot -p 然后输入密码。用户名一定为root。输错就是如上问题。 2.找不到默认的C：//pragramdata下MySQL数据库文件问题 在win10中programdata文件夹是被隐藏了的，显示隐藏即可。 如果要将已存在的数据库存放路径改为自己想要的，把原文件剪切到目标路径下。 然后，更改my.ini配置文件中的datadir值为目标路径。 重启MySQL即可。 注意： 如果修改了datadir路径，但是没有将原文件拷贝过来，会出现无法启动MySQL。 CreatedbyEdwardZhang∣一个不只做技术的公众号 长按，识别二维码，加关注]]></content>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Android Chapter I. 磨人的不是 Android 而是 AndroidStudio :（]]></title>
     <url>%2F2017%2F06%2F09%2FAndroid%20Chapter%20I.%20%E7%A3%A8%E4%BA%BA%E7%9A%84%E4%B8%8D%E6%98%AF%20Android%20%E8%80%8C%E6%98%AF%20AndroidStudio%2F</url>
     <content type="text"><![CDATA[解决 Android Studio 创建项目时极其的慢的尴尬Android Studio 创建新项目的时候，会在进度条的界面滞留很久。 有时候一天都卡在这. 打开其它项目有些时候,也会出现这种情况。 这里写图片描述 ♦创建工程 原因：在创建新项目的时候导致进度条一直停在 Gradle:Project: 的主要原因就是，你导入的项目与你的IDE版本不匹配，此过程正在下载对应版本的 gradle。如果网络杯具的话， 呵呵 … 这里写图片描述 按照下面的步骤来就能完美解决这个问题，只要两步就OK了，Here we go ! 查看对应的 Gradle 版本找到你创建项目时的保存路径，项目根目录下的 gradle 文件夹 这里写图片描述 ♦找到 gradle 文件夹 接着双击进入 gradle 文件夹下找到 wrapper\gradle-wrapper.properties 文件 这里写图片描述 ♦gradle-wrapper.properties 打开这个文件 distributionBase=GRADLE_USER_HOMEdistributionPath=wrapper/distszipStoreBase=GRADLE_USER_HOMEzipStorePath=wrapper/distsdistributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip在最后一行可以看到，当前项目使用的版本是 gradle-3.3-all，如果你的电脑上，已经下载了这个版本，那么项目很快就打开了。当然， 如果不存在的话，肯定是需要下载的 … 呵呵 你可以在以下位置找到电脑上安装了什么版本的 Gradle： 1%USERPROFILE%\.gradle\wrapper\dists 这里写图片描述 查看当前已安装的 Gradle 版本注意：有些时候，你会发现你创建的项目中根本没有 gradle 文件夹。 (我擦，那岂不是瞎比比了？) 当项目中不存在 gradle 文件夹的时候， 这种情况和创建新的项目是一样的。都默认使用 Android Studio 版本对应的 gradle 版本；也就是如果你的 Android Studio 版本越高, 对应的 gradle 版本就越高 … 具体的需要在 Android 官网 查看，或者查看 Android Studio 安装目录下的 gradle 文件夹。2. 手动下载对应的 Gradle 版本很多时候，自动下载会 很慢 很慢 很慢（重要的事情要说几遍来着？这就是创建项目时卡半天的原因），毕竟不是所有人的网络都那么吊 … 总有痛苦的人群 … 这个时候，就需要手动下载了。 手动下载之前，需要知道当前 Android Studio 对应的 Gradle 版本是多少 … 怎么看呢？ 方法1：官网查看 … (不推荐)方法2：在我们上面查看当前项目对应的 Gradle 版本时（项目名\gradle\wrapper\gradle-wrapper.properties ），这里的就是我们需要的版本，使用这个链接下载即可。 1distributionUrl=https\://services.gradle.org/distributions/gradle-3.3-all.zip 那么我们下载好了，要保存在哪里呢，不急，我们结合下面这个方法一起看 方法3：（未创建项目的兄弟）打开 Android Studio，创建一个新项目，当出现进度条的时候. (一般来说会卡在这里.) 此时莫慌， 重点来了 打开这个路径： %USERPROFILE%\.gradle\wrapper\dists ，不出意外, 你会看到一个包含版本信息的文件夹.( 如果没有看到，那就等等 … ) 这里写图片描述 打开这个版本文件夹，你会看到一个随机生成的文件夹：( 这个文件夹特别需要注意，因为这是关键 。有些时候，你会发现，明明已经下载了对应版本的 Gradle，但是莫名其妙的又下载了一次。就是因为这个随机文件夹不对导致的。解决方法是，在每个随机文件夹中都 拷贝 一份你下载好的 gradle-版本-all.zip 就行了 ) 这里写图片描述 随机生成的文件夹如果上面的随机文件夹没有生成, 那就等等 …. 通过以上翻山越岭，我们只需要这个包含随机文件夹的路径 … 因为手动下载的 Gradle 必须放在这个苛刻的路径下，才有效 。 一定要按照对应的版本下载哦，并且一定要放在刚刚千辛万苦生成的随机文件夹的路径中… 之后，重启 Android Studio，再次创建新项目，你就会发现 … 哇塞，这么快 ??? 这里写图片描述 相见恨晚 hhh如果大家对这有趣实用的技术贴感兴趣我后期会继续努力的！请大家扫描二维码！关注我！ 这里写图片描述 这里写图片描述]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Access denied for user 'root'@'localhost' (using password YES)]]></title>
+    <url>%2F2017%2F06%2F09%2FAccess%20denied%20for%20user%20'root'%40'localhost'%20(using%20password%20YES)%2F</url>
+    <content type="text"><![CDATA[Access denied for user ‘root’@’localhost’ (using password:YES)安装成功的MySQL，再次登录问题。 1.登录出现Access denied for user ‘root’@’localhost’ (using password:YES)问题 认准登录命令是否写正确，请一定看仔细了。 1mysql -hlocalhost -uroot -p 然后输入密码。用户名一定为root。输错就是如上问题。 2.找不到默认的C：//pragramdata下MySQL数据库文件问题 在win10中programdata文件夹是被隐藏了的，显示隐藏即可。 如果要将已存在的数据库存放路径改为自己想要的，把原文件剪切到目标路径下。 然后，更改my.ini配置文件中的datadir值为目标路径。 重启MySQL即可。 注意： 如果修改了datadir路径，但是没有将原文件拷贝过来，会出现无法启动MySQL。 CreatedbyEdwardZhang∣一个不只做技术的公众号 长按，识别二维码，加关注]]></content>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
