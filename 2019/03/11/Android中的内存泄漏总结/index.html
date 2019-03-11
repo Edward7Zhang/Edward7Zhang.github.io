@@ -38,7 +38,7 @@ ga('send', 'pageview');
 <meta property="og:url" content="https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/index.html">
 <meta property="og:site_name" content="EdwardZhang&#39;s Blog">
 <meta property="og:description" content="内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。篇幅略长，大家可以分几节来看！  Jav">
-<meta property="og:updated_time" content="2019-03-11T13:56:04.595Z">
+<meta property="og:updated_time" content="2019-03-11T14:13:04.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的内存泄漏总结">
 <meta name="twitter:description" content="内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。篇幅略长，大家可以分几节来看！  Jav">
@@ -149,7 +149,7 @@ ga('send', 'pageview');
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -221,7 +221,13 @@ ga('send', 'pageview');
 <li>栈区：当方法被执行时，方法体内的局部变量都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因为栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</li>
 <li>堆区：又称动态内存分配，通常就是指在程序运行时直接 new 出来的内存。这部分内存在不使用时将会由 Java 垃圾回收器来负责回收。</li>
 </ul>
-<h2 id="栈与堆的区别："><a href="#栈与堆的区别：" class="headerlink" title="栈与堆的区别："></a>栈与堆的区别：</h2><p>在方法体内定义的（局部变量）一些基本类型的变量和对象的引用变量都是在方法的栈内存中分配的。挡在一段方法块中定义一个变量时，Java 就会在栈中为该变量分配内存空间，当超过该变量的作用域后，该变量也就无效了，分配给它的内存空间也将被释放掉，该内存空间可以被重新使用。</p>
+<h2 id="栈与堆的区别："><a href="#栈与堆的区别：" class="headerlink" title="栈与堆的区别："></a>栈与堆的区别：</h2><p>在方法体内定义的（局部变量）一些基本类型的变量和对象的引用变量都是在方法的栈内存中分配的。挡在一段方法块中定义一个变量时，Java 就会在栈中为该变量分配内存空间，当超过该变量的作用域后，该变量也就无效了，分配给它的内存空间也将被释放掉，该内存空间可以被重新使用。<br>堆内存用来存放所有由 new 创建的对象（包括该对象其中的所有成员变量）和数组。在堆中分配的内存，将由 Java 垃圾回收器来自动管理。在堆中产生了一个数组或者对象后，还可以在栈中定义一个特殊的变量，这个变量的取值等于数组或者对象在堆内存中的首地址，这个特殊的变量就是我们上面说的引用变量。我们可以通过这个引用变量来访问堆中的对象或者数组。<br>举个🌰：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> class <span class="title">Sample</span><span class="params">()</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> s1 = <span class="number">0</span>;</div><div class="line">  Sample mSample1 = <span class="keyword">new</span> Sample();</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> s2 = <span class="number">1</span>;</div><div class="line">    Sample mSample2 = <span class="keyword">new</span> Sample();</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">Sample mSample3 = <span class="keyword">new</span> Sample();</div></pre></td></tr></table></figure></p>
+<p>Sample 类的局部变量 s2 和引用变量 mSample2 都是存在于栈中，但 mSample2 指向的对象是存在于堆上的。mSample3 指向的对象实体存放在堆上，包括这个对象的所有成员变量 s1 和 mSample1，而它自己存在于栈中。<br>结论：</p>
+<ul>
+<li>局部变量的基本数据类型和引用存储于栈中，引用的对象实体存储于堆中。因为它们属于方法中的变量，生命周期随方法而结束。</li>
+<li>成员变量全部存储于堆中（包括基本数据类型，引用和引用的对象实体）。因为它们属于类，类对象终究是要被 new 出来使用的。</li>
+</ul>
+<p>了解了 Java 的内存分配之后，我们来看看 Java 是怎么管理内存的。</p>
 
         </div>
 
@@ -230,7 +236,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2019-03-11T13:56:04.595Z" itemprop="dateUpdated">2019-03-11 21:56:04</time>
+    Last updated: <time datetime="2019-03-11T14:13:04.628Z" itemprop="dateUpdated">2019-03-11 22:13:04</time>
 </span><br>
 
 
@@ -369,7 +375,7 @@ ga('send', 'pageview');
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
