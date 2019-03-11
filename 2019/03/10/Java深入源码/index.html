@@ -30,9 +30,9 @@ ga('send', 'pageview');
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Interview,Java">
+    <meta name="keywords" content="Java,Interview">
     <meta name="description" content="下面那些情况下的对象会被垃圾回收机制处理掉？利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用链向下寻找，如果某个对象不能通过 GC Roots 寻找到，虚拟机就认为该对象可以被回收掉。 那些对象可以被看做是 GC Roots 呢？ 虚拟机栈（栈帧中的本地变量表）中引用的对象； 方法区中的类静态属性引用的对象，常量引用的对象； 本地方法栈中 JNI（">
-<meta name="keywords" content="Interview,Java">
+<meta name="keywords" content="Java,Interview">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java深入源码">
 <meta property="og:url" content="https://edward7zhang.github.io/2019/03/10/Java深入源码/index.html">
@@ -149,7 +149,7 @@ ga('send', 'pageview');
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="検索">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -277,7 +277,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-03-10T12:38:51.793Z" itemprop="dateUpdated">2019-03-10 20:38:51</time>
+    最終更新：<time datetime="2019-03-10T12:38:51.793Z" itemprop="dateUpdated">2019-03-10 20:38:51</time>
 </span><br>
 
 
@@ -354,7 +354,14 @@ ga('send', 'pageview');
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/11/Android中的内存泄漏总结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Android中的内存泄漏总结</h4>
+      </a>
+    </div>
   
 
   
@@ -416,7 +423,7 @@ ga('send', 'pageview');
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>このブログの内容物は<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja">クリエイティブ・コモンズ 表示 - 非営利 - 継承 4.0 国際ライセンスの下に提供されています</a></span>
         </p>
     </div>
     <div class="bottom">

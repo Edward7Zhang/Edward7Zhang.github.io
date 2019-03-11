@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>https://edward7zhang.github.io/2019/03/11/Android%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2019-03-11T13:56:04.595Z</lastmod>
+    <data>
+        <display>
+        <title>Android中的内存泄漏总结</title>
+        <pubTime>2019-03-11T04:07:14.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+        <tag>Java</tag>
+         
+        <tag>Interview</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://edward7zhang.github.io/2019/03/10/Java%E6%B7%B1%E5%85%A5%E6%BA%90%E7%A0%81/</loc>
     <lastmod>2019-03-10T12:38:51.793Z</lastmod>
     <data>
@@ -11,9 +32,9 @@
         <title>Java深入源码</title>
         <pubTime>2019-03-10T04:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -30,9 +51,9 @@
         <title>论：线程、多线程和线程池</title>
         <pubTime>2019-03-06T04:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -452,9 +473,9 @@
         <title>Java面试题集</title>
         <pubTime>2018-04-10T01:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -601,9 +622,9 @@
         <title>哪些情况下的对象会被垃圾回收机制处理掉？</title>
         <pubTime>2018-03-03T11:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
         <tag>GC</tag>
          
@@ -622,9 +643,9 @@
         <title>volatile关键字</title>
         <pubTime>2018-03-01T13:04:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -641,9 +662,9 @@
         <title>Java创建线程的三种方式</title>
         <pubTime>2018-01-15T12:24:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -660,9 +681,9 @@
         <title>synchronized和ReentrantLock的比较</title>
         <pubTime>2018-01-20T12:24:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            

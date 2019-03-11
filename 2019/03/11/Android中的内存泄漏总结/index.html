@@ -24,27 +24,24 @@ ga('send', 'pageview');
     
     
     
-    <title>AndroidStudio编译过程 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <title>Android中的内存泄漏总结 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Android">
-    <meta name="description" content="在此记录一下AndroidStudio编译过程  其中使用到的编译工具：aapt、aidl、Java Compiler、dex、zipalign 主要步骤描述： 1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;amp;非二进制如res/raw和pic保持原样） 2.处理.aidl文件，生成对应的Java接口文件 3.通过Java Compil">
-<meta name="keywords" content="Android">
+    <meta name="keywords" content="Android,Java,Interview">
+    <meta name="description" content="内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。篇幅略长，大家可以分几节来看！  Jav">
+<meta name="keywords" content="Android,Java,Interview">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AndroidStudio编译过程">
-<meta property="og:url" content="https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/index.html">
+<meta property="og:title" content="Android中的内存泄漏总结">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/index.html">
 <meta property="og:site_name" content="EdwardZhang&#39;s Blog">
-<meta property="og:description" content="在此记录一下AndroidStudio编译过程  其中使用到的编译工具：aapt、aidl、Java Compiler、dex、zipalign 主要步骤描述： 1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;amp;非二进制如res/raw和pic保持原样） 2.处理.aidl文件，生成对应的Java接口文件 3.通过Java Compil">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1420866-79b675761018ff57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/536/format/webp">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1420866-1402494a5225964e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/993/format/webp">
-<meta property="og:updated_time" content="2019-03-04T07:35:29.654Z">
+<meta property="og:description" content="内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。篇幅略长，大家可以分几节来看！  Jav">
+<meta property="og:updated_time" content="2019-03-11T13:56:04.595Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AndroidStudio编译过程">
-<meta name="twitter:description" content="在此记录一下AndroidStudio编译过程  其中使用到的编译工具：aapt、aidl、Java Compiler、dex、zipalign 主要步骤描述： 1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;amp;非二进制如res/raw和pic保持原样） 2.处理.aidl文件，生成对应的Java接口文件 3.通过Java Compil">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1420866-79b675761018ff57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/536/format/webp">
+<meta name="twitter:title" content="Android中的内存泄漏总结">
+<meta name="twitter:description" content="内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。篇幅略长，大家可以分几节来看！  Jav">
     
         <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
     
@@ -146,7 +143,7 @@ ga('send', 'pageview');
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">AndroidStudio编译过程</div>
+        <div class="flex-col header-title ellipsis">Android中的内存泄漏总结</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -168,11 +165,11 @@ ga('send', 'pageview');
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">AndroidStudio编译过程</h1>
+        <h1 class="title">Android中的内存泄漏总结</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-03-02T04:07:14.000Z" itemprop="datePublished" class="page-time">
-  2019-03-02
+                <time datetime="2019-03-11T04:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-03-11
 </time>
 
 
@@ -188,14 +185,21 @@ ga('send', 'pageview');
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Java-内存分配策略"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java 内存分配策略</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#栈与堆的区别："><span class="post-toc-number">1.1.</span> <span class="post-toc-text">栈与堆的区别：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
 
-<article id="post-AndroidStudio编译过程"
+
+<article id="post-Android中的内存泄漏总结"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">AndroidStudio编译过程</h1>
+        <h1 class="post-card-title">Android中的内存泄漏总结</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-03-02 12:07:14" datetime="2019-03-02T04:07:14.000Z"  itemprop="datePublished">2019-03-02</time>
+            <time class="post-time" title="2019-03-11 12:07:14" datetime="2019-03-11T04:07:14.000Z"  itemprop="datePublished">2019-03-11</time>
 
             
 
@@ -209,31 +213,16 @@ ga('send', 'pageview');
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <blockquote>
-<p>在此记录一下AndroidStudio编译过程</p>
+<p>内存管理的目的就是让我们在开发中怎么有效的避免我们的应用出现内存泄漏的问题。内存泄漏大家都不陌生了，简单粗俗的讲，就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。<br>我会从 Java 内存泄漏的基础知识开始，并且通过具体例子来说明 Android 引起内存泄漏的各种原因，以及如何利用工具来分析应用内存泄漏，最后再做总结。<br>篇幅略长，大家可以分几节来看！</p>
 </blockquote>
-<p>其中使用到的编译工具：<br>aapt、aidl、Java Compiler、dex、zipalign</p>
-<p>主要步骤描述：</p>
-<pre><code>1.通过aapt打包res资源文件，生成R.java、resource.arsc和res文件（二进制&amp;非二进制如res/raw和pic保持原样）
-2.处理.aidl文件，生成对应的Java接口文件
-3.通过Java Compiler编译R.java、Java接口文件、Java源文件，生成.class文件
-4.通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex
-5.通过apkbuilder工具，将aapt生成的resource.arsc和res文件、assets文件和classes.dex一起打包生成apk
-6.通过Jarsigner工具，对上面的apk进行debug或release签名
-7.通过zipalign工具，将签名后的apk进行对齐处理
-</code></pre><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/1420866-79b675761018ff57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/536/format/webp" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://upload-images.jianshu.io/upload_images/1420866-1402494a5225964e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/993/format/webp" alt="link" title="">
-                </div>
-                <div class="image-caption">link</div>
-            </figure>
+<h1 id="Java-内存分配策略"><a href="#Java-内存分配策略" class="headerlink" title="Java 内存分配策略"></a>Java 内存分配策略</h1><p>Java 程序运行时的内存分配策略有三种，分别是静态分配、栈式分配、堆式分配，对应的三种存储策略使用的内存空间主要分别是静态存储区（也称方法区）、栈区和堆区。</p>
+<ul>
+<li>静态存储区(方法区)：主要存放静态数据、全局 static 数据和常量。这块内存在程序编译时就已经分配好，并且在程序整个运行期间都存在。</li>
+<li>栈区：当方法被执行时，方法体内的局部变量都在栈上创建，并在方法执行结束时这些局部变量所持有的内存将会自动被释放。因为栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。</li>
+<li>堆区：又称动态内存分配，通常就是指在程序运行时直接 new 出来的内存。这部分内存在不使用时将会由 Java 垃圾回收器来负责回收。</li>
+</ul>
+<h2 id="栈与堆的区别："><a href="#栈与堆的区别：" class="headerlink" title="栈与堆的区别："></a>栈与堆的区别：</h2><p>在方法体内定义的（局部变量）一些基本类型的变量和对象的引用变量都是在方法的栈内存中分配的。挡在一段方法块中定义一个变量时，Java 就会在栈中为该变量分配内存空间，当超过该变量的作用域后，该变量也就无效了，分配给它的内存空间也将被释放掉，该内存空间可以被重新使用。</p>
+
         </div>
 
         <blockquote class="post-copyright">
@@ -241,12 +230,12 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    最終更新：<time datetime="2019-03-04T07:35:29.654Z" itemprop="dateUpdated">2019-03-04 15:35:29</time>
+    最終更新：<time datetime="2019-03-11T13:56:04.595Z" itemprop="dateUpdated">2019-03-11 21:56:04</time>
 </span><br>
 
 
         
-        Original Link：<a href="/2019/03/02/AndroidStudio编译过程/" target="_blank" rel="external">https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/</a>
+        Original Link：<a href="/2019/03/11/Android中的内存泄漏总结/" target="_blank" rel="external">https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/</a>
         
     </div>
     
@@ -263,7 +252,7 @@ ga('send', 'pageview');
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/">Interview</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
 
             
@@ -273,7 +262,7 @@ ga('send', 'pageview');
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&title=《AndroidStudio编译过程》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&title=《Android中的内存泄漏总结》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -283,22 +272,22 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&title=《AndroidStudio编译过程》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&title=《Android中的内存泄漏总结》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AndroidStudio编译过程》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中的内存泄漏总结》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&via=https://edward7zhang.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -318,21 +307,14 @@ ga('send', 'pageview');
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/03/03/Retrofit2.0 使用教程（与常见网络请求库对比）/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">Retrofit2.0 使用教程（与常见网络请求库对比）</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2019/03/01/记一道简单的Java面试题/" id="post-next" class="post-nav-link">
+      <a href="/2019/03/10/Java深入源码/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">记一道简单的Java面试题【转载自 知乎——方志宏】</h4>
+        <h4 class="title">Java深入源码</h4>
       </a>
     </div>
   
@@ -409,7 +391,7 @@ ga('send', 'pageview');
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&title=《AndroidStudio编译过程》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&title=《Android中的内存泄漏总结》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -419,22 +401,22 @@ ga('send', 'pageview');
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&title=《AndroidStudio编译过程》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&title=《Android中的内存泄漏总结》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AndroidStudio编译过程》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/&via=https://edward7zhang.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android中的内存泄漏总结》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/&via=https://edward7zhang.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/02/AndroidStudio编译过程/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/11/Android中的内存泄漏总结/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -445,7 +427,7 @@ ga('send', 'pageview');
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrklEQVR42u3aQY4bMQwEQP//08k1QHbH3aS0cYCak+EsLNUcRKap1yt+fv31fPev3/398/O84p/fvG48eHh4eOutP283YT9/P/uF/PXh4eHh/QzvuxP1+fOmMMzA+Z7x8PDwPofXwtrffO6N8fDw8P5H3myLeYOehBF4eHh4n8DLG988hE1W2eOPZS14eHh43bxp2M7+q89X5nt4eHh466n67MBtLwQkocZwt3h4eHgXePmB2y7fNtPPDfRmn3h4eHhneXnc0AYH+RbbUVlxtQsPDw/vMm+z3eQSVX7EJw19si4eHh7eDd6NCwTtqKwtNu2LwMPDwzvLyxvlvL1uC8CshEQlAQ8PD+8Cbz9nn5WE2dWudiSGh4eHd4PXtrn7iLYdg7Wjr9esLuHh4eF1QWYdDeSXA9oD/TV66l/Dw8PDW/DyZrc9aYdjqjLGfVOi8PDw8K7xNoHC5vhOWvNNFIKHh4d3g7f6L/06brjdauPh4eHd451aZhY95C34gckeHh4e3pqXN9Cz5fOAeH8964sd4uHh4V3gtUd8O4JqX0RSkPLyg4eHh3ePl0cJSQHI2+XZq6ljFDw8PLyjvHb5NvadhcJtiXqTsuDh4eEd5W1GUzmmjW5P/TIeHh7ePV5SGNoX0ca+m7Wil4WHh4d3lJfD8gA3b5T3g64ik8bDw8M7ymvHWgdigsUALP97PDw8vHu8tjDkh/gmRGiD4GN1Dw8PDy9Ypj36N0d2fkEhj5LfxBB4eHh4h3j7MzZvzdvPm4tfeHh4eLd5STHIt5LP3G4Uhi/AeHh4eNd47YGebHrT5rbRxrff4OHh4X0Mb3+9YBZJ1LEvHh4e3gfw2va3DX/3LwgPDw/vZ3izkdWsBZ9d0hruDQ8PD+8CbxMNzFrhZCuzYdtqvoeHh4f3nvcbEguccbKil7kAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACoElEQVR42u3aQU7DQAwF0N7/0rBFgibf9rgF9LKqQprMSyWPsf14xMfHlyM/8/38s+Prldf3f2wceHh4eIOlXz+4+vj8miovWTMeHh7eNu9ZRL3+fComP7s+Wc+NBQ8PD++P8Kr3zF8WHh4e3v/jzcN6voXg4eHhvZfXu3WPPV/6Sq0FDw8PL+ZN0tl3fV7p7+Hh4eGNy6xJEE8Cd2+MoLoZ/HAfPDw8vAVetSw7SbvzoYT8ZUWlEDw8PLyjvGorqxfKr8usky3h2R3w8PDwXsPrlW6rhYx5wTdZbbS34OHh4Q14vXJANWT3SL1mGB4eHt5reNUFndoA8uurI1x4eHh4G7zkMb2CQq9gUR2rajbA8PDw8Aa8SbnhVCtrXhou1Frw8PDwDvGqzadJ4M5J1VT+ZqYMDw8P7xAvD7WT8sS87NtL8fHw8PD2eJMtIS/+Vpth8xkAPDw8vD3evGA6fynVF1HYqPDw8PCO8nq36LW15ol7ecPAw8PDW+MlQTkfF+i10HpJ9s1PgoeHh7fAmw8E5JtHr1xb/QHw8PDwXsPLg/jZkF0tcPRWiIeHh3eWlwf3yehAL1GeJPd4eHh427yzC83T6zz059tGOZnGw8PDK/LyxeXp8rygUJ19uPkWHh4e3hovH3WqpranmmS95hkeHh7eNi8vGeQt/2rRoTekNZosw8PDw2vxqrA89laT6cmBh4eHt837KB55CaBXeE2+VXjFeHh4eAu8yX5SfXCvMDH5Lh4eHt4erzow2vvrNbu32UQlZjw8PLw1XrXd1Ss6TDpTyegAHh4e3u/n5eF+Xp5I8D+cx8PDw/sFvDzc94ZNq/WEm2fh4eHhrfF6zafJmWqK3GuM4eHh4W3wev/wT8awEnCCfJw68PDw8FLeJ8cQxTqeyR1xAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
