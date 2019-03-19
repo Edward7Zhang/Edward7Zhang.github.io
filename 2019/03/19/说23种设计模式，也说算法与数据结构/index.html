@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Google Analytics -->
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'true', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    <meta name="google-site-verification" content="true">
+    
+    
+    
+    <title>说23种设计模式，也说算法与数据结构 | EdwardZhang&#39;s Blog | Life starts at the end of your comfort zone. ⚽ 🏂 🏃 🚴 ⌨️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Java,Design Pattern,Algorithm">
+    <meta name="description" content="什么是设计模式？ 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的">
+<meta name="keywords" content="Java,Design Pattern,Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="说23种设计模式，也说算法与数据结构">
+<meta property="og:url" content="https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/index.html">
+<meta property="og:site_name" content="EdwardZhang&#39;s Blog">
+<meta property="og:description" content="什么是设计模式？ 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的">
+<meta property="og:image" content="https://i.loli.net/2019/03/19/5c9089a16c426.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929202530606-709085396.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204041684-1520979160.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204151184-2094793629.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204518044-666328371.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929205441153-1950745368.png">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929205627606-1781915371.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/19/5c90a189cccd1.jpg">
+<meta property="og:image" content="https://i.loli.net/2018/05/05/5aedd233f0eca.jpg">
+<meta property="og:updated_time" content="2019-03-19T08:01:30.270Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="说23种设计模式，也说算法与数据结构">
+<meta name="twitter:description" content="什么是设计模式？ 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的">
+<meta name="twitter:image" content="https://i.loli.net/2019/03/19/5c9089a16c426.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="EdwardZhang&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">EdwardZhang</h5>
+          <a href="mailto:super7edwardzhang@gmail.com" title="super7edwardzhang@gmail.com" class="mail">super7edwardzhang@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Homepage
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/photo"  >
+                <i class="icon icon-lg icon-photo"></i>
+                Album
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/Edward7Zhang" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://weibo.com/u/3100298257/home?wvr=5" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://www.instagram.com/major7edward/" target="_blank" >
+                <i class="icon icon-lg icon-instagram"></i>
+                Instagram
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/link"  >
+                <i class="icon icon-lg icon-link"></i>
+                Friends&#39; Link
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">说23种设计模式，也说算法与数据结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">说23种设计模式，也说算法与数据结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-19T04:07:14.000Z" itemprop="datePublished" class="page-time">
+  2019-03-19
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是设计模式？"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是设计模式？</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#设计模式的三个分类"><span class="post-toc-number">2.</span> <span class="post-toc-text">设计模式的三个分类</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#概说-23-种设计模式"><span class="post-toc-number">3.</span> <span class="post-toc-text">概说 23 种设计模式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#单例模式"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">单例模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工厂方法模式"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">工厂方法模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#抽象工厂模式"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">抽象工厂模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#建造者模式"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">建造者模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原型模式"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">原型模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#适配器模式"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">适配器模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#桥接模式"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">桥接模式</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-说23种设计模式，也说算法与数据结构"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">说23种设计模式，也说算法与数据结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-19 12:07:14" datetime="2019-03-19T04:07:14.000Z"  itemprop="datePublished">2019-03-19</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="什么是设计模式？"><a href="#什么是设计模式？" class="headerlink" title="什么是设计模式？"></a>什么是设计模式？</h1><p> 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的原理来与之对应，每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的核心解决方案，这也是它能被广泛应用的原因。简单说：</p>
+<p><strong>模式：在某些场景下，针对某类问题的某种通用的解决方案。</strong></p>
+<p>场景：项目所在的环境</p>
+<p>问题：约束条件，项目目标等</p>
+<p>解决方案：通用、可复用的设计，解决约束达到目标。</p>
+<h1 id="设计模式的三个分类"><a href="#设计模式的三个分类" class="headerlink" title="设计模式的三个分类"></a>设计模式的三个分类</h1><p> <strong>创建型模式：对象实例化的模式，创建型模式用于解耦对象的实例化过程。</strong></p>
+<p><strong>结构型模式：把类或对象结合在一起形成一个更大的结构。</strong></p>
+<p><strong>行为型模式：类和对象如何交互，及划分责任和算法。</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/03/19/5c9089a16c426.png" alt="设计模式.png" title="">
+                </div>
+                <div class="image-caption">设计模式.png</div>
+            </figure>
+<h1 id="概说-23-种设计模式"><a href="#概说-23-种设计模式" class="headerlink" title="概说 23 种设计模式"></a>概说 23 种设计模式</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p> 单例模式，它的定义就是确保某一个类只有一个实例，并且提供一个全局访问点。</p>
+<p>单例模式具备典型的 3 个特点：</p>
+<ol>
+<li>只有一个实例。 </li>
+<li>自我实例化。 </li>
+<li>提供全局访问点。</li>
+</ol>
+<p>因此当系统中只需要一个实例对象或者系统中只允许一个公共访问点，除了这个公共访问点外，不能通过其他访问点访问该实例时，可以使用单例模式。</p>
+<p>单例模式的主要优点就是节约系统资源、提高了系统效率，同时也能够严格控制客户对它的访问。也许就是因为系统中只有一个实例，这样就导致了单例类的职责过重，违背了 “单一职责原则”，同时也没有抽象类，所以扩展起来有一定的困难。其 UML 结构图非常简单，就只有一个类，如下图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929202530606-709085396.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>作为抽象工厂模式的孪生兄弟，工厂方法模式定义了一个创建对象的接口，但由子类决定要实例化的类是哪一个，也就是说工厂方法模式让实例化推迟到子类。</p>
+<p>工厂方法模式非常符合“开闭原则”，当需要增加一个新的产品时，我们只需要增加一个具体的产品类和与之对应的具体工厂即可，无需修改原有系统。同时在工厂方法模式中用户只需要知道生产产品的具体工厂即可，无需关系产品的创建过程，甚至连具体的产品类名称都不需要知道。虽然他很好的符合了“开闭原则”，但是由于每新增一个新产品就需要增加两个类，这样势必会导致系统的复杂度增加。其 UML 结构图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204041684-1520979160.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>所谓抽象工厂模式就是提供一个接口，用于创建相关或者依赖对象的家族，而不需要明确指定具体类。它允许客户端使用抽象的接口来创建一组相关的产品，而不需要关系实际产出的具体产品是什么。这样一来，客户就可以从具体的产品中被解耦。它的优点是隔离了具体类的生成，使得客户端不需要知道什么被创建了，而缺点就在于新增新的行为会比较麻烦，因为当添加一个新的产品对象时，需要更改接口及其下所有子类。其 UML 结构图如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204151184-2094793629.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>对于建造者模式，它主要是将一个复杂对象的构建与表示分离，使得同样的构建过程可以创建不同的表示。适用于那些产品对象的内部结构比较复杂。</p>
+<p>建造者模式将复杂产品的构建过程封装分解在不同的方法中，使得创建过程非常清晰，能够让我们更加精确的控制复杂产品对象的创建过程，同时它隔离了复杂产品对象的创建和使用，使得相同的创建过程能够创建不同的产品。但是如果某个产品的内部结构过于复杂，将会导致整个系统变得非常庞大，不利于控制，同时若几个产品之间存在较大的差异，则不适用建造者模式，毕竟这个世界上存在相同点多的两个产品不是很多，所以它的使用范围有限。其 UML 结构图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929204518044-666328371.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>在我们应用程序可能有某些对象的结构比较复杂，但是我们有需要频繁的使用它们，如果这个时候我们来不断的新建这个对象势必会大大损耗系统内存的，这个时候我们需要使用原型模式来对这个结构复杂又要频繁使用的对象进行克隆。所以原型模式就是用原型实例指定创建对象的种类，并且通过复制这些原型创建新的对象。</p>
+<p>它主要应用于那些创建新对象的成本过大时。它的主要优点就是简化了新对象的创建过程，提高了效率，同时原型模式提供了简化的创建结构。UML 结构图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929205441153-1950745368.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure><br> <strong>模式结构</strong><br>原型模式包含如下角色：<br>Prototype：抽象原型类<br>ConcretePrototype：具体原型类<br>Client：客户类</p>
+<h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>在我们的应用程序中我们可能需要将两个不同接口的类来进行通信，在不修改这两个的前提下我们可能会需要某个中间件来完成这个衔接的过程。这个中间件就是适配器。所谓适配器模式就是将一个类的接口，转换成客户期望的另一个接口。它可以让原本两个不兼容的接口能够无缝完成对接。</p>
+<p>作为中间件的适配器将目标类和适配者解耦，增加了类的透明性和可复用性。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://images2017.cnblogs.com/blog/401339/201709/401339-20170929205627606-1781915371.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure></p>
+<p>适配器模式包含如下角色：<br>Target：目标抽象类<br>Adapter：适配器类<br>Adaptee：适配者类<br>Client：客户类</p>
+<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><hr>
+<p>排序算法<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/03/19/5c90a189cccd1.jpg" alt="1552982376(1).jpg" title="">
+                </div>
+                <div class="image-caption">1552982376(1).jpg</div>
+            </figure></p>
+<p>@card{</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2018/05/05/5aedd233f0eca.jpg" alt="-" title="">
+                </div>
+                <div class="image-caption">-</div>
+            </figure>
+<p>}</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-19T08:01:30.270Z" itemprop="dateUpdated">2019-03-19 16:01:30</time>
+</span><br>
+
+
+        
+        Original Link：<a href="/2019/03/19/说23种设计模式，也说算法与数据结构/" target="_blank" rel="external">https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://edward7zhang.github.io">
+            <img src="/img/avatar.jpg" alt="EdwardZhang">
+            EdwardZhang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/">Design Pattern</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&title=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&title=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/18/Android各版本新特性【持续更新】/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Android各版本新特性【持续更新...】</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'EdwardZhang777';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>EdwardZhang &copy; 2016 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&title=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&pic=https://edward7zhang.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&title=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&source=Life starts at the end of your comfort zone." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《说23种设计模式，也说算法与数据结构》 — EdwardZhang's Blog&url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/&via=https://edward7zhang.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://edward7zhang.github.io/2019/03/19/说23种设计模式，也说算法与数据结构/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADM0lEQVR42u3aQW7jQAwEwP3/p73XBRaWukkbiCalUxAr1tQYCM3m/PkTX69/rnev/n/nu/vf/e3+6R++sLGxsR/Cfl1e+T3vtuB6cdf3tBuXrxMbGxv7PHa7oBl1/z75Rt88FxsbGxv7sklIikr+avLO2NjY2NibsjSLlpKtTNoebGxsbOw8VGoj+2/ET9dr+0qWho2Njf3j2flU9Of//JX5NjY2NvYPZr/Ka9bA5IVwNmauFdjY2NgHsdtjMcnX+nybZuPb620tVoWNjY19BLuNb3Jeu6DZEZ82eMLGxsY+m70J6GdjhrxtyNubqLxhY2NjH8T+1AGd/DE3pSXemnyojI2NjX02O9+b2bGbfAvayClvb962ItjY2NgHsdugPw9xkoK0aTCGIRQ2Njb2cez28M3sEE/dG5UfVVE+sbGxsQ9iJ0tMwJsxcDvoTXhtQIaNjY39XHbSZny2gWmbh/zVum5jY2NjH8HOi9Yssm8L4WtxtS0NNjY29hnsfRuQL7otkJvBw836sbGxsQ9it//PZ+H+9Vh3E1q1tWlYxrCxsbEfws7/ICkbbdyzGSSvChg2Njb2w9l5ableYgtuS2b7xJuPEBsbG/sXsNuv9fnW7Ie+mw/jpoBhY2NjP5DdBv2zx+zjp7awRS0QNjY29hHs/N/95oDObAw8+0iiQAobGxv7UHa+rOTOfONmAVOyKVGohI2Njf1wdts8zAYAbbFsjxYNyyQ2Njb2cez2OE4bNm0OSrbhVDRywMbGxj6IPYv1v7Ep+Ui4mH58qiHBxsbGfgh7X8by98l/nx8kakca2NjY2GewZ0dq2tHvpvjt46ebUAkbGxv7CHZ7WGd2dGY24t0EScPeCxsbG/ux7Dasb3l5mZkdACrw2NjY2EewX+XV4mcHLtvhbl1EsbGxsQ9it1/uP3tMM29INiOBNpDCxsbGfiI7Ic1ipq+EQZeNSlEOsbGxsY9j7xcxa2ySgjTbypu2BBsbGxs7eeu4wZgNIZJxwk0rgo2Njf2L2bPxcDI8+HZZxcbGxj6VPTtMeX1nO6bNG5vZYBgbGxv7VHYb0CQPy5uETTw0C6ewsbGxD2L/Bd4thpISnV/2AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '42';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'Don‘t Panic！';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
