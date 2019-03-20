@@ -45,8 +45,9 @@ ga('send', 'pageview');
 <meta property="og:image" content="https://i.loli.net/2019/03/20/5c91db779984e.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/20/5c91db77a1c73.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/20/5c91db77bb492.png">
+<meta property="og:image" content="https://i.loli.net/2019/03/20/5c91e6dac4806.png">
 <meta property="og:image" content="https://i.loli.net/2019/03/19/5c90a189cccd1.jpg">
-<meta property="og:updated_time" content="2019-03-20T06:25:46.353Z">
+<meta property="og:updated_time" content="2019-03-20T07:08:40.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="说23种设计模式，也说算法与数据结构">
 <meta name="twitter:description" content="什么是设计模式？ 设计模式（Design pattern）是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了可重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理的运用设计模式可以完美的解决很多问题，每种模式在现在中都有相应的">
@@ -298,9 +299,25 @@ ga('send', 'pageview');
                 <div class="image-caption">Design Patterns - Adapter.png</div>
             </figure>
 <p>适配器模式包含如下角色：<br>Target：目标抽象类<br>Adapter：适配器类<br>Adaptee：适配者类<br>Client：客户类</p>
-<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><blockquote>
-<p>未完待续。。。</p>
-</blockquote>
+<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><p>别名：柄体模式</p>
+<ul>
+<li>将抽象部分与它的实现部分分离，使它们都可以独立地变化。<br>如果说某个系统能够从多个角度来进行分类，且每一种分类都可能会变化，那么我们需要做的就是讲这多个角度分离出来，使得他们能独立变化，减少他们之间的耦合，这个分离过程就使用了桥接模式。所谓桥接模式就是讲抽象部分和实现部分隔离开来，使得他们能够独立变化。</li>
+</ul>
+<p>桥接模式将继承关系转化成关联关系，封装了变化，完成了解耦，减少了系统中类的数量，也减少了代码量。</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://i.loli.net/2019/03/20/5c91e6dac4806.png" alt="Design Patterns - Handle-Body.png" title="">
+                </div>
+                <div class="image-caption">Design Patterns - Handle-Body.png</div>
+            </figure>
+<p>桥接模式包括如下角色：</p>
+<ul>
+<li>抽象（Abstraction）：是一个抽象类，该抽象类含有 Implementor 声明的变量，即维护一个 Implementor 类型对象。</li>
+<li>实现者（Implementor）：实现者角色是一个接口（抽象类），该接口（抽象类）中的方法不一定与 Abstraction 类中的方法一致。Implementor 接口（抽象类）负责定义基本操作，而 Abstraction 类负责定义基于操作的较高层次的操作。</li>
+<li>细化抽象（Refined Abstraction）：细化抽象是抽象角色的一个子类，该子类在重写（覆盖）抽象角色中的抽象方法时，在给出一些必要的操作后，将委托所维护 Implementor 类型对象调用相应的方法。</li>
+<li>具体实现者（Concrete Implementor）：具体实现者是实现（扩展）Implementor 接口（抽象类）的类。</li>
+</ul>
 <hr>
 <h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><figure class="image-bubble">
                 <div class="img-lightbox">
@@ -469,7 +486,7 @@ ga('send', 'pageview');
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-03-20T06:25:46.353Z" itemprop="dateUpdated">2019-03-20 14:25:46</time>
+    Last updated: <time datetime="2019-03-20T07:08:40.626Z" itemprop="dateUpdated">2019-03-20 15:08:40</time>
 </span><br>
 
 
