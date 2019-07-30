@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://edward7zhang.github.io/2019/07/29/Tensorflow%20XLA%20AOT%20%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96/</loc>
+    
+    <lastmod>2019-07-30T07:40:21.538Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://edward7zhang.github.io/2019/06/01/%E6%83%B3%E8%AF%B4%E5%8D%B4%E8%BF%98%E6%B2%A1%E8%AF%B4%E7%9A%84%E4%B9%9F%E4%B8%8D%E5%BF%85%E5%86%8D%E8%AF%B4%E4%BA%86/</loc>
+    
+    <lastmod>2019-06-01T16:06:37.404Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://edward7zhang.github.io/2018/04/27/%E4%B8%89%E5%B9%B4%E4%B8%89%E6%9C%88%E4%B8%89%E5%A4%A9%E4%B8%89%E5%B0%8F%E6%97%B6/</loc>
+    
+    <lastmod>2019-06-01T15:17:58.618Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://edward7zhang.github.io/2019/03/23/%E8%A7%A3%E6%9E%90SharePreferences/</loc>
     
     <lastmod>2019-03-23T13:08:40.971Z</lastmod>
@@ -187,13 +208,6 @@
     <loc>https://edward7zhang.github.io/2017/06/30/DeepLearning%20%20%20%E6%80%92%E5%8F%91%E6%95%99%E7%A8%8B%EF%BC%81%EF%BC%81%EF%BC%81Ubuntu16.04%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BATensorFlowGPU/</loc>
     
     <lastmod>2018-04-27T08:09:27.378Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://edward7zhang.github.io/2018/04/27/%E4%B8%89%E5%B9%B4%E4%B8%89%E6%9C%88%E4%B8%89%E5%A4%A9%E4%B8%89%E5%B0%8F%E6%97%B6/</loc>
-    
-    <lastmod>2018-04-27T07:52:55.006Z</lastmod>
     
   </url>
   
