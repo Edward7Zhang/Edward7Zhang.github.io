@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://edward7zhang.github.io/"/>
-  <updated>2019-07-31T06:14:25.995Z</updated>
+  <updated>2019-08-17T03:48:05.334Z</updated>
   <id>https://edward7zhang.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重复图片技术调研</title>
+    <link href="https://edward7zhang.github.io/2019/08/15/%E9%87%8D%E5%A4%8D%E5%9B%BE%E7%89%87%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/"/>
+    <id>https://edward7zhang.github.io/2019/08/15/重复图片技术调研/</id>
+    <published>2019-08-15T02:07:29.000Z</published>
+    <updated>2019-08-17T03:48:05.334Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>目前接到一个新的需求，也是一个老的需求，但目前使用传统算法在相似照片识别过程中出现了识别率较低效率不高等质量及性能问题，希望通过调研发现机器学习工程中的一些处理方式来将这一过程简化提高性能和准确率</p></blockquote><h1 id="相似照片"><a href="#相似照片" class="headerlink" title="相似照片"></a>相似照片</h1><p>相似照片大致分为3大类：</p><ol><li>连续拍摄的照片（连拍照片）</li><li>因手抖或因取景不满意等原因导致上下左右移到重写拍摄后的照片（平移照片）</li><li>因取景不满意或不同时刻对同一景点进行拍摄等原因导致的在不同角度或不同位置拍同一景点的照片（角度照片）</li></ol><h1 id="图像相似匹配算法"><a href="#图像相似匹配算法" class="headerlink" title="图像相似匹配算法"></a>图像相似匹配算法</h1><h2 id="关键点匹配（Keypoint-Matching）"><a href="#关键点匹配（Keypoint-Matching）" class="headerlink" title="关键点匹配（Keypoint Matching）"></a>关键点匹配（Keypoint Matching）</h2><p>一张图像的某些部位可能蕴含比其它部位更多的信息，比如边缘、焦点。因此我们可以利用一些算法提取图像的关键点信息进行比较。</p><p>SIFT，ORB，SURF，GIST都是此类提取关键点信息算法。这些算法的准确率较高，但同时不可避免的在运算复杂度上较为复杂。</p><p><a href="http://lib.csdn.net/article/opencv/41913" target="_blank" rel="external">图像特征检测描述 (一):SIFT、SURF、ORB、HOG、LBP 特征的原理概述及 OpenCV 代码实现</a><br><a href="https://blog.csdn.net/sinat_31337047/article/details/52760780" target="_blank" rel="external">特征匹配, sift,surf,orb,brisk,brief</a><br><a href="https://blog.csdn.net/vonzhoufz/article/details/46594369" target="_blank" rel="external">SIFT,SURF,ORB,FAST 特征提取算法比较</a><br><a href="http://dergipark.gov.tr/download/article-file/89429" target="_blank" rel="external">比较各种算法的论文</a><br><a href="https://blog.csdn.net/gan_player/article/details/78285771" target="_blank" rel="external">特征匹配之 Brute-Force 匹配和 FLANN 匹配器</a><br><a href="https://www.cnblogs.com/Lin-Yi/p/9435824.html" target="_blank" rel="external">python 实现 sift——flann</a><br><a href="https://www.cnblogs.com/Jessica-jie/p/8622449.html" target="_blank" rel="external">特征点匹配 + 特征检测方法汇总</a><br><a href="https://blog.csdn.net/weixin_38285131/article/details/79269338" target="_blank" rel="external">图像拼接之特征点匹配–距离筛选，余弦角筛选，相似度和 ransac 筛选</a><br><a href="https://docs.opencv.org/3.3.0/d6/d00/tutorial_py_root.html" target="_blank" rel="external">python 官方教程</a></p><h2 id="直方图统计（Histogram-method）"><a href="#直方图统计（Histogram-method）" class="headerlink" title="直方图统计（Histogram method）"></a>直方图统计（Histogram method）</h2><h2 id="关键点-决策树（Keypoints-Decision-Trees）"><a href="#关键点-决策树（Keypoints-Decision-Trees）" class="headerlink" title="关键点 + 决策树（Keypoints + Decision Trees）"></a>关键点 + 决策树（Keypoints + Decision Trees）</h2><h2 id="哈希算法（Hash）"><a href="#哈希算法（Hash）" class="headerlink" title="哈希算法（Hash）"></a>哈希算法（Hash）</h2><p>最简单的方法是直接使用哈希算法（md5、sha-1）算法对整个图片哈希。但缺点明显，只要图片内容有些 许改变，MD5值就不同。因此需要对图片的某种特征进行hash，感知哈希算法（Perceptual Hash Algorithm）就是专门针对此问题的算法。感知哈希算法是这一类算法的总称，包括 aHash、pHash、dHash。感知哈希不是以严格的方式计算Hash值，而是以更加相对的方式计算哈希值，因为”相似”与否，就是一种相对的判定。尽管pHash、dHash对aHash做出来改进，但其实这类算法的适用范围还是局限于不同缩放比例的图像的相似性比较，对于旋转、位移及变化较大，但其实还是同一个物体的相似性比较就比较差。</p><p>其在大规模搜索引擎中找到极其相似的图像比较容易，对于语义上的相似比较还是很困难的。</p><ul><li>aHash：平均值哈希。速度比较快，但常常不太精确。</li><li>pHash：感知哈希。精确度比较高，但速度方面较差一些。</li><li>dHash：差异值哈希。精确度较高，且速度也非常快。</li></ul><p><a href="https://blog.csdn.net/sinat_26917383/article/details/70287521" target="_blank" rel="external">相似性︱python+opencv 实现 pHash 算法 + hamming 距离（simhash）（三）</a><br><a href="https://blog.csdn.net/zouxy09/article/details/17471401" target="_blank" rel="external">基于感知哈希算法的视觉目标跟踪 - C++ 实现</a><br><a href="https://blog.csdn.net/luohong722/article/details/7100058" target="_blank" rel="external">Google 以图搜图 - 相似图片搜索原理 - Java 实现</a><br><a href="http://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html" target="_blank" rel="external">相似图片搜索的原理</a><br><a href="http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html" target="_blank" rel="external">PHash 作者原文</a><br><a href="http://www.phash.org/" target="_blank" rel="external">PHash 开源库</a><br><a href="https://blog.csdn.net/sinat_26917383/article/details/78582064?locationNum=4&amp;fps=1" target="_blank" rel="external">python︱imagehash 中的四种图像哈希方式（phash/ahash/dhash / 小波 hash）</a><br><a href="https://www.jianshu.com/p/193f0089b7a2" target="_blank" rel="external">相似图片检测：感知哈希算法之 dHash 的 Python 实现</a><br><a href="https://github.com/7WebPages/comparer" target="_blank" rel="external">hash 算法 demo，可以快速测试你的 task 是否符合 hash 算法</a><br><a href="https://cloud.tencent.com/developer/article/1006121" target="_blank" rel="external">工程实践思路：老司机带你检测相似图片</a><br><a href="https://stackoverflow.com/questions/21634559/phash-yields-weird-results-for-some-images" target="_blank" rel="external">Hash 算法缺点所在</a></p><h2 id="其他："><a href="#其他：" class="headerlink" title="其他："></a>其他：</h2><p><a href="https://blog.csdn.net/sinat_26917383/article/details/63306206" target="_blank" rel="external">实例检索︱图像的实例搜索（文献、方法描述、商业案例）</a></p><p><a href="https://blog.csdn.net/u013087984/article/details/52038980" target="_blank" rel="external">图像检索：基于内容的图像检索技术</a></p><p><img src="https://img-blog.csdn.net/20181019195840777?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzE2MjM0NjEz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;目前接到一个新的需求，也是一个老的需求，但目前使用传统算法在相似照片识别过程中出现了识别率较低效率不高等质量及性能问题，希望通过调研发现机器学习工程中的一些处理方式来将这一过程简化提高性能和准确率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://edward7zhang.github.io/tags/Algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>Tensroflow XLA AOT 模型优化</title>
@@ -489,29 +515,6 @@
     
     
       <category term="Lab_Interview" scheme="https://edward7zhang.github.io/tags/Lab-Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后生可畏</title>
-    <link href="https://edward7zhang.github.io/2018/05/06/%E5%90%8E%E7%94%9F%E5%8F%AF%E7%95%8F/"/>
-    <id>https://edward7zhang.github.io/2018/05/06/后生可畏/</id>
-    <published>2018-05-06T15:20:07.000Z</published>
-    <updated>2018-05-06T15:44:43.485Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Take-your-Child-to-work-Day-at-Google-2018"><a href="#Take-your-Child-to-work-Day-at-Google-2018" class="headerlink" title="Take your Child to work Day at Google 2018"></a>Take your Child to work Day at Google 2018</h1><iframe width="600" height="337.3" src="https://www.youtube.com/embed/2nWkYwC2XHI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><p>When I heared a kid who Firmly said I will be a video game programmer, I realize that it is extraordinary.</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Take-your-Child-to-work-Day-at-Google-2018&quot;&gt;&lt;a href=&quot;#Take-your-Child-to-work-Day-at-Google-2018&quot; class=&quot;headerlink&quot; title=&quot;Take you
-      
-    
-    </summary>
-    
-    
-      <category term="Inspire" scheme="https://edward7zhang.github.io/tags/Inspire/"/>
     
   </entry>
   
