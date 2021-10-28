@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>https://edward7zhang.github.io/2020/08/15/Why-does-Javas-hashCode()-in-String-use-31-as-a-multiplier/</loc>
+    <lastmod>2021-10-26T15:08:24.251Z</lastmod>
+    <data>
+        <display>
+        <title>Why does Java's hashCode() in String use 31 as a multiplier?</title>
+        <pubTime>2020-08-15T02:07:29.000Z</pubTime>
+        
+        <tag>Algorithm Java</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://edward7zhang.github.io/2019/08/15/%E9%87%8D%E5%A4%8D%E5%9B%BE%E7%89%87%E6%8A%80%E6%9C%AF%E8%B0%83%E7%A0%94/</loc>
     <lastmod>2019-08-17T03:48:05.334Z</lastmod>
     <data>
@@ -136,9 +153,9 @@
         
         <tag>Android</tag>
          
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -155,9 +172,9 @@
         <title>Java深入源码</title>
         <pubTime>2019-03-10T04:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -174,9 +191,9 @@
         <title>论：线程、多线程和线程池</title>
         <pubTime>2019-03-06T04:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -579,9 +596,9 @@
         <title>Java面试题集</title>
         <pubTime>2018-04-10T01:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -728,9 +745,9 @@
         <title>哪些情况下的对象会被垃圾回收机制处理掉？</title>
         <pubTime>2018-03-03T11:07:14.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
         <tag>GC</tag>
          
@@ -749,9 +766,9 @@
         <title>volatile关键字</title>
         <pubTime>2018-03-01T13:04:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -768,9 +785,9 @@
         <title>Java创建线程的三种方式</title>
         <pubTime>2018-01-15T12:24:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            
@@ -787,9 +804,9 @@
         <title>synchronized和ReentrantLock的比较</title>
         <pubTime>2018-01-20T12:24:12.000Z</pubTime>
         
-        <tag>Interview</tag>
-         
         <tag>Java</tag>
+         
+        <tag>Interview</tag>
          
          
            

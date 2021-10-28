@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://edward7zhang.github.io/"/>
-  <updated>2019-08-17T03:48:05.334Z</updated>
+  <updated>2021-10-26T15:08:24.251Z</updated>
   <id>https://edward7zhang.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Why does Java&#39;s hashCode() in String use 31 as a multiplier?</title>
+    <link href="https://edward7zhang.github.io/2020/08/15/Why-does-Javas-hashCode()-in-String-use-31-as-a-multiplier/"/>
+    <id>https://edward7zhang.github.io/2020/08/15/Why-does-Javas-hashCode()-in-String-use-31-as-a-multiplier/</id>
+    <published>2020-08-15T02:07:29.000Z</published>
+    <updated>2021-10-26T15:08:24.251Z</updated>
+    
+    <content type="html"><![CDATA[<p>According to Joshua Bloch’s <a href="https://rads.stackoverflow.com/amzn/click/com/0321356683" target="_blank" rel="external">Effective Java</a> (a book that can’t be recommended enough, and which I bought thanks to continual mentions on stackoverflow):</p><blockquote><p>The value 31 was chosen because it is an odd prime. If it were even and the multiplication overflowed, information would be lost, as multiplication by 2 is equivalent to shifting. The advantage of using a prime is less clear, but it is traditional. A nice property of 31 is that the multiplication can be replaced by a shift and a subtraction for better performance: <code>31 * i == (i &lt;&lt; 5) - i</code>. Modern VMs do this sort of optimization automatically.</p></blockquote><p><em>(from Chapter 3, Item 9: Always override hashcode when you override equals, page 48)</em></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;According to Joshua Bloch’s &lt;a href=&quot;https://rads.stackoverflow.com/amzn/click/com/0321356683&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Effective J
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm Java" scheme="https://edward7zhang.github.io/tags/Algorithm-Java/"/>
+    
+  </entry>
   
   <entry>
     <title>重复图片技术调研</title>
@@ -186,9 +209,9 @@
     
       <category term="Android" scheme="https://edward7zhang.github.io/tags/Android/"/>
     
-      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
-    
       <category term="Java" scheme="https://edward7zhang.github.io/tags/Java/"/>
+    
+      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
     
   </entry>
   
@@ -211,9 +234,9 @@
     </summary>
     
     
-      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
-    
       <category term="Java" scheme="https://edward7zhang.github.io/tags/Java/"/>
+    
+      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
     
   </entry>
   
@@ -237,9 +260,9 @@
     </summary>
     
     
-      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
-    
       <category term="Java" scheme="https://edward7zhang.github.io/tags/Java/"/>
+    
+      <category term="Interview" scheme="https://edward7zhang.github.io/tags/Interview/"/>
     
   </entry>
   
@@ -491,30 +514,6 @@
     
     
       <category term="TensorFlow" scheme="https://edward7zhang.github.io/tags/TensorFlow/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>实验室招新题目②</title>
-    <link href="https://edward7zhang.github.io/2018/05/08/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E6%8B%9B%E6%96%B0%E9%A2%98%E7%9B%AE(2)/"/>
-    <id>https://edward7zhang.github.io/2018/05/08/实验室招新题目(2)/</id>
-    <published>2018-05-08T10:00:07.000Z</published>
-    <updated>2018-05-08T16:09:44.840Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="火车装箱"><a href="#火车装箱" class="headerlink" title="火车装箱"></a>火车装箱</h1><hr><h2 id="现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车"><a href="#现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车" class="headerlink" title="现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车"></a>现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车</h2><h2 id="要求："><a href="#要求：" class="headerlink" title="要求："></a>要求：</h2><ul><li>其中每节车厢中包含两种元素 车厢号：<code>TrainNum</code> 以及所装载货物数量：<code>GoodsNum</code>；</li><li>其中每节车厢以<code>前车厢</code> -&gt; <code>后车厢</code> 的形式进行连接；</li><li>按照每节车厢的<code>GoodsNum</code>的降序进行连接；</li><li><p>自定义一个<code>TrainCabin</code>数据结构</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span>&#123;</span></div><div class="line"></div><div class="line"><span class="comment">//TODO structure your struct</span></div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure></li><li><p>写出一个函数</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function">TrainCabin* <span class="title">AssembleTraninCabin</span><span class="params">(TrainCabin* TrainList)</span></span>;</div><div class="line"><span class="comment">//选择你认为时间复杂度最小的算法进行编码</span></div></pre></td></tr></table></figure></li></ul><blockquote><p>返回值为已按照以上要求排好序后的火车链表</p></blockquote><h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><ul><li>第一个值为<code>TrainNum</code></li><li>第二个值为<code>GoodsNum</code></li><li>中间以<code>|</code>分割</li><li>输入<code>-1</code> 以结束输入</li></ul><h3 id="Input："><a href="#Input：" class="headerlink" title="Input："></a>Input：</h3><pre><code>1 | 32 | 53 | 74 | 25 | 0-1</code></pre><h2 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h2><ul><li>在控制台中打印排好序的火车列</li><li>按照以下示例格式</li></ul><h3 id="Output："><a href="#Output：" class="headerlink" title="Output："></a>Output：</h3><pre><code>| 3 | 7 | -&gt; | 2 | 5 | -&gt; | 1 | 3 | -&gt; | 4 | 2 | -&gt; | 5 | 0 |</code></pre><hr><h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>非常基础的一道考察数据抽象、数据结构构造、排序算法、单向链表的简单题…但今天的现场情况不容乐观<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">int</span> TrainNum;</div><div class="line"><span class="keyword">int</span> GoodsNum;</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TrainCabin</span> *<span class="title">next</span>;</span></div><div class="line">&#125;TrainCabin;</div><div class="line"></div><div class="line"><span class="function">TrainCabin* <span class="title">AssembleTraninCabin</span><span class="params">(TrainCabin *TrainList)</span></span></div><div class="line">&#123;</div><div class="line">TrainCabin *i=TrainList;</div><div class="line">TrainCabin *j;</div><div class="line">TrainCabin *temp=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">temp-&gt;next=<span class="literal">NULL</span>;</div><div class="line"><span class="keyword">while</span>(i!=<span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line">j=i-&gt;next;</div><div class="line"><span class="keyword">while</span>(j!=<span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span>((*i).GoodsNum&gt;(*j).GoodsNum)</div><div class="line">&#123;</div><div class="line">(*temp).TrainNum=(*i).TrainNum;</div><div class="line">(*temp).GoodsNum=(*i).GoodsNum;</div><div class="line">(*i).TrainNum=(*j).TrainNum;</div><div class="line">(*i).GoodsNum=(*j).GoodsNum;</div><div class="line">(*j).TrainNum=(*temp).TrainNum;</div><div class="line">(*j).GoodsNum=(*temp).GoodsNum;</div><div class="line">&#125;</div><div class="line">j=j-&gt;next;</div><div class="line">&#125;</div><div class="line">i=i-&gt;next;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> TrainList;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">(<span class="keyword">const</span> TrainCabin *TrainList)</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">while</span>(TrainList-&gt;next!=<span class="literal">NULL</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).TrainNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).GoodsNum&lt;&lt;<span class="string">"| -&gt; "</span>;</div><div class="line">TrainList=TrainList-&gt;next;</div><div class="line">&#125;</div><div class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).TrainNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;(*TrainList).GoodsNum&lt;&lt;<span class="string">"|"</span>&lt;&lt;<span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="keyword">int</span> TrainNum=<span class="number">0</span>,GoodsNum=<span class="number">0</span>;</div><div class="line">TrainCabin *frist,*last;</div><div class="line">TrainCabin *temp;</div><div class="line">frist=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">frist-&gt;next=<span class="literal">NULL</span>;</div><div class="line">last=frist;</div><div class="line"><span class="keyword">char</span> input;</div><div class="line"><span class="keyword">while</span>(<span class="number">1</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;TrainNum;</div><div class="line"><span class="keyword">if</span>(TrainNum==<span class="number">-1</span>)</div><div class="line"><span class="keyword">break</span>;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;input;</div><div class="line"><span class="built_in">cin</span>&gt;&gt;GoodsNum;</div><div class="line"></div><div class="line">temp=(TrainCabin*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(TrainCabin));</div><div class="line">temp-&gt;TrainNum=TrainNum;</div><div class="line">temp-&gt;GoodsNum=GoodsNum;</div><div class="line">temp-&gt;next=<span class="literal">NULL</span>;</div><div class="line"></div><div class="line">last-&gt;next=temp;</div><div class="line">last=temp;</div><div class="line">&#125;</div><div class="line">TrainCabin *result=AssembleTraninCabin((*frist).next);</div><div class="line">display(result);</div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;火车装箱&quot;&gt;&lt;a href=&quot;#火车装箱&quot; class=&quot;headerlink&quot; title=&quot;火车装箱&quot;&gt;&lt;/a&gt;火车装箱&lt;/h1&gt;&lt;hr&gt;
-&lt;h2 id=&quot;现有一批火车车厢需要按照每节车厢中所含货物数量进行连接发车&quot;&gt;&lt;a href=&quot;#现有一批火车车厢需要按
-      
-    
-    </summary>
-    
-    
-      <category term="Lab_Interview" scheme="https://edward7zhang.github.io/tags/Lab-Interview/"/>
     
   </entry>
   
